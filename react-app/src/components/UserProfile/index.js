@@ -5,7 +5,7 @@ import * as profileActions from '../../store/profile'
 function UserProfile({sessionUser}) {
   // const profileData = await
   const dispatch = useDispatch()
-  const userProfile = useSelector((state) => state.profile.profile);
+  const userProfile = useSelector((state) => Object.values(state.profile));
   console.log(userProfile.id)
 
   useEffect(() => {

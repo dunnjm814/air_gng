@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Profile
 
 user_routes = Blueprint('users', __name__)
 
@@ -21,7 +21,7 @@ def user(id):
 @user_routes.route('/profile/<int:user_id>')
 @login_required
 def user_profile(user_id):
-    profile = Profile.query.filter_by(Profile.user_id)
+    profile = Profile.query.filter_by(user_id=user_id)
     return profile.to_dict()
 
 @user_routes.route('/profile/<int:id>', methods=['POST'])

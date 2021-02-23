@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = ({ authenticated, setAuthenticated, setLoginModal }) => {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState([]);
@@ -15,9 +15,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
+      
     } else {
       setErrors(user.errors);
     }
+
   };
 
   const updateEmail = (e) => {
@@ -28,9 +30,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  // if (authenticated) {
-  //   return <Redirect to="/" />;
-  // }
+  if (authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <form onSubmit={onLogin}>
