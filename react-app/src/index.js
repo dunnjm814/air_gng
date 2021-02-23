@@ -7,6 +7,7 @@ import configureStore from "./store";
 import * as sessionActions from "./store/session";
 
 const store = configureStore();
+console.log(Object.values)
 
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
