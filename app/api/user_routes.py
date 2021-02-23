@@ -28,4 +28,4 @@ def profile_form_submit(id):
     form = ProfileForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        
+        pass

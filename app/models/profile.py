@@ -8,6 +8,6 @@ class Profile(db.Model):
   location = db.Column(db.String(200))
   work = db.Column(db.String(200))
   language = db.Column(db.String(200))
-  user_id = db.Colum(db.Integer, db.ForeignKey("User.id"))
+  user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-  user = db.relationshop("User", back_populates="profile")
+  user = db.relationship("User", back_populates="profile")
