@@ -6,7 +6,7 @@ import SignUpFormModal from '../SignUpModal';
 import LogoutButton from '../auth/LogoutButton';
 
 
-function ProfileMenu({ user }) {
+function ProfileMenu({ setAuthenticated, authenticated }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -27,10 +27,10 @@ function ProfileMenu({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-//   const logout = (e) => {
-//     e.preventDefault();
-//     dispatch(sessionReducer.logout());
-//   };
+  //   const logout = (e) => {
+  //     e.preventDefault();
+  //     dispatch(sessionReducer.logout());
+  //   };
 
   return (
     <>
@@ -47,7 +47,10 @@ function ProfileMenu({ user }) {
             <SignUpFormModal />
           </li>
           <li>
-            <LogoutButton setAuthenticated={setAuthenticated} />
+            <LogoutButton
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
           </li>
         </ul>
       )}
