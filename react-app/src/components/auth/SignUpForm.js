@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import {useDispatch} from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import { signUp } from '../../store/session';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
+  const dispatch = useDispatch()
+
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -11,14 +14,19 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [profilePic, setProfilePic] = useState("")
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([])
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, firstName, lastName, phoneNumber, email, password, profilePic);
+      const user = await dispatch(signUp(username, firstName, lastName, phoneNumber, email, password, profilePic));
       if (!user.errors) {
         setAuthenticated(true);
+      } else {
+        setErrors(user.errors)
       }
+    } else {
+      setErrors(['Please confirm password'])
     }
   };
 
@@ -43,7 +51,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   const updateProfilePic = (e) => {
-    setProfilePic(e.target.value)
+    const pic = e.target.files[0];
+    if (pic) setProfilePic(pic)
   }
 
   const updatePassword = (e) => {
@@ -55,12 +64,19 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   };
 
   if (authenticated) {
-    
+
     return <Redirect to="/" />;
   }
 
   return (
     <form onSubmit={onSignUp}>
+      <div>
+        <ul>
+          {errors.map((error, i) => (
+            <li key={i} style={{ color:'red' }}>{error}</li>
+          ))}
+        </ul>
+      </div>
       <div>
         <label>First Name</label>
         <input
