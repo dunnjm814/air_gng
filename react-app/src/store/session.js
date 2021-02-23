@@ -52,7 +52,34 @@ export const signUp = (
   const user = await response.json();
   dispatch(setUser(user))
   return user
-};
+  };
+
+  export const login = (email, password) => async (dispatch) => {
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const user = await response.json();
+    dispatch(setUser(user))
+    return user
+  };
+
+  export const logout = () => async (dispatch) =>{
+    const response = await fetch("/api/auth/logout", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const message = await response.json();
+    dispatch(removeUser())
+    return message
+  };
 
 const sessionReducer = (state = { user: null }, action) => {
   let newState = { ...state };
