@@ -4,11 +4,16 @@ import * as sessionReducer from "../../store/session";
 import LoginFormModal from '../LoginModal';
 import SignUpFormModal from '../SignUpModal';
 import LogoutButton from '../auth/LogoutButton';
+import LoginForm from "../auth/LoginForm";
+import SignUpForm from "../auth/SignUpForm";
+import { Modal } from "../../context/Modal";
 
 
 function ProfileMenu({ setAuthenticated, authenticated }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [showLogModal, setShowLogModal] = useState(false);
+  const [showSignModal, setShowSignModal] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -38,13 +43,25 @@ function ProfileMenu({ setAuthenticated, authenticated }) {
         <i className="fas fa-user-circle" />
       </button>
 
+      {showLogModal && (
+        <Modal onClose={() => setShowLogModal(false)}>
+          <LoginForm />
+        </Modal>
+      )}
+
+      {showSignModal && (
+        <Modal onClose={() => setShowSignModal(false)}>
+          <SignUpForm />
+        </Modal>
+      )}
+
       {showMenu && (
         <ul className="profile-dropdown">
           <li>
-            <LoginFormModal />
+            <button onClick={() => setShowLogModal(true)}>Log in</button>
           </li>
           <li>
-            <SignUpFormModal />
+            <button onClick={() => setShowSignModal(true)}>Sign Up</button>
           </li>
           <li>
             <LogoutButton
