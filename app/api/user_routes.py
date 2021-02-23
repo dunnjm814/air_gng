@@ -17,3 +17,15 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/profile/<int:id>')
+@login_required
+def user_profile(id):
+    pass
+
+@user_routes.route('/profile/<int:id>', methods=['POST'])
+def profile_form_submit(id):
+    form = ProfileForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        
