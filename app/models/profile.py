@@ -11,3 +11,13 @@ class Profile(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
   user = db.relationship("User", back_populates="profile")
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "about": self.about,
+      "location": self.location,
+      "work": self.work,
+      "language": self.language,
+      "user_id": self.user_id
+    }

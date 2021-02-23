@@ -16,6 +16,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
+  
 
   useEffect(() => {
     (async() => {
@@ -68,7 +69,7 @@ function App() {
           path="/users/profile/:userId"
           exact={true}
           authenticated={authenticated}>
-          <UserProfile sessionUser={sessionUser}/>
+          <UserProfile sessionUser={sessionUser} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
