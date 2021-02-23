@@ -5,7 +5,7 @@ import LoginFormModal from './LoginModal';
 import SignUpFormModal from './SignUpModal';
 import ProfileMenu from './ProfileButton';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ setAuthenticated, authenticated }) => {
   return (
     <nav>
       <ul>
@@ -15,7 +15,10 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
         </li>
         <li>
-          <ProfileMenu />
+          <ProfileMenu
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </li>
       </ul>
     </nav>
