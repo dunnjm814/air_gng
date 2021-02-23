@@ -18,10 +18,11 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/profile/<int:id>')
+@user_routes.route('/profile/<int:user_id>')
 @login_required
-def user_profile(id):
-    pass
+def user_profile(user_id):
+    profile = Profile.query.filter_by(Profile.user_id)
+    return profile.to_dict()
 
 @user_routes.route('/profile/<int:id>', methods=['POST'])
 def profile_form_submit(id):
