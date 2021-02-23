@@ -1,12 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import LoginFormModal from './LoginModal';
 
 const NavBar = ({ setAuthenticated }) => {
   return (
     <nav>
       <ul>
         <li>
+          <LoginFormModal />
+          </li>
+          <li>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
