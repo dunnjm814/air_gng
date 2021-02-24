@@ -16,9 +16,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
+
     } else {
       setErrors(user.errors);
     }
+
   };
 
   const updateEmail = (e) => {
