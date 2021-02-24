@@ -24,9 +24,17 @@ def user_profile(user_id):
     profile = Profile.query.filter_by(user_id=user_id).first()
     return profile.to_dict()
 
-@user_routes.route('/profile/<int:id>', methods=['POST'])
+@user_routes.route('/profile/<int:user_id>', methods=['PUT'])
 def profile_form_submit(id):
     form = ProfileForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        pass
+        profile = Profile(
+            about=form.data['about'],
+            location=form.data['location'],
+            work=form.data['work'],
+            language=form.data['language'],
+        )
+        db.session.add(profile)
+        db.session.commit()
+        return profile.to_dict()
