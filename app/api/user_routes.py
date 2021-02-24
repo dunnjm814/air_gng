@@ -21,7 +21,7 @@ def user(id):
 @user_routes.route('/profile/<int:user_id>')
 @login_required
 def user_profile(user_id):
-    profile = Profile.query.filter_by(user_id=user_id)
+    profile = Profile.query.filter_by(user_id=user_id).first()
     return profile.to_dict()
 
 @user_routes.route('/profile/<int:id>', methods=['POST'])
