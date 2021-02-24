@@ -13,8 +13,8 @@ function Map() {
   };
 
   const center = {
-    lat: lat || -3.745,
-    lng: lng || -38.523,
+    lng: lng || -114.34576,
+    lat: lat || 34.81723,
   };
 
 
