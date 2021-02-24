@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import * as sessionReducer from "../../store/session";
 import LogoutButton from '../auth/LogoutButton';
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
@@ -30,7 +29,7 @@ function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
     document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  }, [showMenu, authenticated]);
   // useEffect(() =>{}, [authenticated])
 
   //   const logout = (e) => {
@@ -64,7 +63,7 @@ function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
 
       {showMenu && (
         <ul className="profile-dropdown">
-          {!sessionUser.id && <>
+          {!sessionUser && <>
             <li>
               <button onClick={() => setShowLogModal(true)}>Log in</button>
             </li>
@@ -73,7 +72,7 @@ function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
             </li>
           </>
           }
-          {sessionUser.id && <>
+          {sessionUser && <>
             <li>
               <NavLink to={`/users/profile/${sessionUser.id}`}>Profile</NavLink>
             </li>
