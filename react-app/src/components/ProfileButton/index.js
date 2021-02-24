@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionReducer from "../../store/session";
-import LoginFormModal from '../LoginModal';
-import SignUpFormModal from '../SignUpModal';
 import LogoutButton from '../auth/LogoutButton';
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
@@ -45,13 +43,19 @@ function ProfileMenu({ setAuthenticated, authenticated }) {
 
       {showLogModal && (
         <Modal onClose={() => setShowLogModal(false)}>
-          <LoginForm />
+          <LoginForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </Modal>
       )}
 
       {showSignModal && (
         <Modal onClose={() => setShowSignModal(false)}>
-          <SignUpForm />
+          <SignUpForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </Modal>
       )}
 
