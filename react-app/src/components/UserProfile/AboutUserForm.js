@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux";
 import {submitProfile} from '../../store/profile'
 
@@ -9,15 +9,25 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   function toggle() {
     setInfo(!info);
   }
-  const [about, setAbout] = useState(userProfile.about);
-  const [location, setLocation] = useState(userProfile.location);
-  const [work, setWork] = useState(userProfile.work);
-  const [language, setLanguage] = useState(userProfile.language)
+  const [about, setAbout] = useState('');
+  const [location, setLocation] = useState('');
+  const [work, setWork] = useState('');
+  const [language, setLanguage] = useState('')
 
-  const onSubmit = async () => {
-    const userId = userProfile.userId
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const userId = userProfile.user_id
     await dispatch(submitProfile(about, location, work, language, userId))
+    toggle()
   }
+  useEffect(() => {
+    console.log('####', userProfile.language)
+    setAbout(userProfile.about)
+    setLocation(userProfile.location)
+    setWork(userProfile.work)
+    setLanguage(userProfile.language)
+    console.log('####', userProfile.language)
+  }, [userProfile])
   const languages = [
     {value: 'English', label: 'English'},
     {value: 'French', label: 'French'},
