@@ -8,7 +8,7 @@ export const loadProfile = (profile) => {
 }
 
 export const getProfile = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/user/profile/${userId}`, {
+  const response = await fetch(`/api/users/profile/${userId}`, {
     headers: {
       "Content-Type": "application/json",
     },
