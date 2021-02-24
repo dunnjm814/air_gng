@@ -16,7 +16,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  
+
 
   useEffect(() => {
     (async() => {
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} sessionUser={sessionUser} />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -68,7 +68,8 @@ function App() {
         <ProtectedRoute
           path="/users/profile/:userId"
           exact={true}
-          authenticated={authenticated}>
+          authenticated={authenticated}
+        >
           <UserProfile sessionUser={sessionUser} />
         </ProtectedRoute>
       </Switch>

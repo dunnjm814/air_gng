@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
 import ProfileMenu from './ProfileButton';
 
-const NavBar = ({ setAuthenticated, authenticated }) => {
+const NavBar = ({ setAuthenticated, authenticated, sessionUser }) => {
   return (
     <nav>
       <ul>
@@ -16,6 +15,7 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
           <ProfileMenu
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+            sessionUser={sessionUser}
           />
         </li>
       </ul>
