@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 
+
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
 
@@ -28,9 +29,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  // if (authenticated) {
-  //   return <Redirect to="/" />;
-  // }
+  if (authenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <form onSubmit={onLogin}>
