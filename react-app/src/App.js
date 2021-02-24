@@ -10,6 +10,7 @@ import User from "./components/User";
 import Home from './components/HomePage';
 import { authenticate } from "./store/session";
 import UserProfile from "./components/UserProfile";
+import Map from "./components/Map";
 
 function App() {
   const dispatch = useDispatch()
@@ -71,6 +72,9 @@ function App() {
           authenticated={authenticated}
         >
           <UserProfile sessionUser={sessionUser} />
+        </ProtectedRoute>
+        <ProtectedRoute path="/map" exact={true} authenticated={authenticated}>
+          <Map />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
