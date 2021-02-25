@@ -12,6 +12,7 @@ function Map() {
     return state.biz
   });
 
+  const servicesArray = Object.values(aircraft)
 
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
@@ -20,7 +21,7 @@ function Map() {
     useEffect(() => {
       dispatch(getAllBiz());
     }, [map]);
-    console.log("this is aircraft", aircraft);
+    console.log("this is aircraft", aircraft[9]);
 
   const containerStyle = {
     width: "400px",
@@ -64,8 +65,19 @@ function Map() {
           onDragEnd={handleBoundsChanged}
           onClick={handleBoundsChanged}
         >
-          {/* Child components, such as markers, info windows, etc. */}
-          <></>
+          {servicesArray.map((service) => {
+            return <Marker id={service.id}
+              className={`marker-${aircraft}`}
+              key={service.id}
+              position={{
+                lat: service.lat,
+                lng: service.lng
+              }}
+              title={`${service.business_name}`}
+              // icon={service.biz_image}
+              />;
+          })}
+
         </GoogleMap>
       </LoadScript>
     </div>
