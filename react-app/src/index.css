@@ -1,1 +1,18 @@
 /* TODO Add site wide styles */
+main {
+  display: flex;
+  position: relative;
+}
+html {
+  height: 100%;
+}
+
+@font-face {
+  font-family: Airbnb;
+  src: url(../src/img/AirbnbCerealBook.ttf);
+}
+
+@font-face {
+  font-family: Airbnb-bold;
+  src: url(../src/img/AirbnbCerealBold.ttf);
+}

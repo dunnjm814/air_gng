@@ -1,10 +1,14 @@
-import "./index.css";
+import "./Home.css";
 import React from "react";
+import sunrise_balloon from "../../img/sunrise-balloon.png"
+import striped_balloon from "../../img/striped-balloon.png"
+
 
 const Home = () => {
   return (
-    <div>
-      <h1>This is a test of our homepage</h1>
+    <div >
+      <img className="striped-balloon" src={striped_balloon} />
+      <img className="sunrise-balloon" src={sunrise_balloon}/>
     </div>
   );
 };

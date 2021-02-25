@@ -70,6 +70,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <form onSubmit={onSignUp}>
+      <span>Sign Up</span>
       <div>
         <ul>
           {errors.map((error, i) => (
@@ -78,78 +79,77 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
         </ul>
       </div>
       <div>
-        <label>First Name</label>
         <input
           type="text"
           name="firstName"
           onChange={updateFirstName}
           value={firstName}
+          placeholder="First Name"
         ></input>
       </div>
       <div>
-        <label>Last Name</label>
         <input
           type="text"
           name="lastName"
           onChange={updateLastName}
           value={lastName}
+          placeholder="Last Name"
         ></input>
       </div>
       <div>
-        <label>User Name</label>
         <input
           type="text"
           name="username"
           onChange={updateUsername}
           value={username}
+          placeholder="Username"
         ></input>
       </div>
       <div>
-        <label>Email</label>
         <input
           type="text"
           name="email"
           onChange={updateEmail}
           value={email}
+          placeholder="Email"
         ></input>
       </div>
       <div>
-        <label>Phone Number</label>
         <input
           type="tel"
           name="phone"
           onChange={updatePhoneNumber}
           value={phoneNumber}
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="xxx-xxx-xxxx"
+          placeholder="Phone Number"
         ></input>
       </div>
       <div>
-        <label>Profile Picture</label>
         <input
           type="file"
           onChange={updateProfilePic}
           value={profilePic}
           accept="image/png, image/jpeg"
+          placeholder="Profile Picture"
         ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
           type="password"
           name="password"
           onChange={updatePassword}
           value={password}
+          placeholder="Password"
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
         <input
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+          placeholder="Confirm Password"
         ></input>
       </div>
       <button type="submit">Sign Up</button>

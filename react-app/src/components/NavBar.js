@@ -1,24 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ProfileMenu from './ProfileButton';
+import "./NavBar.css"
+import airgng_logo from "../img/airbnb-logo.png"
+
 
 const NavBar = ({ setAuthenticated, authenticated, sessionUser }) => {
   return (
     <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <ProfileMenu
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            sessionUser={sessionUser}
-          />
-        </li>
-      </ul>
+      <div>
+        <img className="airgng-logo" src={airgng_logo}/>
+        <NavLink to="/" exact={true} activeClassName="active" className="home-button">
+          airgng
+        </NavLink>
+      </div>
+      <ProfileMenu
+        authenticated={authenticated}
+        setAuthenticated={setAuthenticated}
+        sessionUser={sessionUser}
+      />
     </nav>
   );
 }
