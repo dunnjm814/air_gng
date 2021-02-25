@@ -15,6 +15,9 @@ class User(db.Model, UserMixin):
   profile_pic = db.Column(db.String)
 
   profile = db.relationship("Profile", back_populates="user")
+  booking = db.relationship("Booking", back_populates="user")
+  review = db.relationship("Review", back_populates="user")
+  wish_list = db.relationship("Wishlist", back_populates="user")
 
   @property
   def password(self):

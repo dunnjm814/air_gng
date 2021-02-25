@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useParams } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import {submitProfile} from '../../store/profile'
 
@@ -14,9 +15,9 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   const [work, setWork] = useState('');
   const [language, setLanguage] = useState('')
 
+  const { userId } = useParams()
   const onSubmit = async (e) => {
     e.preventDefault()
-    const userId = userProfile.user_id
     await dispatch(submitProfile(about, location, work, language, userId))
     toggle()
   }
@@ -42,28 +43,28 @@ function AboutUserForm({ userProfile, info, setInfo }) {
     <>
       <form id="about-user-form-wrap" onSubmit={onSubmit}>
         <h1>hey its a form</h1>
-        <label>
+        <label>about
           <input
             type="text"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
           ></input>
         </label>
-        <label>
+        <label>location
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           ></input>
         </label>
-        <label>
+        <label>work
           <input
             type="text"
             value={work}
             onChange={(e) => setWork(e.target.value)}
           ></input>
         </label>
-        <label>
+        <label>select language
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}

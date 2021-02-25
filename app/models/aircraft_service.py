@@ -16,6 +16,10 @@ class Aircraft(db.Model):
   lng = db.Column(db.Float, nullable=False)
   lat = db.Column(db.Float, nullable=False)
 
+  booking = db.relationship("Booking", back_populates="service")
+  review = db.relationship("Review", back_populates="service")
+  wish_list = db.relationship("Wishlist", back_populates="service")
+
   def to_dict(self):
     return {
       "id": self.id,
