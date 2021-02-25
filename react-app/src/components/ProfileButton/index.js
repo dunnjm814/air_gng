@@ -5,6 +5,9 @@ import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
 import { Modal } from "../../context/Modal";
 import { NavLink } from "react-router-dom";
+import login from "../../img/login-menu.png"
+import "./ProfileButton.css"
+
 
 
 function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
@@ -39,8 +42,8 @@ function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="login-button"onClick={openMenu}>
+        <img className="login-img" src={login} />
       </button>
 
       {showLogModal && (
@@ -62,29 +65,24 @@ function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
       )}
 
       {showMenu && (
-        <ul className="profile-dropdown">
-          {!sessionUser && <>
-            <li>
-              <button onClick={() => setShowLogModal(true)}>Log in</button>
-            </li>
-            <li>
-              <button onClick={() => setShowSignModal(true)}>Sign Up</button>
-            </li>
+        <div className="profile-dropdown">
+          {!sessionUser.id && <>
+              <div className="menu-links">
+                <button onClick={() => setShowLogModal(true)}>Log in</button>
+                <button onClick={() => setShowSignModal(true)}>Sign Up</button>
+              </div>
           </>
           }
-          {sessionUser && <>
-            <li>
+          {sessionUser.id && <>
               <NavLink to={`/users/profile/${sessionUser.id}`}>Profile</NavLink>
-            </li>
-            <li>
               <LogoutButton
+                className="logout-button"
                 authenticated={authenticated}
                 setAuthenticated={setAuthenticated}
               />
-            </li>
           </>
           }
-        </ul>
+        </div>
       )}
     </>
   );
