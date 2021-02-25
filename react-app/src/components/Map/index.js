@@ -17,11 +17,11 @@ function Map() {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
+  console.log("asdasdasd", map)
 
     useEffect(() => {
       dispatch(getAllBiz());
-    }, [map]);
-    console.log("this is aircraft", aircraft[9]);
+    }, [dispatch, map]);
 
   const containerStyle = {
     width: "400px",
@@ -43,16 +43,20 @@ function Map() {
     setMap(currentMap);
   }
 
+  let shownBiz;
+
   function handleBoundsChanged() {
     const bounds = map.getBounds();
     const center = bounds.getCenter();
-
+    console.log("####map", map);
+    console.log("servicesArray", servicesArray)
     setLat(center.lat());
     setLng(center.lng());
-    // let shownAircraft = aircraftArray.filter((aircraft) =>
-    //   bounds.contains(aircraft)
-    // );
+    shownBiz = servicesArray.filter((service) =>
+      (bounds.contains({lat: service.lat, lng: service.lng}))
+    );
     // setAirServiceInWindow(shownAircraft);
+    console.log(shownBiz)
   }
   return (
     <div>
@@ -65,7 +69,7 @@ function Map() {
           onDragEnd={handleBoundsChanged}
           onClick={handleBoundsChanged}
         >
-          {servicesArray.map((service) => {
+          {shownBiz && shownBiz.map((service) => {
             return <Marker id={service.id}
               className={`marker-${aircraft}`}
               key={service.id}
