@@ -22,6 +22,7 @@ def user(id):
 @user_routes.route('/profile/<int:user_id>')
 @login_required
 def user_profile(user_id):
+    # add no profile
     profile = Profile.query.filter_by(user_id=user_id).first()
     return profile.to_dict()
 
@@ -33,18 +34,18 @@ def profile_form_submit(user_id):
         profile = Profile.query.filter_by(user_id=user_id).first()
         if profile:
             profile.about=form.data['about'],
-            profile.first_name=form.data['first name'],
-            profile.last_name=form.data['last name'],
-            profile.phone_number=form.data['phone number'],
+            profile.first_name=form.data['first_name'],
+            profile.last_name=form.data['last_name'],
+            profile.phone_number=form.data['phone_number'],
             profile.location=form.data['location'],
             profile.work=form.data['work'],
             profile.language=form.data['language'],
         else:
             profile = Profile(
                 about=form.data['about'],
-                first_name=form.data['first name'],
-                last_name=form.data['last name'],
-                phone_number=form.data['phone number'],
+                first_name=form.data['first_name'],
+                last_name=form.data['last_name'],
+                phone_number=form.data['phone_number'],
                 location=form.data['location'],
                 work=form.data['work'],
                 language=form.data['language'],
