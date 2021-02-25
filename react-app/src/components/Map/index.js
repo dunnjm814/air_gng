@@ -1,11 +1,26 @@
-import React, {useState} from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import React, {useEffect, useState} from "react";
+import { useSelector, useDispatch} from 'react-redux';
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { getAllBiz } from "../../store/aircraft";
+
+
+
 
 function Map() {
+  const dispatch = useDispatch();
+  const aircraft = useSelector( (state) => {
+    return state.biz
+  });
+
 
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
+
+    useEffect(() => {
+      dispatch(getAllBiz());
+    }, [map]);
+    console.log("this is aircraft", aircraft);
 
   const containerStyle = {
     width: "400px",
