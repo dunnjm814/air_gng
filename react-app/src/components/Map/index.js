@@ -57,7 +57,6 @@ function Map() {
           onClick={handleBoundsChanged}
         >
           {shownBiz && shownBiz.map((service) => {
-            console.log("biz", service)
             return <Marker id={service.id}
               className={`marker-${aircraft}`}
               key={service.id}
