@@ -20,8 +20,6 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
-  const { userId } = useParams()
   
   const onSubmit = async (e) => {
     e.preventDefault()
