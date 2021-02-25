@@ -77,6 +77,10 @@ function UserProfile({sessionUser}) {
               </div>}
             </div>
           </div>
+          <div id="user-reviews">
+            <h6>Heres where I would put my reviews...</h6>
+            <h1>IF I HAD ANY!!!</h1>
+          </div>
         </div>
         <div id="profile-blank"></div>
       </div>
