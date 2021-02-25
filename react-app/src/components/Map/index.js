@@ -4,8 +4,6 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
 
 
-
-
 function Map() {
   const dispatch = useDispatch();
   const aircraft = useSelector( (state) => {
@@ -17,7 +15,7 @@ function Map() {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
-  console.log("asdasdasd", map)
+  const [shownBiz, setBiz] = useState([]);
 
     useEffect(() => {
       dispatch(getAllBiz());
@@ -33,30 +31,19 @@ function Map() {
     lat: lat || 34.81723,
   };
 
-
-  // aircraftArray.forEach((aircraft) => {
-  //   aircraft.lng = Number(aircraft.lng);
-  //   aircraft.lat = Number(aircraft.lat);
-  // });
-
   function handleMapLoad(currentMap) {
     setMap(currentMap);
   }
 
-  let shownBiz;
-
   function handleBoundsChanged() {
     const bounds = map.getBounds();
     const center = bounds.getCenter();
-    console.log("####map", map);
-    console.log("servicesArray", servicesArray)
     setLat(center.lat());
     setLng(center.lng());
-    shownBiz = servicesArray.filter((service) =>
+
+    setBiz(servicesArray.filter((service) =>
       (bounds.contains({lat: service.lat, lng: service.lng}))
-    );
-    // setAirServiceInWindow(shownAircraft);
-    console.log(shownBiz)
+    ));
   }
   return (
     <div>
@@ -70,6 +57,7 @@ function Map() {
           onClick={handleBoundsChanged}
         >
           {shownBiz && shownBiz.map((service) => {
+            console.log("biz", service)
             return <Marker id={service.id}
               className={`marker-${aircraft}`}
               key={service.id}
@@ -81,7 +69,6 @@ function Map() {
               // icon={service.biz_image}
               />;
           })}
-
         </GoogleMap>
       </LoadScript>
     </div>
