@@ -8,7 +8,7 @@ const LogoutButton = ({ setAuthenticated }) => {
   const onLogout = async (e) => {
     await dispatch(logout());
     setAuthenticated(false);
-    <Redirect to='/'></Redirect>
+    return <Redirect to='/'></Redirect>
   };
 
   return <button onClick={onLogout}>Logout</button>;

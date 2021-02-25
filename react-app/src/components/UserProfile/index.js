@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as profileActions from '../../store/profile'
 import AboutUserForm from './AboutUserForm'
-
+import {useParams} from 'react-router-dom'
 import './profile.css'
 
 
@@ -11,28 +11,32 @@ function UserProfile({sessionUser}) {
   const dispatch = useDispatch()
   const userProfile = useSelector((state) => state.profile);
   const [info, setInfo] = useState(false)
+  const {userId} = useParams()
+
   function toggle() {
     setInfo(!info)
   }
 
   useEffect(() => {
-    console.log("****", sessionUser.id)
-    dispatch(profileActions.getProfile(sessionUser.id))
+    // console.log("****", sessionUser.id)
+      dispatch(profileActions.getProfile(userId))
     console.log("####", userProfile)
-  },[dispatch, sessionUser.id])
+  },[dispatch])
+
+
   return (
     <>
       <div id="profile-wrapper">
         <div id="wish-list"></div>
         <div id="user-info">
           <div id="user-card">
-            {sessionUser.profilePic &&
+            {sessionUser && sessionUser.profilePic &&
             <img src={sessionUser.profilePic} alt='Avatar'></img>
             }
           </div>
           <div id="about-user">
             <div id="user-header">
-              <h1>Hey, its {sessionUser.first_name}</h1>
+              <h1>Hey, its {sessionUser && sessionUser.first_name}</h1>
               {/* <p>joined in {year}</p> stretch goal */}
               <button
               onClick={toggle}
@@ -72,6 +76,10 @@ function UserProfile({sessionUser}) {
                 )}
               </div>}
             </div>
+          </div>
+          <div id="user-reviews">
+            <h6>Heres where I would put my reviews...</h6>
+            <h1>IF I HAD ANY!!!</h1>
           </div>
         </div>
         <div id="profile-blank"></div>

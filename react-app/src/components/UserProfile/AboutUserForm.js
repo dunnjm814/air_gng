@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { useParams } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import {submitProfile} from '../../store/profile'
 
@@ -9,15 +10,25 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   function toggle() {
     setInfo(!info);
   }
-  const [about, setAbout] = useState(userProfile.about);
-  const [location, setLocation] = useState(userProfile.location);
-  const [work, setWork] = useState(userProfile.work);
-  const [language, setLanguage] = useState(userProfile.language)
+  const [about, setAbout] = useState('');
+  const [location, setLocation] = useState('');
+  const [work, setWork] = useState('');
+  const [language, setLanguage] = useState('')
 
-  const onSubmit = async () => {
-    const userId = userProfile.userId
+  const { userId } = useParams()
+  const onSubmit = async (e) => {
+    e.preventDefault()
     await dispatch(submitProfile(about, location, work, language, userId))
+    toggle()
   }
+  useEffect(() => {
+    console.log('####', userProfile.language)
+    setAbout(userProfile.about)
+    setLocation(userProfile.location)
+    setWork(userProfile.work)
+    setLanguage(userProfile.language)
+    console.log('####', userProfile.language)
+  }, [userProfile])
   const languages = [
     {value: 'English', label: 'English'},
     {value: 'French', label: 'French'},
@@ -32,28 +43,28 @@ function AboutUserForm({ userProfile, info, setInfo }) {
     <>
       <form id="about-user-form-wrap" onSubmit={onSubmit}>
         <h1>hey its a form</h1>
-        <label>
+        <label>about
           <input
             type="text"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
           ></input>
         </label>
-        <label>
+        <label>location
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           ></input>
         </label>
-        <label>
+        <label>work
           <input
             type="text"
             value={work}
             onChange={(e) => setWork(e.target.value)}
           ></input>
         </label>
-        <label>
+        <label>select language
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}

@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Profile
+from app.models import User, Profile, db
+from app.forms import ProfileForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -25,16 +26,25 @@ def user_profile(user_id):
     return profile.to_dict()
 
 @user_routes.route('/profile/<int:user_id>', methods=['PUT'])
-def profile_form_submit(id):
+def profile_form_submit(user_id):
     form = ProfileForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        profile = Profile(
-            about=form.data['about'],
-            location=form.data['location'],
-            work=form.data['work'],
-            language=form.data['language'],
-        )
+        profile = Profile.query.filter_by(user_id=user_id).first()
+        if profile:
+            profile.about=form.data['about'],
+            profile.location=form.data['location'],
+            profile.work=form.data['work'],
+            profile.language=form.data['language'],
+        else:
+            profile = Profile(
+                about=form.data['about'],
+                location=form.data['location'],
+                work=form.data['work'],
+                language=form.data['language'],
+                user_id=user_id
+            )
+
         db.session.add(profile)
         db.session.commit()
         return profile.to_dict()
