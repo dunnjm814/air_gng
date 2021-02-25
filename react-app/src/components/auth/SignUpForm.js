@@ -7,10 +7,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch()
 
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("")
   const [profilePic, setProfilePic] = useState("")
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -19,7 +16,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await dispatch(signUp(username, firstName, lastName, phoneNumber, email, password, profilePic));
+      const user = await dispatch(signUp(username, email, password, profilePic));
       if (!user.errors) {
         setAuthenticated(true);
       } else {
@@ -34,21 +31,9 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     setUsername(e.target.value);
   };
 
-  const updateFirstName = (e) => {
-    setFirstName(e.target.value)
-  }
-
-  const updateLastName = (e) => {
-    setLastName(e.target.value)
-  }
-
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
-
-  const updatePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value)
-  }
 
   const updateProfilePic = (e) => {
     const pic = e.target.files[0];
@@ -81,24 +66,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       <div>
         <input
           type="text"
-          name="firstName"
-          onChange={updateFirstName}
-          value={firstName}
-          placeholder="First Name"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          name="lastName"
-          onChange={updateLastName}
-          value={lastName}
-          placeholder="Last Name"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
           name="username"
           onChange={updateUsername}
           value={username}
@@ -112,16 +79,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           onChange={updateEmail}
           value={email}
           placeholder="Email"
-        ></input>
-      </div>
-      <div>
-        <input
-          type="tel"
-          name="phone"
-          onChange={updatePhoneNumber}
-          value={phoneNumber}
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="Phone Number"
         ></input>
       </div>
       <div>

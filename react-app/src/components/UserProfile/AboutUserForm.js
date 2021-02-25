@@ -13,17 +13,23 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   const [about, setAbout] = useState('');
   const [location, setLocation] = useState('');
   const [work, setWork] = useState('');
-  const [language, setLanguage] = useState('')
+  const [language, setLanguage] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const { userId } = useParams()
   const onSubmit = async (e) => {
     e.preventDefault()
-    await dispatch(submitProfile(about, location, work, language, userId))
+    await dispatch(submitProfile(about, firstName, lastName, phoneNumber, location, work, language, userId))
     toggle()
   }
   useEffect(() => {
     console.log('####', userProfile.language)
     setAbout(userProfile.about)
+    setFirstName(userProfile.firstName)
+    setLastName(userProfile.lastName)
+    setPhoneNumber(userProfile.phoneNumber)
     setLocation(userProfile.location)
     setWork(userProfile.work)
     setLanguage(userProfile.language)
@@ -48,6 +54,27 @@ function AboutUserForm({ userProfile, info, setInfo }) {
             type="text"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
+          ></input>
+        </label>
+        <label>first name
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          ></input>
+        </label>
+        <label>last name
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          ></input>
+        </label>
+        <label>phone number
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
           ></input>
         </label>
         <label>location
