@@ -27,9 +27,6 @@ export const authenticate = () => async (dispatch) => {
 
 export const signUp = (
   username,
-  first_name,
-  last_name,
-  phone_number,
   email,
   password,
   profile_pic
@@ -41,9 +38,6 @@ export const signUp = (
     },
     body: JSON.stringify({
       username,
-      first_name,
-      last_name,
-      phone_number,
       email,
       password,
       profile_pic,

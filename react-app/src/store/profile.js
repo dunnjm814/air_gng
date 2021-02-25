@@ -26,7 +26,7 @@ export const getProfile = (userId) => async (dispatch) => {
   return profile
 }
 
-export const submitProfile = (about, location, work, language, userId) => async (
+export const submitProfile = (about, firstName, lastName, phoneNumber, location, work, language, userId) => async (
   dispatch
 ) => {
   const response = await fetch(`/api/users/profile/${userId}`, {
@@ -36,6 +36,9 @@ export const submitProfile = (about, location, work, language, userId) => async 
     },
     body: JSON.stringify({
       about,
+      firstName,
+      lastName,
+      phoneNumber,
       location,
       work,
       language

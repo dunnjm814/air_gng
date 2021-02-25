@@ -33,12 +33,18 @@ def profile_form_submit(user_id):
         profile = Profile.query.filter_by(user_id=user_id).first()
         if profile:
             profile.about=form.data['about'],
+            profile.first_name=form.data['first name'],
+            profile.last_name=form.data['last name'],
+            profile.phone_number=form.data['phone number'],
             profile.location=form.data['location'],
             profile.work=form.data['work'],
             profile.language=form.data['language'],
         else:
             profile = Profile(
                 about=form.data['about'],
+                first_name=form.data['first name'],
+                last_name=form.data['last name'],
+                phone_number=form.data['phone number'],
                 location=form.data['location'],
                 work=form.data['work'],
                 language=form.data['language'],

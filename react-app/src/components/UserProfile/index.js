@@ -56,6 +56,24 @@ function UserProfile({sessionUser}) {
                     <p>{userProfile.about}</p>
                   </div>
                 )}
+                {userProfile.firstName && (
+                  <div>
+                    <h2>First Name</h2>
+                    <p>{userProfile.firstName}</p>
+                  </div>
+                )}
+                {userProfile.lastName && (
+                  <div>
+                    <h2>Last Name</h2>
+                    <p>{userProfile.lastName}</p>
+                  </div>
+                )}
+                {userProfile.phoneNumber && (
+                  <div>
+                    <h2>Phone Number</h2>
+                    <p>{userProfile.phoneNumber}</p>
+                  </div>
+                )}
                 {userProfile.location && (
                   <div>
                     <h2>Location</h2>
