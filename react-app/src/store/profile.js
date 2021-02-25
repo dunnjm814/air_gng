@@ -36,9 +36,9 @@ export const submitProfile = (about, firstName, lastName, phoneNumber, location,
     },
     body: JSON.stringify({
       about,
-      firstName,
-      lastName,
-      phoneNumber,
+      first_name:firstName,
+      last_name:lastName,
+      phone_number:phoneNumber,
       location,
       work,
       language

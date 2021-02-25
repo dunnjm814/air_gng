@@ -19,11 +19,11 @@ class Profile(db.Model):
     return {
       "id": self.id,
       "about": self.about,
-      "first_name": self.first_name,
-      "last_name": self.last_name,
-      "phone_number": self.phone_number,
+      "firstName": self.first_name,
+      "lastName": self.last_name,
+      "phoneNumber": self.phone_number,
       "location": self.location,
       "work": self.work,
       "language": self.language,
-      "user_id": self.user_id
+      "userId": self.user_id
     }
