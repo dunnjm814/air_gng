@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import {submitProfile} from '../../store/profile'
 
 
 
 function AboutUserForm({ userProfile, info, setInfo }) {
+  const { userId } = useParams();
   const dispatch = useDispatch()
+  const history = useHistory()
   function toggle() {
     setInfo(!info);
+    // history.push(`/users/profile/${userId}`)
   }
   const [about, setAbout] = useState('');
   const [location, setLocation] = useState('');
   const [work, setWork] = useState('');
   const [language, setLanguage] = useState('')
-
-  const { userId } = useParams()
+  
   const onSubmit = async (e) => {
     e.preventDefault()
     await dispatch(submitProfile(about, location, work, language, userId))
@@ -75,7 +77,7 @@ function AboutUserForm({ userProfile, info, setInfo }) {
           </select>
         </label>
         <div>
-          <button onClick={toggle}>cancel</button>
+          <button onClick={(() => history.push(`/users/profile/${userId}`))}>cancel</button>
           <button type="submit">submit</button>
         </div>
       </form>
