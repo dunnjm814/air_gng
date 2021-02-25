@@ -22,3 +22,6 @@ class Booking(db.Model):
       "user_id": self.user_id,
       "service_id": self.service_id,
     }
+
+  def total_time(self):
+    return self.book_end_time - self.book_start_time
