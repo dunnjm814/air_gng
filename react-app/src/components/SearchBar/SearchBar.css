@@ -32,3 +32,16 @@
   height: 40px;
   width: auto;
 }
+
+#datebox,
+#locationBox,
+#select-field {
+  font-family: Airbnb;
+  border-radius: 32px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+}
+
+.nice-dates-day {
+  font-family: Airbnb;
+}

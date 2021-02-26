@@ -51,6 +51,8 @@ function ServiceShow() {
                 <p>Free to cancel within 30 days of booking</p>
                 <span>Aircraft rules</span>
                 <p>The business does not allow smoking</p>
+                <div>{service.description}</div>
+                <div>{service.phone_number}</div>
               </div>
             </div>
             <div className="service_main_reviews">
