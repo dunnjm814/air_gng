@@ -1,0 +1,34 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  width: 848px;
+  height: 64px;
+  color: #222222;
+  font-family: Airbnb;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 32px;
+  margin-left: 350px;
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15), 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search > div {
+  border-radius: 32px;
+  border: none;
+  align-items: center;
+  padding: 10px 30px 10px 30px;
+  box-shadow: 3px 0px 0px rgba(155, 153, 153, 0.644);
+}
+
+.search > button {
+  outline: inherit;
+  border: none;
+  background-color: transparent;
+}
+.search-button {
+  height: 40px;
+  width: auto;
+}

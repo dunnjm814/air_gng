@@ -4,23 +4,22 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
 
 
-
-
 function Map() {
   const dispatch = useDispatch();
   const aircraft = useSelector( (state) => {
     return state.biz
   });
 
+  const servicesArray = Object.values(aircraft)
 
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
+  const [shownBiz, setBiz] = useState([]);
 
     useEffect(() => {
       dispatch(getAllBiz());
-    }, [map]);
-    console.log("this is aircraft", aircraft);
+    }, [dispatch, map]);
 
   const containerStyle = {
     width: "400px",
@@ -32,12 +31,6 @@ function Map() {
     lat: lat || 34.81723,
   };
 
-
-  // aircraftArray.forEach((aircraft) => {
-  //   aircraft.lng = Number(aircraft.lng);
-  //   aircraft.lat = Number(aircraft.lat);
-  // });
-
   function handleMapLoad(currentMap) {
     setMap(currentMap);
   }
@@ -45,13 +38,12 @@ function Map() {
   function handleBoundsChanged() {
     const bounds = map.getBounds();
     const center = bounds.getCenter();
-
     setLat(center.lat());
     setLng(center.lng());
-    // let shownAircraft = aircraftArray.filter((aircraft) =>
-    //   bounds.contains(aircraft)
-    // );
-    // setAirServiceInWindow(shownAircraft);
+
+    setBiz(servicesArray.filter((service) =>
+      (bounds.contains({lat: service.lat, lng: service.lng}))
+    ));
   }
   return (
     <div>
@@ -64,8 +56,18 @@ function Map() {
           onDragEnd={handleBoundsChanged}
           onClick={handleBoundsChanged}
         >
-          {/* Child components, such as markers, info windows, etc. */}
-          <></>
+          {shownBiz && shownBiz.map((service) => {
+            return <Marker id={service.id}
+              className={`marker-${aircraft}`}
+              key={service.id}
+              position={{
+                lat: service.lat,
+                lng: service.lng
+              }}
+              title={`${service.business_name}`}
+              // icon={service.biz_image}
+              />;
+          })}
         </GoogleMap>
       </LoadScript>
     </div>

@@ -17,15 +17,13 @@ export const loadOneBiz = (biz) => {
 
 export const getAllBiz = () => async (dispatch) => {
     const response = await fetch("/api/services", {
-      headers: {
-        "Content-Type": "application/json",
-      },
+        headers: {
+            "Content-Type": "application/json",
+        },
     });
     const biz = await response.json()
-    console.log("bizzzzzz", biz);
     dispatch(loadBiz(biz))
     return biz
-
 }
 
 export const getOneBiz = (craft_id) => async (dispatch) => {
@@ -44,9 +42,6 @@ const bizReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
         case LOAD_BIZ:
-            // newState = action.payload.map(biz => {
-            //     newState[biz.id] = biz
-            // })
             return action.payload;
         case LOAD_ONE_BIZ:
             newState.current = action.payload
