@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom"
 import {useDispatch} from 'react-redux'
 import search_button from "../../img/airgng-search-button.png";
+
+import DatePickerExample from "./dates";
+
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
 import "react-nice-dates/build/style.css";
@@ -31,6 +34,7 @@ function DatePickerExample() {
   );
 }
 
+
 const Search = () => {
   const dispatch = useDispatch()
   const [showCal, setShowCal] = useState(false);
@@ -49,6 +53,8 @@ const Search = () => {
   }
   return (
     <>
+      <form className="search">
+        <div className="search-location">
       <div>
         <form className="search" onSubmit={onSubmit}>
           <div className="search-location">
@@ -121,11 +127,33 @@ const Search = () => {
           <div>
             <div>Guests</div>
           </div>
+          <input placeholder="Where are you going?"></input>
+        </div>
+        <div>
+          <div>Flying Date</div>
+          <DatePickerExample />
+        </div>
+        <div>
+          <div>Aircraft Type</div>
+          <select placeholder="What are you flying?">
+            <option value="">Helicopter</option>
+          </select>
+        </div>
+        <div>
+          <div>Guests</div>
+          <input placeholder="Add dates"></input>
+        </div>
+        <button>
+          <img className="search-button" src={search_button} />
+        </button>
+      </form>
+
           <button type='submit'>
             <img className="search-button" src={search_button} />
           </button>
         </form>
       </div>
+
     </>
   );
 };
