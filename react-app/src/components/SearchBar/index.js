@@ -1,7 +1,6 @@
 import "./SearchBar.css";
 import React, { useState } from "react";
 import search_button from "../../img/airgng-search-button.png";
-import CalendarApp from "./calendar";
 import DatePickerExample from "./dates";
 
 const Search = () => {
@@ -14,29 +13,31 @@ const Search = () => {
 
   return (
     <>
-      <div className="search">
+      <form className="search">
         <div className="search-location">
           <div>
             <b>Location</b>
           </div>
-          <div>Where are you going?</div>
+          <input placeholder="Where are you going?"></input>
         </div>
         <div>
-          <DatePickerExample />
           <div>Flying Date</div>
+          <DatePickerExample />
         </div>
         <div>
           <div>Aircraft Type</div>
-          <div>What are you flying?</div>
+          <select placeholder="What are you flying?">
+            <option value="">Helicopter</option>
+          </select>
         </div>
         <div>
           <div>Guests</div>
-          <div>Add dates</div>
+          <input placeholder="Add dates"></input>
         </div>
         <button>
           <img className="search-button" src={search_button} />
         </button>
-      </div>
+      </form>
     </>
   );
 };
