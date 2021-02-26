@@ -33,7 +33,9 @@
   width: auto;
 }
 
-#datebox {
+#datebox,
+#locationBox,
+#select-field {
   font-family: Airbnb;
   border-radius: 32px;
   border: none;
