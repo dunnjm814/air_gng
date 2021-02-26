@@ -1,8 +1,33 @@
 import "./SearchBar.css";
 import React, { useState } from "react";
 import search_button from "../../img/airgng-search-button.png";
-import CalendarApp from "./calendar";
-import DatePickerExample from "./dates";
+import { enGB } from "date-fns/locale";
+import { DatePicker } from "react-nice-dates";
+import "react-nice-dates/build/style.css";
+
+function DatePickerExample() {
+  const [startDate, setStartDate] = useState();
+  const [date, setDate] = useState();
+  const currentDate = new Date();
+
+  return (
+    <DatePicker
+      date={date}
+      format="MM-dd-yyy"
+      onDateChange={setDate}
+      minimumDate={currentDate}
+      locale={enGB}
+    >
+      {({ inputProps, focused }) => (
+        <input
+          id="datebox"
+          className={"input" + (focused ? " -focused" : "")}
+          {...inputProps}
+        />
+      )}
+    </DatePicker>
+  );
+}
 
 const Search = () => {
   const [showCal, setShowCal] = useState(false);
