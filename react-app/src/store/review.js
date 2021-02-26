@@ -60,8 +60,6 @@ export const submitReview = (rate, title, comment, userId, serviceId) => async (
   return review
 };
 
-
-
 const reviewReducer = (state = { }, action) => {
   let newState = { ...state }
   switch (action.type) {

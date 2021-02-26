@@ -23,8 +23,8 @@ class Review(db.Model):
       'service_id': self.service_id,
     }
 
-  def to_service(self, comment, user):
+  def to_service(self, comment):
     return {
       "comment": comment,
-      "user": user
+      # "user": user
     }

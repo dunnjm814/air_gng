@@ -21,8 +21,9 @@ def one_biz(craft_id):
 @biz_routes.route('/reviews/<int:craft_id>')
 def get_reviews(craft_id):
     reviews = Review.query.filter_by(service_id=craft_id).join(User).all()
-
     print ('ljdsflkajdlfkjsejrwjfsjdfjdsjkfd')
-    for review in reviews:
-        print(review.user.username)
-    return {}
+    # return {review.id: review.to_service(comment=review.comment, user=review.user) for review in reviews}
+    if reviews:
+        return {review.id: review.to_dict() for review in reviews}
+    else:
+        return {}

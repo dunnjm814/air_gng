@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LogoutButton from '../auth/LogoutButton';
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
@@ -10,11 +10,13 @@ import "./ProfileButton.css"
 
 
 
-function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
+function ProfileMenu({ setAuthenticated, authenticated}) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [showLogModal, setShowLogModal] = useState(false);
   const [showSignModal, setShowSignModal] = useState(false);
+
+  const sessionUser = useSelector((state) => state.session.user);
 
 
   const openMenu = () => {
@@ -32,7 +34,7 @@ function ProfileMenu({ setAuthenticated, authenticated, sessionUser }) {
     document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu, authenticated]);
+  }, [showMenu, sessionUser]);
   // useEffect(() =>{}, [authenticated])
 
   //   const logout = (e) => {
