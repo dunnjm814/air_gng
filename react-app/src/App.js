@@ -11,6 +11,7 @@ import Home from './components/HomePage';
 import { authenticate } from "./store/session";
 import UserProfile from "./components/UserProfile";
 import Map from "./components/Map";
+import ServiceShow from './components/ServiceShow'
 
 function App() {
   const dispatch = useDispatch()
@@ -75,6 +76,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/map" exact={true} authenticated={authenticated}>
           <Map />
+        </ProtectedRoute>
+        <ProtectedRoute path="/aircrafts/:craft_id" exact={true} authenticated={authenticated}>
+          <ServiceShow />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
