@@ -2,6 +2,7 @@ import "./SearchBar.css";
 import React, { useState } from "react";
 import search_button from "../../img/airgng-search-button.png";
 import CalendarApp from "./calendar";
+import DatePickerExample from "./dates";
 
 const Search = () => {
   const [showCal, setShowCal] = useState(false);
@@ -21,13 +22,11 @@ const Search = () => {
           <div>Where are you going?</div>
         </div>
         <div>
-          <button onClick={openCal}>
-            <b>Check In</b>
-          </button>
-          <div>Add Dates</div>
+          <DatePickerExample />
+          <div>Flying Date</div>
         </div>
         <div>
-          <div>Aircraft Carrier</div>
+          <div>Aircraft Type</div>
           <div>What are you flying?</div>
         </div>
         <div>
