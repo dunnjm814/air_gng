@@ -3,12 +3,12 @@ import thunk from "redux-thunk";
 import sessionReducer from './session'
 import profileReducer from './profile'
 import bizReducer from './aircraft'
-
+import reviewReducer from './review'
 const rootReducer = combineReducers({
   session: sessionReducer,
   profile: profileReducer,
-  biz: bizReducer
-
+  biz: bizReducer,
+  review: reviewReducer,
 });
 
 let enhancer;

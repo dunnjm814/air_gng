@@ -22,3 +22,9 @@ class Review(db.Model):
       'user_id': self.user_id,
       'service_id': self.service_id,
     }
+
+  def to_service(self, comment):
+    return {
+      "comment": comment,
+      # "user": user
+    }
