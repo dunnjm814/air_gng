@@ -5,8 +5,8 @@ class Booking(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   book_date = db.Column(db.Date, nullable=False)
-  book_start_time = db.Column(db.DateTime, nullable=False)
-  book_end_time = db.Column(db.DateTime, nullable=False)
+  book_start_time = db.Column(db.DateTime)
+  book_end_time = db.Column(db.DateTime)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   service_id = db.Column(db.Integer, db.ForeignKey("aircrafts.id"), nullable=False)
 

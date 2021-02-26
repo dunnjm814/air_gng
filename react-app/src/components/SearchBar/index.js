@@ -1,5 +1,7 @@
 import "./SearchBar.css";
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom"
+import {useDispatch} from 'react-redux'
 import search_button from "../../img/airgng-search-button.png";
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
@@ -30,37 +32,99 @@ function DatePickerExample() {
 }
 
 const Search = () => {
+  const dispatch = useDispatch()
   const [showCal, setShowCal] = useState(false);
+  const [location, setLocation] = useState('');
+  const [aircraft, setAircraft] = useState('');
 
   const openCal = () => {
     if (showCal) return;
     setShowCal(true);
   };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch()
+    return <Redirect to='/map'/>
 
+  }
   return (
     <>
-      <div className="search">
-        <div className="search-location">
-          <div>
-            <b>Location</b>
+      <div>
+        <form className="search" onSubmit={onSubmit}>
+          <div className="search-location">
+            <label for="local-search">
+              <div>
+                <input
+                  id="locationBox"
+                  name="local-search"
+                  type="text"
+                  value={location}
+                  placeholder="Enter a city"
+                  onChange={(e) => {
+                    setLocation(e.target.value);
+                  }}
+                ></input>
+              </div>
+              Where are you going?
+            </label>
           </div>
-          <div>Where are you going?</div>
-        </div>
-        <div>
-          <DatePickerExample />
-          <div>Flying Date</div>
-        </div>
-        <div>
-          <div>Aircraft Type</div>
-          <div>What are you flying?</div>
-        </div>
-        <div>
-          <div>Guests</div>
-          <div>Add dates</div>
-        </div>
-        <button>
-          <img className="search-button" src={search_button} />
-        </button>
+          <div>
+            <DatePickerExample />
+            <div>Flying Date</div>
+          </div>
+          <div>
+            <select
+              id="select-field"
+              value={aircraft}
+              onChange={(e) => setAircraft(e.target.value)}
+            >
+              <option
+              value={''}
+              >pick an aircraft</option>
+              <option
+              value={'HangGlider'}
+              >Hang glider </option>
+              <option
+              value={'Helicopter'}
+              >Helicopter</option>
+              <option
+              value={'HotAirBalloon'}
+              >Hot air balloon</option>
+              <option
+              value={'JetPack'}
+              >
+                Jet pack
+              </option>
+              <option
+              value={'LiteAircraft'}
+              >
+                Lite aircraft
+              </option>
+              <option
+              value={'PrivateJet'}
+              >
+                Private Jet
+              </option>
+              <option
+                value={'SkyDiving'}
+              >
+                Sky Diving
+              </option>
+              <option
+              value={"WingSuit"}
+              >
+                Wing suit
+              </option>
+            </select>
+            <div>What are you flying?</div>
+          </div>
+          <div>
+            <div>Guests</div>
+          </div>
+          <button type='submit'>
+            <img className="search-button" src={search_button} />
+          </button>
+        </form>
       </div>
     </>
   );

@@ -31,7 +31,7 @@ export const getOneBiz = (craft_id) => async (dispatch) => {
     const response = await fetch(`/api/services/${craft_id}`, {
         headers: {
             "Content-Type": "application/json",
-          },
+        },
     });
     const one_biz = await response.json()
     dispatch(loadOneBiz(one_biz))
