@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useSelector, useDispatch} from 'react-redux';
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, InfoWindow, LoadScript, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
+import logo from "../../img/airbnb-logo.png"
 
 
 function Map() {
@@ -16,14 +17,16 @@ function Map() {
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
   const [shownBiz, setBiz] = useState([]);
+  const [selected, setSelected] = useState(null)
 
     useEffect(() => {
       dispatch(getAllBiz());
     }, [dispatch, map]);
 
   const containerStyle = {
-    width: "400px",
-    height: "400px",
+    width: "50vw",
+    height: "100vh",
+    marginRight: "auto"
   };
 
   const center = {
@@ -45,32 +48,76 @@ function Map() {
       (bounds.contains({lat: service.lat, lng: service.lng}))
     ));
   }
+  const options = {
+    disableDefaultUI: true,
+    zoomControl:true
+  }
   return (
-    <div>
+    <>
+    <div className={'split right'}>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
-        <GoogleMap
+          <GoogleMap
+          className={'centered'}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={10}
           onLoad={handleMapLoad}
           onDragEnd={handleBoundsChanged}
           onClick={handleBoundsChanged}
+          options={options}
         >
-          {shownBiz && shownBiz.map((service) => {
-            return <Marker id={service.id}
-              className={`marker-${aircraft}`}
-              key={service.id}
-              position={{
-                lat: service.lat,
-                lng: service.lng
-              }}
-              title={`${service.business_name}`}
-              // icon={service.biz_image}
-              />;
-          })}
+          {shownBiz &&
+            shownBiz.map((service) => {
+              return (
+                <Marker
+                  id={service.id}
+                  className={`marker-${aircraft}`}
+                  key={service.id}
+                  position={{
+                    lat: service.lat,
+                    lng: service.lng,
+                  }}
+                  title={`${service.business_name}`}
+                  icon={{
+                    url: logo,
+                    scaledSize: new window.google.maps.Size(30, 30),
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15,15)
+                  }}
+                  onClick={() => {
+                    setSelected(service)
+                  }}
+                />
+              );
+            })};
+          {selected ? (<InfoWindow
+            position={{ lat: selected.lat, lng: selected.lng }}
+            onCloseClick={() => {
+              setSelected(null)
+            }}
+          >
+            <div>
+              <h3>{selected.business_name}</h3>
+              <img style={{ width: "50px", height: "50px" }} src={selected.biz_image} />
+            </div>
+          </InfoWindow>) : null}
         </GoogleMap>
       </LoadScript>
     </div>
+    <div className={'split left'}>
+        <div className={'centered'}>
+          <ul>
+            {shownBiz.map((service) => (
+              <li key={service.id}>
+                <div className={'service-card'}>
+                  <h1>{service.business_name}</h1>
+                </div>
+              </li>
+            ))}
+          </ul>
+      </div>
+    </div>
+    </>
   );
 }
 
