@@ -1,3 +1,9 @@
+.maps-biz-container{
+  display: flex;
+  flex-direction: row;
+  font-family: Airbnb;
+}
+
 .split {
   height: 100%;
   width: 50%;
@@ -10,10 +16,12 @@
 
 .left {
   left: 0;
+  justify-content: flex-start;
 }
 
 .right {
   right: 0;
+  justify-content: flex-end;
 }
 
 .centered {
@@ -22,4 +30,29 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.biz-container {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+}
+.service-card{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: aliceblue;
+}
+.service-card > img{
+  max-height: 202px;
+  width: 50%;
+  margin-right: 50px;
+  padding: 10px;
+  border-radius: 50px;
+}
+.biz-info{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: space-between;
 }
