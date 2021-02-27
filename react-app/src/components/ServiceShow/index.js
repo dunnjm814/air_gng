@@ -78,7 +78,6 @@ function ServiceShow() {
                       <div >{review.username}</div>
                       <div >{review.title}</div>
                       <div >{review.comment}</div>
-                      {/* <div key={review.rate}>{review.rate}</div> */}
                       <StarRatingComponent
                         name="reviewRating"
                         editing={false}
