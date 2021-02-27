@@ -32,8 +32,8 @@ function Map() {
   };
 
   const center = {
-    lng: lng || -114.34576,
     lat: lat || 34.81723,
+    lng: lng || -114.34576,
   };
 
   function handleMapLoad(currentMap) {
