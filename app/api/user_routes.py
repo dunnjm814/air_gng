@@ -56,6 +56,28 @@ def profile_form_submit(user_id):
         db.session.commit()
         return profile.to_dict()
 
+def to_service(review):
+    join_review = {
+      'id': review.id,
+      'rate': review.rate,
+      'title': review.title,
+      'comment': review.comment,
+      'user_id': review.user_id,
+      'service_id': review.service_id,
+      'username': review.user.username,
+      'email': review.user.email,
+      'profile_pic': review.user.profile_pic,
+    }
+    return join_review
+
+@user_routes.route('/profile/reviews/<int:user_id>')
+def get_user_reviews(user_id):
+    reviews = Review.query.filter_by(user_id=user_id).join(User).all()
+    if reviews:
+        return {review.id: to_service(review) for review in reviews}
+    else:
+        return {}
+
 @user_routes.route('/bookings/<int:user_id>')
 def get_bookings(user_id):
     bookings = Booking.query.filter_by(user_id=user_id)

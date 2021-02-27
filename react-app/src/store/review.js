@@ -23,7 +23,7 @@ export const removeReview = (review) => {
 }
 
 export const getUserReviews = (user_id) => async (dispatch) => {
-  const response = await fetch(`/api/users/reviews/${user_id}`, {
+  const response = await fetch(`/api/users/profile/reviews/${user_id}`, {
     headers: {
       "Content-Type": "application/json",
     },

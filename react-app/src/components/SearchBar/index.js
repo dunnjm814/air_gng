@@ -51,10 +51,10 @@ const Search = () => {
   const [location, setLocation] = useState("");
   const [aircraft, setAircraft] = useState("");
 
-  const incomingSearch = useSelector((state) => state.location.location)
-  useEffect(() => {
-    setLocation(incomingSearch)
-  },[incomingSearch])
+  // const incomingSearch = useSelector((state) => state.location.location)
+  // useEffect(() => {
+  //   setLocation(incomingSearch)
+  // },[incomingSearch])
 
 
   const openCal = () => {
@@ -131,8 +131,8 @@ function PlacesSearch() {
 
   const handleSelect = async (address) => {
     setValue(address, false);
-    const choice = value
-    dispatch(searchLocation(choice));
+    // const choice = value
+    // dispatch(searchLocation(choice));
     clearSuggestions();
   }
 

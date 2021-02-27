@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import * as profileActions from '../../store/profile'
+import * as reviewActions from '../../store/review'
 import AboutUserForm from './AboutUserForm'
 import {useParams} from 'react-router-dom'
 import './profile.css'
@@ -9,6 +11,8 @@ import './profile.css'
 function UserProfile({sessionUser}) {
   const dispatch = useDispatch()
   const userProfile = useSelector((state) => state.profile);
+  const userReviews = useSelector(state => state.review)
+  const userReviewsArr = Object.values(userReviews)
   const [info, setInfo] = useState(false)
   const {userId} = useParams()
 
@@ -18,6 +22,7 @@ function UserProfile({sessionUser}) {
 
   useEffect(() => {
       dispatch(profileActions.getProfile(userId))
+      dispatch(reviewActions.getUserReviews(userId))
     console.log("####", userProfile)
   },[dispatch])
 
@@ -96,6 +101,17 @@ function UserProfile({sessionUser}) {
           <div id="user-reviews">
             <h6>Heres where I would put my reviews...</h6>
             <h1>IF I HAD ANY!!!</h1>
+            {userReviews && <div className="review_wrapper">
+              {userReviewsArr.map(review => (
+                <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
+                  <div className='review_container'>
+                    <div>{review.username}</div>
+                    <div>{review.title}</div>
+                    <div>{review.comment}</div>
+                  </div>
+                </NavLink>
+              ))}
+              </div>}
           </div>
         </div>
         <div id="profile-blank"></div>

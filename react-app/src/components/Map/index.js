@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useSelector, useDispatch} from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
 import logo from "../../img/airbnb-logo.png"
@@ -92,33 +93,37 @@ function Map() {
               })}
             ;
             {selected ? (
-              <InfoWindow
-                position={{ lat: selected.lat, lng: selected.lng }}
-                onCloseClick={() => {
-                  setSelected(null);
-                }}
-              >
-                <div>
-                  <h3>{selected.business_name}</h3>
-                  <img
-                    style={{ width: "50px", height: "50px" }}
-                    src={selected.biz_image}
-                  />
-                </div>
-              </InfoWindow>
+              <NavLink to={`/aircrafts/${selected.id}`}>
+                <InfoWindow
+                  position={{ lat: selected.lat, lng: selected.lng }}
+                  onCloseClick={() => {
+                    setSelected(null);
+                  }}
+                >
+                  <div className="info-card">
+                    <h3>{selected.business_name}</h3>
+                    <img
+                      style={{ width: "50px", height: "50px" }}
+                      src={selected.biz_image}
+                    />
+                  </div>
+                </InfoWindow>
+              </NavLink>
             ) : null}
           </GoogleMap>
       </div>
       <div className={"split left"}>
         <div className={"biz-container"}>
             {shownBiz.map((service) => (
-              <div key={service.id} className={"service-card"}>
-                <img className={'biz-image'} key={`${service.id}-img`} src={service.biz_image}/>
-                <div className={"biz-info"}>
-                  <h1>{service.business_name}</h1>
-                  <h3>Calander component here</h3>
+              <NavLink key={service.id} to={`/aircrafts/${service.id}`}>
+                <div className={"service-card"}>
+                  <img className={'biz-image'} key={`${service.id}-img`} src={service.biz_image}/>
+                  <div className={"biz-info"}>
+                    <h1>{service.business_name}</h1>
+                    <h3>Calander component here</h3>
+                  </div>
                 </div>
-              </div>
+              </NavLink>
             ))}
         </div>
       </div>
