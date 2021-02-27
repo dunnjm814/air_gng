@@ -57,21 +57,21 @@ def profile_form_submit(user_id):
         return profile.to_dict()
 
 @user_routes.route('/bookings/<int:user_id>')
-def get_bookings():
+def get_bookings(user_id):
     bookings = Booking.query.filter_by(user_id=user_id)
     return {booking.id: [booking.to_dict() for booking in bookings]}
 
 @user_routes.route('/bookings', methods=["POST"])
 def create_booking():
-   form = BookingForm()
+    form = BookingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        booking = Booking(
-            book_date=form.data['book_date']
-            book_start_time=form.data['book_start_time']
-            book_end_time=form.data['book_end_time']
-            user_id=form.data['user_id']
-            service_id=['service_id']
+            booking = Booking(
+                book_date=form.data['book_date'],
+                book_start_time=form.data['book_start_time'],
+                book_end_time=form.data['book_end_time'],
+                user_id=form.data['user_id'],
+                service_id=['service_id']
         )
     else:
         return {}
