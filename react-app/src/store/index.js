@@ -5,12 +5,15 @@ import profileReducer from './profile'
 import bizReducer from './aircraft'
 import reviewReducer from './review'
 import bookingReducer from './booking'
+import locationReducer from './location'
+
 const rootReducer = combineReducers({
   session: sessionReducer,
   profile: profileReducer,
   biz: bizReducer,
   review: reviewReducer,
-  booking: bookingReducer
+  booking: bookingReducer,
+  location: locationReducer
 });
 
 let enhancer;

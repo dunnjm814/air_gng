@@ -1,14 +1,29 @@
 import "./SearchBar.css";
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import search_button from "../../img/airgng-search-button.png";
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
+import { useLoadScript } from "@react-google-maps/api";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
 import "react-nice-dates/build/style.css";
+import "@reach/combobox/styles.css";
+import { searchLocation } from "../../store/location";
+
+// const libraries = ["places"];
 
 function DatePickerExample() {
-  const [startDate, setStartDate] = useState();
   const [date, setDate] = useState();
   const currentDate = new Date();
 
@@ -33,9 +48,11 @@ function DatePickerExample() {
 
 const Search = () => {
   const dispatch = useDispatch();
+
   const [showCal, setShowCal] = useState(false);
   const [location, setLocation] = useState("");
   const [aircraft, setAircraft] = useState("");
+  setLocation(location = useSelector((state) => state.location))
 
   const openCal = () => {
     if (showCal) return;
@@ -43,7 +60,7 @@ const Search = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch();
+    await dispatch(showCal, location, aircraft);
     return <Redirect to="/map" />;
   };
   return (
@@ -51,8 +68,8 @@ const Search = () => {
       <div>
         <form className="search" onSubmit={onSubmit}>
           <div className="search-location">
-            <label for="local-search">
-              <div>
+            <label>
+              {/* <div>
                 <input
                   id="locationBox"
                   name="local-search"
@@ -63,7 +80,8 @@ const Search = () => {
                     setLocation(e.target.value);
                   }}
                 ></input>
-              </div>
+              </div> */}
+              <PlacesSearch />
               Where are you going?
             </label>
           </div>
@@ -101,4 +119,63 @@ const Search = () => {
   );
 };
 
+
+
+function PlacesSearch() {
+  const dispatch = useDispatch()
+  // const { isLoaded, loadError } = useLoadScript({
+  //   googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+  //   libraries
+  // });
+
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      radius: 200 * 1000,
+      // debounce: 300,
+    }
+  });
+
+  const handleInput = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSelect = async (address) => {
+    const choice = setValue(address, false);
+    dispatch(searchLocation(choice))
+    clearSuggestions();
+
+  }
+
+  // if (loadError) return "Error";
+  // if (!isLoaded) return "Loading...";
+
+  return (
+    <div>
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          id='place-search'
+          value={value}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Search your location"
+        />
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === "OK" &&
+              data.map(({ id, description }) => (
+                <ComboboxOption key={id} value={description} />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
+  );
+
+}
 export default Search;
