@@ -14,5 +14,7 @@
 .review_container {
   background-color: white;
   border-bottom: 1px solid lightgray;
-  width: 1/6vw;
+  width: 400px;
+  margin: 4px;
+  border-radius: 5px;
 }
