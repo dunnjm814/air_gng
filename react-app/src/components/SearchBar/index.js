@@ -55,7 +55,7 @@ const Search = () => {
   useEffect(() => {
     setLocation(incomingSearch)
   },[incomingSearch])
-
+  console.log('dispatch search', location)
 
   const openCal = () => {
     if (showCal) return;
@@ -121,18 +121,21 @@ function PlacesSearch() {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
+      location: { lat: () => 34.81723, lng: () => -114.34576 },
       radius: 200 * 1000,
     },
   });
-
+  console.log('initial search state', data, value)
   const handleInput = (e) => {
     setValue(e.target.value);
   };
 
   const handleSelect = async (address) => {
     setValue(address, false);
-    const choice = value
-    dispatch(searchLocation(choice));
+    const results = await getGeocode({ address });
+    const { lat, lng } = await getLatLng(results[0]);
+    const choice = {lat, lng}
+    await dispatch(searchLocation(choice));
     clearSuggestions();
   }
 
