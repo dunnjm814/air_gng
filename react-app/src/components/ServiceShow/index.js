@@ -1,10 +1,10 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import * as serviceActions from '../../store/aircraft'
 import * as reviewActions from '../../store/review'
 import StarRatingComponent from "react-star-rating-component";
-
+import ReviewForm from '../ReviewForm'
 import './styleshow.css'
 
 function ServiceShow() {
@@ -12,12 +12,26 @@ function ServiceShow() {
   const {craft_id} = useParams()
   const service = useSelector(state => state.biz.current)
   const reviews = useSelector(state => state.review)
+  const sessionUser = useSelector(state => state.session.user)
+  const [toggle, setToggle] = useState(false)
+  const [myId, setId] = useState(0)
   console.log(reviews)
   const reviewsArr = Object.values(reviews)
+
+  const deleteReview = (review_id) => {
+
+    dispatch(reviewActions.deleteReview(review_id))
+  }
   useEffect(() => {
     dispatch(serviceActions.getOneBiz(craft_id))
     .then(dispatch(reviewActions.getReviews(craft_id)))
-  }, [dispatch, craft_id])
+  }, [dispatch, craft_id, reviewsArr.length])
+
+  useEffect(() => {
+    console.log('alsdkjflksjdlfdslkjf')
+    console.log(myId)
+  }, [myId])
+
   return (
     <>
       {service && (
@@ -60,10 +74,10 @@ function ServiceShow() {
               <ul className="service_main_reviewlist">
                 {reviewsArr &&
                   reviewsArr.map((review) => (
-                    <li key={review.id}>
-                      <div key={review.title}>{review.username}</div>
-                      <div key={review.title}>{review.title}</div>
-                      <div key={review.comment}>{review.comment}</div>
+                    <li key={review.id} >
+                      <div >{review.username}</div>
+                      <div >{review.title}</div>
+                      <div >{review.comment}</div>
                       {/* <div key={review.rate}>{review.rate}</div> */}
                       <StarRatingComponent
                         name="reviewRating"
@@ -72,9 +86,17 @@ function ServiceShow() {
                         starCount={review.rate}
                         value={review.rate}
                       />
+                      {sessionUser && review.user_id==sessionUser.id && <button id={review.id} onClick={(e) => deleteReview(e.target.id)}>Delete</button>}
                     </li>
                   ))}
               </ul>
+              <div className="service_main_review_form">
+                 <span>Leave a review</span>
+                 <button onClick={() => setToggle(!toggle)}>Review</button>
+                 {toggle && <div>
+                  <ReviewForm />
+                   </div>}
+              </div>
             </div>
           </div>
         </div>
