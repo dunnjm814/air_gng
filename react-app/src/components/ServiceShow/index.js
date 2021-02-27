@@ -85,7 +85,7 @@ function ServiceShow() {
                         starCount={review.rate}
                         value={review.rate}
                       />
-                      {sessionUser && review.user_id==sessionUser.id && <button id={review.id} onClick={(e) => deleteReview(e.target.id)}>Delete</button>}
+                      {sessionUser && review.user_id===sessionUser.id && <button id={review.id} onClick={(e) => deleteReview(e.target.id)}>Delete</button>}
                     </li>
                   ))}
               </ul>
