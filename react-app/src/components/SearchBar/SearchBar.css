@@ -35,7 +35,8 @@
 
 #datebox,
 #locationBox,
-#select-field {
+#select-field,
+#place-search {
   font-family: Airbnb;
   border-radius: 32px;
   border: none;
