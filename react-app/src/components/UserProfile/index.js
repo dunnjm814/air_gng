@@ -7,7 +7,6 @@ import './profile.css'
 
 
 function UserProfile({sessionUser}) {
-  // const profileData = await
   const dispatch = useDispatch()
   const userProfile = useSelector((state) => state.profile);
   const [info, setInfo] = useState(false)
@@ -18,7 +17,6 @@ function UserProfile({sessionUser}) {
   }
 
   useEffect(() => {
-    // console.log("****", sessionUser.id)
       dispatch(profileActions.getProfile(userId))
     console.log("####", userProfile)
   },[dispatch])

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useSelector, useDispatch} from 'react-redux';
-import { GoogleMap, InfoWindow, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
 import logo from "../../img/airbnb-logo.png"
 import './map.css'
@@ -56,7 +56,6 @@ function Map() {
   return (
     <div className={"maps-biz-container"}>
       <div className={"split right"}>
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
           <GoogleMap
             className={"centered"}
             mapContainerStyle={containerStyle}
@@ -109,7 +108,6 @@ function Map() {
               </InfoWindow>
             ) : null}
           </GoogleMap>
-        </LoadScript>
       </div>
       <div className={"split left"}>
         <div className={"biz-container"}>
@@ -120,7 +118,7 @@ function Map() {
                   <h1>{service.business_name}</h1>
                   <h3>Calander component here</h3>
                 </div>
-                </div>
+              </div>
             ))}
         </div>
       </div>

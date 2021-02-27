@@ -16,7 +16,7 @@ const locationReducer = (state = { location: null }, action) => {
   let newState = { ...state }
   switch (action.type) {
     case SET_LOCATION:
-      newState = action.payload
+      newState.location = action.payload
       return newState
     default:
       return state

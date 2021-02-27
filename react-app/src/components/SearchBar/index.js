@@ -1,11 +1,10 @@
 import "./SearchBar.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import search_button from "../../img/airgng-search-button.png";
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
-import { useLoadScript } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -21,7 +20,6 @@ import "react-nice-dates/build/style.css";
 import "@reach/combobox/styles.css";
 import { searchLocation } from "../../store/location";
 
-// const libraries = ["places"];
 
 function DatePickerExample() {
   const [date, setDate] = useState();
@@ -52,7 +50,12 @@ const Search = () => {
   const [showCal, setShowCal] = useState(false);
   const [location, setLocation] = useState("");
   const [aircraft, setAircraft] = useState("");
-  setLocation(location = useSelector((state) => state.location))
+
+  const incomingSearch = useSelector((state) => state.location.location)
+  useEffect(() => {
+    setLocation(incomingSearch)
+  },[incomingSearch])
+
 
   const openCal = () => {
     if (showCal) return;
@@ -69,18 +72,6 @@ const Search = () => {
         <form className="search" onSubmit={onSubmit}>
           <div className="search-location">
             <label>
-              {/* <div>
-                <input
-                  id="locationBox"
-                  name="local-search"
-                  type="text"
-                  value={location}
-                  placeholder="Enter a city"
-                  onChange={(e) => {
-                    setLocation(e.target.value);
-                  }}
-                ></input>
-              </div> */}
               <PlacesSearch />
               Where are you going?
             </label>
@@ -119,14 +110,8 @@ const Search = () => {
   );
 };
 
-
-
 function PlacesSearch() {
   const dispatch = useDispatch()
-  // const { isLoaded, loadError } = useLoadScript({
-  //   googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-  //   libraries
-  // });
 
   const {
     ready,
@@ -137,8 +122,7 @@ function PlacesSearch() {
   } = usePlacesAutocomplete({
     requestOptions: {
       radius: 200 * 1000,
-      // debounce: 300,
-    }
+    },
   });
 
   const handleInput = (e) => {
@@ -146,14 +130,11 @@ function PlacesSearch() {
   };
 
   const handleSelect = async (address) => {
-    const choice = setValue(address, false);
-    dispatch(searchLocation(choice))
+    setValue(address, false);
+    const choice = value
+    dispatch(searchLocation(choice));
     clearSuggestions();
-
   }
-
-  // if (loadError) return "Error";
-  // if (!isLoaded) return "Loading...";
 
   return (
     <div>
