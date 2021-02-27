@@ -33,7 +33,7 @@ function ServiceShow() {
   }, [myId])
 
   return (
-    <>
+    <div className='service_main'>
       {service && (
         <div>
           <div className="service_main_container">
@@ -101,7 +101,7 @@ function ServiceShow() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
