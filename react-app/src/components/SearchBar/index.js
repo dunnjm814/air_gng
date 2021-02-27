@@ -1,6 +1,6 @@
 import "./SearchBar.css";
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import search_button from "../../img/airgng-search-button.png";
 import { enGB } from "date-fns/locale";
@@ -18,7 +18,7 @@ import {
 } from "@reach/combobox";
 import "react-nice-dates/build/style.css";
 import "@reach/combobox/styles.css";
-import { searchLocation } from "../../store/location";
+import { searchLocation, searchMap } from "../../store/location";
 
 
 function DatePickerExample() {
@@ -46,12 +46,14 @@ function DatePickerExample() {
 
 const Search = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const [showCal, setShowCal] = useState(false);
   const [location, setLocation] = useState("");
   const [aircraft, setAircraft] = useState("");
 
   const incomingSearch = useSelector((state) => state.location.location)
+  console.log('incoming', incomingSearch)
   useEffect(() => {
     setLocation(incomingSearch)
   },[incomingSearch])
@@ -63,8 +65,8 @@ const Search = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(showCal, location, aircraft);
-    return <Redirect to="/map" />;
+    await dispatch(searchMap({location, aircraft}));
+    return history.push('/map')
   };
   return (
     <>
@@ -125,7 +127,6 @@ function PlacesSearch() {
       radius: 200 * 1000,
     },
   });
-  console.log('initial search state', data, value)
   const handleInput = (e) => {
     setValue(e.target.value);
   };
