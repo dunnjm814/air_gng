@@ -6,9 +6,16 @@
 .service_main_container {
   width: 60vw;
   margin: 0 20vw;
-  background-color: red;
 }
 
 .service_main_reviewlist {
     list-style: none;
 }
+
+.service_main {
+  font-family: Airbnb
+}
+
+/* body {
+  background-image: none;
+} */

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Profile, db, Aircraft, Review
-
+from app.forms import ReviewForm
 biz_routes = Blueprint('aircrafts', __name__)
 
 @biz_routes.route('/')
@@ -41,3 +41,27 @@ def get_reviews(craft_id):
         return {review.id: to_service(review) for review in reviews}
     else:
         return {}
+
+@biz_routes.route('/reviews', methods=['POST'])
+def submit_review():
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review(
+            rate=form.data['rate'],
+            title=form.data['title'],
+            comment=form.data['comment'],
+            user_id=form.data['user_id'],
+            service_id=form.data['service_id']
+        )
+    db.session.add(review)
+    db.session.commit()
+    return review.to_dict()
+
+
+@biz_routes.route('/reviews/<int:review_id>', methods=['DELETE'])
+def delete_review(review_id):
+    review = Review.query.filter_by(id=review_id).one()
+    db.session.delete(review)
+    db.session.commit()
+    return review.to_dict()
