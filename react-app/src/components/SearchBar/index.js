@@ -1,11 +1,8 @@
 import "./SearchBar.css";
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom"
-import {useDispatch} from 'react-redux'
+import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import search_button from "../../img/airgng-search-button.png";
-
-import DatePickerExample from "./dates";
-
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
 import "react-nice-dates/build/style.css";
@@ -34,12 +31,11 @@ function DatePickerExample() {
   );
 }
 
-
 const Search = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [showCal, setShowCal] = useState(false);
-  const [location, setLocation] = useState('');
-  const [aircraft, setAircraft] = useState('');
+  const [location, setLocation] = useState("");
+  const [aircraft, setAircraft] = useState("");
 
   const openCal = () => {
     if (showCal) return;
@@ -47,14 +43,11 @@ const Search = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch()
-    return <Redirect to='/map'/>
-
-  }
+    await dispatch();
+    return <Redirect to="/map" />;
+  };
   return (
     <>
-      <form className="search">
-        <div className="search-location">
       <div>
         <form className="search" onSubmit={onSubmit}>
           <div className="search-location">
@@ -84,76 +77,26 @@ const Search = () => {
               value={aircraft}
               onChange={(e) => setAircraft(e.target.value)}
             >
-              <option
-              value={''}
-              >pick an aircraft</option>
-              <option
-              value={'HangGlider'}
-              >Hang glider </option>
-              <option
-              value={'Helicopter'}
-              >Helicopter</option>
-              <option
-              value={'HotAirBalloon'}
-              >Hot air balloon</option>
-              <option
-              value={'JetPack'}
-              >
-                Jet pack
-              </option>
-              <option
-              value={'LiteAircraft'}
-              >
-                Lite aircraft
-              </option>
-              <option
-              value={'PrivateJet'}
-              >
-                Private Jet
-              </option>
-              <option
-                value={'SkyDiving'}
-              >
-                Sky Diving
-              </option>
-              <option
-              value={"WingSuit"}
-              >
-                Wing suit
-              </option>
+              <option value={""}>pick an aircraft</option>
+              <option value={"HangGlider"}>Hang glider </option>
+              <option value={"Helicopter"}>Helicopter</option>
+              <option value={"HotAirBalloon"}>Hot air balloon</option>
+              <option value={"JetPack"}>Jet pack</option>
+              <option value={"LiteAircraft"}>Lite aircraft</option>
+              <option value={"PrivateJet"}>Private Jet</option>
+              <option value={"SkyDiving"}>Sky Diving</option>
+              <option value={"WingSuit"}>Wing suit</option>
             </select>
             <div>What are you flying?</div>
           </div>
           <div>
             <div>Guests</div>
           </div>
-          <input placeholder="Where are you going?"></input>
-        </div>
-        <div>
-          <div>Flying Date</div>
-          <DatePickerExample />
-        </div>
-        <div>
-          <div>Aircraft Type</div>
-          <select placeholder="What are you flying?">
-            <option value="">Helicopter</option>
-          </select>
-        </div>
-        <div>
-          <div>Guests</div>
-          <input placeholder="Add dates"></input>
-        </div>
-        <button>
-          <img className="search-button" src={search_button} />
-        </button>
-      </form>
-
-          <button type='submit'>
+          <button type="submit">
             <img className="search-button" src={search_button} />
           </button>
         </form>
       </div>
-
     </>
   );
 };
