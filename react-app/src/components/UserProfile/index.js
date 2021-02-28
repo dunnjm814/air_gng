@@ -23,9 +23,11 @@ function UserProfile({sessionUser}) {
   }
 
   let businessTypes = new Set()
+  businessTypes.add("Show All")
   userReviewsArr.forEach(review => {
     businessTypes.add(review.aircraft)
   })
+
 
 
   useEffect(() => {
@@ -118,7 +120,7 @@ function UserProfile({sessionUser}) {
                 <option value={aircraft}>{aircraft}</option>
               ))}
             </select>
-            {userReviews && <div className="review_wrapper">
+            {/* {userReviews && <div className="review_wrapper">
               {userReviewsArr.map(review => (
                 <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
                   <div className='review_container'>
@@ -128,9 +130,19 @@ function UserProfile({sessionUser}) {
                   </div>
                 </NavLink>
               ))}
-              </div>}
-              {filteredReviews.length && <div className="review_wrapper">
+              </div>} */}
+              {userReviews && filteredReviews.length ? <div className="review_wrapper">
               {filteredReviews.map(review => (
+                <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
+                  <div className='review_container'>
+                    <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
+                    <div className='review_title'>{review.title}</div>
+                    <div className='review_comment'>{review.comment}</div>
+                  </div>
+                </NavLink>
+              ))}
+              </div> : <div className="review_wrapper">
+              {userReviewsArr.map(review => (
                 <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
                   <div className='review_container'>
                     <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
