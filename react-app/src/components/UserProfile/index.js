@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import * as profileActions from '../../store/profile'
+import * as reviewActions from '../../store/review'
+import * as bookingActions from '../../store/booking'
 import AboutUserForm from './AboutUserForm'
 import {useParams} from 'react-router-dom'
 import './profile.css'
@@ -9,18 +12,43 @@ import './profile.css'
 function UserProfile({sessionUser}) {
   const dispatch = useDispatch()
   const userProfile = useSelector((state) => state.profile);
+  const userReviews = useSelector(state => state.review)
+  const userBookings = useSelector(state => state.booking)
+  let userReviewsArr = Object.values(userReviews)
+  const userBookingArr = Object.values(userBookings)
   const [info, setInfo] = useState(false)
+  const [selectedReview, setSelectedReview] = useState('')
+  const [filteredReviews, setFilteredReviews] = useState([])
   const {userId} = useParams()
 
   function toggle() {
     setInfo(!info)
   }
 
+  let businessTypes = new Set()
+  businessTypes.add("Show All")
+  userReviewsArr.forEach(review => {
+    businessTypes.add(review.aircraft)
+  })
+
   useEffect(() => {
       dispatch(profileActions.getProfile(userId))
+      dispatch(reviewActions.getUserReviews(userId))
+      dispatch(bookingActions.getBookings(userId))
     console.log("####", userProfile)
-  },[dispatch])
+    console.log('booooooooooooooooking')
+    console.log(userBookingArr)
+  },[dispatch, userBookings.length])
 
+
+
+  useEffect(() => {
+    setFilteredReviews(userReviewsArr.filter(review => review.aircraft === selectedReview))
+  }, [selectedReview])
+
+  const deleteMyBooking = (bookingId) => {
+    dispatch(bookingActions.deleteBooking(bookingId))
+  }
 
   return (
     <>
@@ -34,7 +62,7 @@ function UserProfile({sessionUser}) {
           </div>
           <div id="about-user">
             <div id="user-header">
-              <h1>Hey, its {sessionUser && sessionUser.first_name}</h1>
+              <h1>Hey, its {sessionUser && sessionUser.username}</h1>
               {/* <p>joined in {year}</p> stretch goal */}
               <button
               onClick={toggle}
@@ -93,10 +121,52 @@ function UserProfile({sessionUser}) {
               </div>}
             </div>
           </div>
+          <div className='user_container_bottom'>
           <div id="user-reviews">
-            <h6>Heres where I would put my reviews...</h6>
-            <h1>IF I HAD ANY!!!</h1>
+            <h1>My Reviews</h1>
+            <select value={selectedReview} onChange={(e) => setSelectedReview(e.target.value)}>
+              {userReviews && Array.from(businessTypes).map(aircraft => (
+                <option value={aircraft}>{aircraft}</option>
+              ))}
+            </select>
+              {userReviews && filteredReviews.length ? <div className="review_wrapper">
+              {filteredReviews.map(review => (
+                <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
+                  <div className='review_container'>
+                    <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
+                    <div className='review_title'>{review.title}</div>
+                    <div className='review_comment'>{review.comment}</div>
+                  </div>
+                </NavLink>
+              ))}
+              </div> : <div className="review_wrapper">
+              {userReviewsArr.map(review => (
+                <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
+                  <div className='review_container'>
+                    <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
+                    <div className='review_title'>{review.title}</div>
+                    <div className='review_comment'>{review.comment}</div>
+                  </div>
+                </NavLink>
+              ))}
+              </div>}
           </div>
+          <div className='bookings_wrapper'>
+            <h1>My Current Bookings</h1>
+            {userBookings && userBookingArr.length && <div>
+              {userBookingArr.map(booking => {
+                if (booking !== null) {
+                  return <div key={booking.id} className='booking_each'>
+                    <div>Date: {booking.book_date}</div>
+                    <div>{booking.aircraft}</div>
+                    <div>{booking.business_name}</div>
+                    <button id={booking.id} onClick={(e) => deleteMyBooking(e.target.id)}>Cancel</button>
+                </div>
+                }
+              })}
+              </div>}
+          </div>
+        </div>
         </div>
         <div id="profile-blank"></div>
       </div>

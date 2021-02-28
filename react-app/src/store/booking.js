@@ -1,5 +1,6 @@
 const LOAD_BOOKINGS = 'bookings/loadBookings'
-const SET_BOOKING = 'bookings/setProfile'
+const SET_BOOKING = 'bookings/setBooking'
+const REMOVE_BOOKING = 'bookings/removeBooking'
 
 export const loadBookings = (bookings) => {
   return {
@@ -15,6 +16,13 @@ export const setBooking = (booking) => {
   }
 }
 
+export const removeBooking = (booking) => {
+  return {
+    type: REMOVE_BOOKING,
+    payload: booking
+  }
+}
+
 export const getBookings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/bookings/${userId}`, {
     headers: {
@@ -26,9 +34,10 @@ export const getBookings = (userId) => async (dispatch) => {
   return bookings
 }
 
-export const submitBooking = (bookDate, bookStartTime, bookEndTime, userId, serviceId) => async (
+export const submitBooking = (bookDate, bookStartTime=null, bookEndTime=null, userId, serviceId) => async (
   dispatch
 ) => {
+  console.log(bookDate, bookStartTime, bookEndTime, userId, serviceId)
   const response = await fetch(`/api/users/bookings`, {
     method: "POST",
     headers: {
@@ -47,7 +56,17 @@ export const submitBooking = (bookDate, bookStartTime, bookEndTime, userId, serv
   return booking
 };
 
-
+export const deleteBooking = (bookingId) => async (dispatch) => {
+  const response = await fetch(`/api/users/bookings/${bookingId}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+  const booking = await response.json()
+  dispatch(removeBooking(booking))
+  return {}
+}
 
 const bookingReducer = (state = { profile: null }, action) => {
   let newState = { ...state }
@@ -56,7 +75,10 @@ const bookingReducer = (state = { profile: null }, action) => {
       newState = action.payload
       return newState;
     case SET_BOOKING:
-      newState = action.payload
+      newState[action.payload.id] = action.payload
+      return newState;
+    case REMOVE_BOOKING:
+      delete newState[action.payload.id]
       return newState;
     default:
       return state

@@ -1,3 +1,51 @@
 .hidden{
   display: none;
 }
+
+
+.review_link {
+  text-decoration: none;
+  color: black;
+  line-height: 1.5;
+}
+
+.review_wrapper {
+
+}
+
+.review_container {
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  width: 400px;
+  margin: 4px;
+  padding: 8px;
+  border-radius: 15px;
+}
+
+#profile-wrapper {
+  font-family: Airbnb;
+  margin-left: 5vw;
+}
+
+.review_title {
+  font-weight: bold;
+}
+
+.review_comment {
+  line-height: 1;
+  padding-top: 5px;
+}
+
+.booking_each {
+  border-top: 1px solid lightgray;
+  margin: 25px 0px;
+  padding-top: 10px;
+}
+
+.user_container_bottom {
+  display: flex;
+}
+
+.bookings_wrapper {
+  margin-left: 80px;
+}

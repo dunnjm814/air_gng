@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom'
 import * as serviceActions from '../../store/aircraft'
 import * as reviewActions from '../../store/review'
 import StarRatingComponent from "react-star-rating-component";
+import Bookings from '../Bookings'
 import ReviewForm from '../ReviewForm'
 import './styleshow.css'
 
@@ -68,6 +69,7 @@ function ServiceShow() {
                 <div>{service.description}</div>
                 <div>{service.phone_number}</div>
               </div>
+              <Bookings />
             </div>
             <div className="service_main_reviews">
               <span>Reviews will go here</span>
@@ -85,7 +87,7 @@ function ServiceShow() {
                         starCount={review.rate}
                         value={review.rate}
                       />
-                      {sessionUser && review.user_id==sessionUser.id && <button id={review.id} onClick={(e) => deleteReview(e.target.id)}>Delete</button>}
+                      {sessionUser && review.user_id===sessionUser.id && <button id={review.id} onClick={(e) => deleteReview(e.target.id)}>Delete</button>}
                     </li>
                   ))}
               </ul>
