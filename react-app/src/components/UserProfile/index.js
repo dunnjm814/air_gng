@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as profileActions from '../../store/profile'
 import * as reviewActions from '../../store/review'
+import * as bookingActions from '../../store/booking'
 import AboutUserForm from './AboutUserForm'
 import {useParams} from 'react-router-dom'
 import './profile.css'
@@ -12,7 +13,9 @@ function UserProfile({sessionUser}) {
   const dispatch = useDispatch()
   const userProfile = useSelector((state) => state.profile);
   const userReviews = useSelector(state => state.review)
+  const userBookings = useSelector(state => state.booking)
   let userReviewsArr = Object.values(userReviews)
+  const userBookingArr = Object.values(userBookings)
   const [info, setInfo] = useState(false)
   const [selectedReview, setSelectedReview] = useState('')
   const [filteredReviews, setFilteredReviews] = useState([])
@@ -28,13 +31,16 @@ function UserProfile({sessionUser}) {
     businessTypes.add(review.aircraft)
   })
 
-
-
   useEffect(() => {
       dispatch(profileActions.getProfile(userId))
       dispatch(reviewActions.getUserReviews(userId))
+      dispatch(bookingActions.getBookings(userId))
     console.log("####", userProfile)
+    console.log('booooooooooooooooking')
+    console.log(userBookingArr)
   },[dispatch])
+
+
 
   useEffect(() => {
     setFilteredReviews(userReviewsArr.filter(review => review.aircraft === selectedReview))
@@ -112,25 +118,14 @@ function UserProfile({sessionUser}) {
               </div>}
             </div>
           </div>
+          <div className='user_container_bottom'>
           <div id="user-reviews">
-            <h6>Heres where I would put my reviews...</h6>
             <h1>My Reviews</h1>
             <select value={selectedReview} onChange={(e) => setSelectedReview(e.target.value)}>
               {userReviews && Array.from(businessTypes).map(aircraft => (
                 <option value={aircraft}>{aircraft}</option>
               ))}
             </select>
-            {/* {userReviews && <div className="review_wrapper">
-              {userReviewsArr.map(review => (
-                <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
-                  <div className='review_container'>
-                    <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
-                    <div className='review_title'>{review.title}</div>
-                    <div className='review_comment'>{review.comment}</div>
-                  </div>
-                </NavLink>
-              ))}
-              </div>} */}
               {userReviews && filteredReviews.length ? <div className="review_wrapper">
               {filteredReviews.map(review => (
                 <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
@@ -153,6 +148,19 @@ function UserProfile({sessionUser}) {
               ))}
               </div>}
           </div>
+          <div className='bookings_wrapper'>
+            <h1>My Current Bookings</h1>
+            {userBookings && userBookingArr.length && <div>
+              {userBookingArr.map(booking => {
+                return <div key={booking.id} className='booking_each'>
+                    <div>Date: {booking.book_date}</div>
+                    <div>{booking.aircraft}</div>
+                    <div>{booking.business_name}</div>
+                </div>
+              })}
+              </div>}
+          </div>
+        </div>
         </div>
         <div id="profile-blank"></div>
       </div>

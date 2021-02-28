@@ -35,3 +35,17 @@
   line-height: 1;
   padding-top: 5px;
 }
+
+.booking_each {
+  border-top: 1px solid lightgray;
+  margin: 25px 0px;
+  padding-top: 10px;
+}
+
+.user_container_bottom {
+  display: flex;
+}
+
+.bookings_wrapper {
+  margin-left: 80px;
+}

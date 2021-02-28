@@ -21,7 +21,7 @@ import "@reach/combobox/styles.css";
 import { searchLocation, searchMap } from "../../store/location";
 
 
-function DatePickerExample() {
+export function DatePickerExample() {
   const [date, setDate] = useState();
   const currentDate = new Date();
 

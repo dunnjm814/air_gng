@@ -26,9 +26,11 @@ export const getBookings = (userId) => async (dispatch) => {
   return bookings
 }
 
-export const submitBooking = (bookDate, bookStartTime, bookEndTime, userId, serviceId) => async (
+export const submitBooking = (bookDate, bookStartTime=null, bookEndTime=null, userId, serviceId) => async (
   dispatch
 ) => {
+  console.log('submit booking thunk')
+  console.log(bookDate, bookStartTime, bookEndTime, userId, serviceId)
   const response = await fetch(`/api/users/bookings`, {
     method: "POST",
     headers: {
@@ -56,7 +58,7 @@ const bookingReducer = (state = { profile: null }, action) => {
       newState = action.payload
       return newState;
     case SET_BOOKING:
-      newState = action.payload
+      newState[action.payload.id] = action.payload
       return newState;
     default:
       return state
