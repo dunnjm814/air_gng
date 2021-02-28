@@ -12,6 +12,8 @@ function Map() {
   const aircraft = useSelector( (state) => {
     return state.biz
   });
+  const search = useSelector((state) => state.location.location)
+  console.log('from search object', search)
 
   const servicesArray = Object.values(aircraft)
 
