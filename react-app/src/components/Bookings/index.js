@@ -32,12 +32,12 @@ const Bookings = () => {
                 locale={enGB}
                 >
                 {({ inputProps, focused }) => (
-               <input
-               id="datebox"
-               className={"input" + (focused ? " -focused" : "")}
+                <input
+                id="datebox"
+                className={"input" + (focused ? " -focused" : "")}
                 {...inputProps}
-               />
-               )}
+                />
+                )}
                 </DatePicker>
                 <button type='submit'>Reserve</button>
                 {toggle && <div>

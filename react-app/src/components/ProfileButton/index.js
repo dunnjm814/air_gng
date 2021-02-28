@@ -53,6 +53,7 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
           <LoginForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+            setShowLogModal={setShowLogModal}
           />
         </Modal>
       )}
@@ -62,6 +63,7 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
           <SignUpForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+            setShowSignModal={setShowSignModal}
           />
         </Modal>
       )}
