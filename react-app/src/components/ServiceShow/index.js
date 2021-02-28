@@ -34,7 +34,7 @@ function ServiceShow() {
   }, [myId])
 
   return (
-    <div className='service_main'>
+    <div className="service_main">
       {service && (
         <div>
           <div className="service_main_container">
@@ -72,31 +72,51 @@ function ServiceShow() {
               <Bookings />
             </div>
             <div className="service_main_reviews">
-              <span>Reviews will go here</span>
+              <h2>Reviews </h2>
               <ul className="service_main_reviewlist">
                 {reviewsArr &&
                   reviewsArr.map((review) => (
-                    <li key={review.id} >
-                      <div >{review.username}</div>
-                      <div >{review.title}</div>
-                      <div >{review.comment}</div>
-                      <StarRatingComponent
-                        name="reviewRating"
-                        editing={false}
-                        renderStarIcon={() => <span>⭐</span>}
-                        starCount={review.rate}
-                        value={review.rate}
-                      />
-                      {sessionUser && review.user_id===sessionUser.id && <button id={review.id} onClick={(e) => deleteReview(e.target.id)}>Delete</button>}
+                    <li key={review.id}>
+                      <h3>{review.username}</h3>
+                      <div>{review.title}</div>
+                      <div>{review.comment}</div>
+                      <div className="star-delete-wrap">
+                        <StarRatingComponent
+                          name="reviewRating"
+                          editing={false}
+                          renderStarIcon={() => <span>⭐</span>}
+                          starCount={review.rate}
+                          value={review.rate}
+                        />
+                        {sessionUser && review.user_id === sessionUser.id && (
+                          <button
+                            id={review.id}
+                            className="delete-review"
+                            onClick={(e) => deleteReview(e.target.id)}
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </div>
                     </li>
                   ))}
               </ul>
               <div className="service_main_review_form">
-                 <span>Leave a review</span>
-                 <button onClick={() => setToggle(!toggle)}>Review</button>
-                 {toggle && <div>
-                  <ReviewForm />
-                   </div>}
+                <label for="leave-review" className="leave-review-btn">
+                  Leave a review
+                  <button
+                    id="leave-review"
+                    className="leave-review-btn"
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    Review
+                  </button>
+                </label>
+                {toggle && (
+                  <div>
+                    <ReviewForm />
+                  </div>
+                )}
               </div>
             </div>
           </div>

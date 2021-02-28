@@ -772,7 +772,7 @@ def seed_biz():
   air_biz65 = Aircraft(business_name="Wing Suits r' Us",
   biz_image="https://upload.wikimedia.org/wikipedia/commons/d/d8/Wingsuit_Flying_over_Langar_Airfield_UK.jpg",
   description="Fly like a squirrel",
-  aircraft="WingSuit",
+  aircraft="WingSuit",                   
   address="5678 West Skydive Street",
   city="Queen Creek",
   state="AZ",
