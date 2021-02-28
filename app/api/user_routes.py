@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Profile, db, Review, Booking
+from app.models import User, Profile, db, Review, Booking, Aircraft
 from app.forms import ProfileForm, BookingForm
 
 user_routes = Blueprint('users', __name__)
@@ -64,15 +64,14 @@ def to_service(review):
       'comment': review.comment,
       'user_id': review.user_id,
       'service_id': review.service_id,
-      'username': review.user.username,
-      'email': review.user.email,
-      'profile_pic': review.user.profile_pic,
+      'business_name': review.service.business_name,
+      'aircraft': review.service.aircraft,
     }
     return join_review
 
 @user_routes.route('/profile/reviews/<int:user_id>')
 def get_user_reviews(user_id):
-    reviews = Review.query.filter_by(user_id=user_id).join(User).all()
+    reviews = Review.query.filter_by(user_id=user_id).join(Aircraft).all()
     if reviews:
         return {review.id: to_service(review) for review in reviews}
     else:

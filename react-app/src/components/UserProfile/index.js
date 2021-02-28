@@ -12,19 +12,31 @@ function UserProfile({sessionUser}) {
   const dispatch = useDispatch()
   const userProfile = useSelector((state) => state.profile);
   const userReviews = useSelector(state => state.review)
-  const userReviewsArr = Object.values(userReviews)
+  let userReviewsArr = Object.values(userReviews)
   const [info, setInfo] = useState(false)
+  const [selectedReview, setSelectedReview] = useState('')
+  const [filteredReviews, setFilteredReviews] = useState([])
   const {userId} = useParams()
 
   function toggle() {
     setInfo(!info)
   }
 
+  let businessTypes = new Set()
+  userReviewsArr.forEach(review => {
+    businessTypes.add(review.aircraft)
+  })
+
+
   useEffect(() => {
       dispatch(profileActions.getProfile(userId))
       dispatch(reviewActions.getUserReviews(userId))
     console.log("####", userProfile)
   },[dispatch])
+
+  useEffect(() => {
+    setFilteredReviews(userReviewsArr.filter(review => review.aircraft === selectedReview))
+  }, [selectedReview])
 
 
   return (
@@ -39,7 +51,7 @@ function UserProfile({sessionUser}) {
           </div>
           <div id="about-user">
             <div id="user-header">
-              <h1>Hey, its {sessionUser && sessionUser.first_name}</h1>
+              <h1>Hey, its {sessionUser && sessionUser.username}</h1>
               {/* <p>joined in {year}</p> stretch goal */}
               <button
               onClick={toggle}
@@ -100,14 +112,30 @@ function UserProfile({sessionUser}) {
           </div>
           <div id="user-reviews">
             <h6>Heres where I would put my reviews...</h6>
-            <h1>IF I HAD ANY!!!</h1>
+            <h1>My Reviews</h1>
+            <select value={selectedReview} onChange={(e) => setSelectedReview(e.target.value)}>
+              {userReviews && Array.from(businessTypes).map(aircraft => (
+                <option value={aircraft}>{aircraft}</option>
+              ))}
+            </select>
             {userReviews && <div className="review_wrapper">
               {userReviewsArr.map(review => (
                 <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
                   <div className='review_container'>
-                    <div>{review.username}</div>
-                    <div>{review.title}</div>
-                    <div>{review.comment}</div>
+                    <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
+                    <div className='review_title'>{review.title}</div>
+                    <div className='review_comment'>{review.comment}</div>
+                  </div>
+                </NavLink>
+              ))}
+              </div>}
+              {filteredReviews.length && <div className="review_wrapper">
+              {filteredReviews.map(review => (
+                <NavLink className="review_link" key={review.id} to={`/aircrafts/${review.service_id}`}>
+                  <div className='review_container'>
+                    <div className='review_title'>{`${review.aircraft} : ${review.business_name}`}</div>
+                    <div className='review_title'>{review.title}</div>
+                    <div className='review_comment'>{review.comment}</div>
                   </div>
                 </NavLink>
               ))}
