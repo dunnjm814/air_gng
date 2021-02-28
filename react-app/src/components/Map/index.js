@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef, useCallback} from "react";
 import { useSelector, useDispatch} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
@@ -12,8 +12,9 @@ function Map() {
   const aircraft = useSelector( (state) => {
     return state.biz
   });
-  const search = useSelector((state) => state.location.location)
-  console.log('from search object', search)
+  const searchRef = useRef(useSelector((state) => state.location.location));
+  // searchRef =
+  console.log('from search object', searchRef, searchRef.aircraft)
 
   const servicesArray = Object.values(aircraft)
 
@@ -21,11 +22,41 @@ function Map() {
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
   const [shownBiz, setBiz] = useState([]);
+  const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
 
-    useEffect(() => {
-      dispatch(getAllBiz());
-    }, [dispatch, map]);
+  useEffect(() => {
+    if (searchRef) {
+      const { lat } = searchRef.location.lat
+      const { lng } = searchRef.location.lng
+      handleMapLoad()
+      setLat(lat)
+      setLng(lng)
+      handleBoundsChanged()
+    }
+  },[searchRef])
+  useEffect(() => {
+    dispatch(getAllBiz());
+  }, [dispatch, map]);
+
+  const aircraftRef = useRef()
+
+  useEffect(() => {
+    if (!searchRef) {
+      return
+    } else {
+      aircraftRef.current = searchRef.aircraft;
+    }
+    console.log("aircraftRef", aircraftRef)
+    const filterAircraft = (array) => {
+      if (!searchRef.aircraft) return array;
+      const filteredService = array.filter((biz) => biz === aircraftRef);
+      console.log("filter", filteredService);
+      setFilterBiz(filteredService);
+      return;
+    }
+
+  },[searchRef])
 
   const containerStyle = {
     width: "50vw",
@@ -38,9 +69,17 @@ function Map() {
     lng: lng || -114.34576,
   };
 
-  function handleMapLoad(currentMap) {
+  const handleMapLoad = useCallback((currentMap)=> {
     setMap(currentMap);
-  }
+  }, [])
+
+  const panTo = useCallback(({ lat, lng }) => {
+    map.panTo({ lat, lng })
+    map.setZoom(12);
+    setLat(lat)
+    setLng(lng)
+    handleBoundsChanged()
+  }, [])
 
   function handleBoundsChanged() {
     const bounds = map.getBounds();
@@ -87,9 +126,15 @@ function Map() {
                       origin: new window.google.maps.Point(0, 0),
                       anchor: new window.google.maps.Point(15, 15),
                     }}
-                    onClick={() => {
-                      setSelected(service);
-                    }}
+                    onClick={
+                      (() => {
+                        setSelected(service);
+                        panTo({
+                          lat: service.lat,
+                          lng: service.lng,
+                        });
+                      })
+                    }
                   />
                 );
               })}
