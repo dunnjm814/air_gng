@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
-const SignUpForm = ({ authenticated, setAuthenticated }) => {
+const SignUpForm = ({ authenticated, setAuthenticated, setShowSignModal }) => {
   const dispatch = useDispatch()
 
   const [username, setUsername] = useState("");
@@ -25,6 +25,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     } else {
       setErrors(['Please confirm password'])
     }
+    setShowSignModal(false)
   };
 
   const updateUsername = (e) => {

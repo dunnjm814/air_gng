@@ -12,7 +12,7 @@ function Map() {
   const aircraft = useSelector( (state) => {
     return state.biz
   });
-  const searchRef = useRef(useSelector((state) => state.location.location));
+  const searchRef = useSelector((state) => state.location.location)
   // searchRef =
   console.log('from search object', searchRef, searchRef.aircraft)
 
@@ -24,17 +24,27 @@ function Map() {
   const [shownBiz, setBiz] = useState([]);
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
+  console.log('selected service', selected)
 
   useEffect(() => {
-    if (searchRef) {
-      const { lat } = searchRef.location.lat
-      const { lng } = searchRef.location.lng
-      handleMapLoad()
-      setLat(lat)
-      setLng(lng)
+    if (searchRef.location !== null) {
+      // const { lat } = searchRef.location.lat
+      // const { lng } = searchRef.location.lng
+      setLat(searchRef.location.lat)
+      setLng(searchRef.location.lng)
+      handleMapLoad(map)
+      // setLat(lat)
+      // setLng(lng)
+      if (map !== undefined) {
+        panTo({lat, lng})
+        handleBoundsChanged()
+      }
+    } else {
+      handleMapLoad(map)
       handleBoundsChanged()
     }
-  },[searchRef])
+  }, [searchRef])
+
   useEffect(() => {
     dispatch(getAllBiz());
   }, [dispatch, map]);
@@ -95,6 +105,18 @@ function Map() {
     disableDefaultUI: true,
     zoomControl:true
   }
+  // useEffect(() => {
+  //   if (selected !== null) {
+  //     setLat(selected.lat)
+  //     setLng(selected.lng)
+  //     handleMapLoad(map)
+  //     if (map !== undefined) {
+  //       panTo({ lat, lng })
+  //       handleBoundsChanged()
+  //     }
+  //   }
+  // }, [selected])
+
   return (
     <div className={"maps-biz-container"}>
       <div className={"split right"}>

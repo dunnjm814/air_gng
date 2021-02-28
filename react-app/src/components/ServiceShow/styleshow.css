@@ -19,3 +19,35 @@
 /* body {
   background-image: none;
 } */
+.star-delete-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.service_main_review_form{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
+.delete-review,
+.leave-review-btn{
+  font-family: Airbnb;
+  border-radius: 32px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  transition: 1000ms;
+  will-change: font-family;
+}
+.delete-review:hover{
+  font-family: Airbnb-bold;
+  cursor: pointer;
+}
+.leave-review-btn:hover{
+  font-family: Airbnb-bold;
+  cursor: pointer;
+}
+#leave-review{
+  display:none;
+}
