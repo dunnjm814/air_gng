@@ -1,5 +1,5 @@
 const LOAD_BOOKINGS = 'bookings/loadBookings'
-const SET_BOOKING = 'bookings/setProfile'
+const SET_BOOKING = 'bookings/setBooking'
 
 export const loadBookings = (bookings) => {
   return {
@@ -29,7 +29,6 @@ export const getBookings = (userId) => async (dispatch) => {
 export const submitBooking = (bookDate, bookStartTime=null, bookEndTime=null, userId, serviceId) => async (
   dispatch
 ) => {
-  console.log('submit booking thunk')
   console.log(bookDate, bookStartTime, bookEndTime, userId, serviceId)
   const response = await fetch(`/api/users/bookings`, {
     method: "POST",

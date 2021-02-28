@@ -18,7 +18,6 @@ const Bookings = () => {
         e.preventDefault()
         setToggle(true)
         dispatch(bookingActions.submitBooking(date, null, null, userId, craft_id))
-        dispatch(bookingActions.getBookings(userId))
     }
     return (
         <div className="booking-wrapper">

@@ -110,4 +110,5 @@ def create_booking():
         )
     db.session.add(booking)
     db.session.commit()
-    return booking.to_dict()
+    newbooking = Booking.query.filter_by(id=booking.id).join(Aircraft).one()
+    return to_booking(newbooking)
