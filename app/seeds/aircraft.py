@@ -9,7 +9,7 @@ def seed_biz():
   city="Maricopa",
   state="AZ",
   zip_code=85138,
-  phone_number='480-251-1515',
+  phone_number='800-555-1212',
   lng=-111.913700,
   lat=32.988310,
   )
@@ -21,7 +21,7 @@ def seed_biz():
   city="Maricopa",
   state="AZ",
   zip_code=85138,
-  phone_number='602-692-7995',
+  phone_number='800-555-1213',
   lng=-111.927230,
   lat=32.983630,
   )
@@ -33,7 +33,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86001,
-  phone_number='928-440-5079',
+  phone_number='800-555-1214',
   lng=-111.65708,
   lat=35.19531,
   )
@@ -45,7 +45,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86001,
-  phone_number='928-773-9866',
+  phone_number='800-555-1215',
   lng=-111.50138,
   lat=35.29282,
   )
@@ -57,7 +57,7 @@ def seed_biz():
   city="Sylmar",
   state="CA",
   zip_code=91342,
-  phone_number='818-367-2430',
+  phone_number='800-555-1216',
   lng=-118.40812,
   lat=34.31771,
   )
@@ -69,7 +69,7 @@ def seed_biz():
   city="Los Angeles",
   state="CA",
   zip_code=90732,
-  phone_number='800-555-1212',
+  phone_number='800-555-1217',
   lng=-118.31593,
   lat=33.73634,
   )
@@ -81,7 +81,7 @@ def seed_biz():
   city="Sylmar",
   state="CA",
   zip_code=91342,
-  phone_number='800-555-1212',
+  phone_number='800-555-1218',
   lng=-118.40757,
   lat=34.31808,
   )
@@ -93,7 +93,7 @@ def seed_biz():
   city="Phoenix",
   state="AZ",
   zip_code=85027,
-  phone_number='888-869-0866',
+  phone_number='800-555-1220',
   lng=-112.083710,
   lat=33.682630,
   )
@@ -105,7 +105,7 @@ def seed_biz():
   city="Scottsdale",
   state="AZ",
   zip_code=85260,
-  phone_number='480-607-3400',
+  phone_number='800-555-1221',
   lng=-111.906340,
   lat=33.632110,
   )
@@ -117,7 +117,7 @@ def seed_biz():
   city="Scottsdale",
   state="AZ",
   zip_code=85260,
-  phone_number='480-993-3223',
+  phone_number='800-555-1222',
   lng=-111.918480,
   lat=33.632120,
   )
@@ -129,7 +129,7 @@ def seed_biz():
   city="Chandler",
   state="AZ",
   zip_code=85286,
-  phone_number='480-252-0021',
+  phone_number='800-555-1223',
   lng=-111.81337,
   lat=33.27297,
   )
@@ -141,7 +141,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86001,
-  phone_number='520-666-5152',
+  phone_number='800-555-1224',
   lng=-111.64537,
   lat=35.30848,
   )
@@ -153,7 +153,7 @@ def seed_biz():
   city="Grand Canyon",
   state="AZ",
   zip_code=86023,
-  phone_number='928-638-2622',
+  phone_number='800-555-1225',
   lng=-112.13332,
   lat=35.95820,
   )
@@ -165,7 +165,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86004,
-  phone_number='928-814-8887',
+  phone_number='800-555-1226',
   lng=-111.61437,
   lat=35.21257,
   )
@@ -177,7 +177,7 @@ def seed_biz():
   city="Van Nuys",
   state="CA",
   zip_code=91406,
-  phone_number='310-948-4354',
+  phone_number='800-555-1227',
   lng=-118.49614,
   lat=34.21953,
   )
@@ -189,7 +189,7 @@ def seed_biz():
   city="Hawthorne",
   state="CA",
   zip_code=90250,
-  phone_number='310-948-4354',
+  phone_number='800-555-1228',
   lng=-118.33676,
   lat=33.92368,
   )
@@ -201,7 +201,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=90405,
-  phone_number='877-353-1190',
+  phone_number='800-555-1229',
   lng=-118.44841,
   lat=34.01669,
   )
@@ -213,7 +213,7 @@ def seed_biz():
   city="Universal City",
   state="CA",
   zip_code=91608,
-  phone_number='877-353-1190',
+  phone_number='800-555-1230',
   lng=-118.35187,
   lat=34.13632,
   )
@@ -225,7 +225,7 @@ def seed_biz():
   city="Phoenix",
   state="AZ",
   zip_code=85024,
-  phone_number='480-299-0154',
+  phone_number='800-555-1231',
   lng=-112.06423,
   lat=33.67825,
   )
@@ -237,7 +237,7 @@ def seed_biz():
   city="Phoenix",
   state="AZ",
   zip_code=85027,
-  phone_number='602-402-8041',
+  phone_number='800-555-1232',
   lng=-112.10579,
   lat=33.68235,
   )
@@ -249,7 +249,7 @@ def seed_biz():
   city="Phoenix",
   state="AZ",
   zip_code=85027,
-  phone_number='877-946-8247',
+  phone_number='800-555-1233',
   lng=-112.09930,
   lat=33.68294,
   )
@@ -261,7 +261,7 @@ def seed_biz():
   city="Phoenix",
   state="AZ",
   zip_code=85027,
-  phone_number='480-502-6999',
+  phone_number='800-555-1234',
   lng=-112.08297,
   lat=33.68448,
   )
@@ -273,7 +273,7 @@ def seed_biz():
   city="Sedona",
   state="AZ",
   zip_code=86336,
-  phone_number='928-282-2274',
+  phone_number='800-555-1235',
   lng=-111.76495,
   lat=34.86666,
   )
@@ -285,7 +285,7 @@ def seed_biz():
   city="Sedona",
   state="AZ",
   zip_code=86336,
-  phone_number='928-282-2274',
+  phone_number='800-555-1236',
   lng=-111.76304,
   lat=34.86779,
   )
@@ -297,7 +297,7 @@ def seed_biz():
   city="Sedona",
   state="AZ",
   zip_code=86336,
-  phone_number='928-282-2274',
+  phone_number='800-555-1237',
   lng=-111.76279,
   lat=34.86707,
   )
@@ -309,7 +309,7 @@ def seed_biz():
   city="Studio City",
   state="CA",
   zip_code=91604,
-  phone_number='800-555-1212',
+  phone_number='800-555-1238',
   lng=-118.37588,
   lat=34.14132,
   )
@@ -321,7 +321,7 @@ def seed_biz():
   city="Studio City",
   state="CA",
   zip_code=91604,
-  phone_number='800-555-1212',
+  phone_number='800-555-1239',
   lng=-118.37057,
   lat=34.14097,
   )
@@ -333,7 +333,7 @@ def seed_biz():
   city="Studio City",
   state="CA",
   zip_code=91604,
-  phone_number='800-555-1212',
+  phone_number='800-555-1240',
   lng=-118.37893,
   lat=34.13973,
   )
@@ -345,7 +345,7 @@ def seed_biz():
   city="Cave Creek",
   state="AZ",
   zip_code=85331,
-  phone_number='800-555-1212',
+  phone_number='800-555-1241',
   lng=-111.93173,
   lat=33.82987,
   )
@@ -357,7 +357,7 @@ def seed_biz():
   city="Cave Creek",
   state="AZ",
   zip_code=85331,
-  phone_number='800-555-1212',
+  phone_number='800-555-1242',
   lng=-111.93453,
   lat=33.83248,
   )
@@ -369,7 +369,7 @@ def seed_biz():
   city="Cave Creek",
   state="AZ",
   zip_code=85331,
-  phone_number='800-555-1212',
+  phone_number='800-555-1243',
   lng=-111.92546,
   lat=33.82896,
   )
@@ -381,7 +381,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86001,
-  phone_number='800-555-1212',
+  phone_number='800-555-1244',
   lng=-111.64831,
   lat=35.20447,
   )
@@ -393,7 +393,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86001,
-  phone_number='800-555-1212',
+  phone_number='800-555-1245',
   lng=-111.64754,
   lat=35.20698,
   )
@@ -405,7 +405,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86001,
-  phone_number='800-555-1212',
+  phone_number='800-555-1246',
   lng=-111.64739,
   lat=35.20809,
   )
@@ -417,7 +417,7 @@ def seed_biz():
   city="Marina Del Rey",
   state="CA",
   zip_code=90292,
-  phone_number='800-555-1212',
+  phone_number='800-555-1247',
   lng=-118.44667,
   lat=33.97365,
   )
@@ -429,7 +429,7 @@ def seed_biz():
   city="Marina Del Rey",
   state="CA",
   zip_code=90292,
-  phone_number='800-555-1212',
+  phone_number='800-555-1248',
   lng=-118.44988,
   lat=33.97618,
   )
@@ -441,7 +441,7 @@ def seed_biz():
   city="Marina Del Rey",
   state="CA",
   zip_code=90292,
-  phone_number='800-555-1212',
+  phone_number='800-555-1249',
   lng=-118.44315,
   lat=33.97558,
   )
@@ -453,7 +453,7 @@ def seed_biz():
   city="Mesa",
   state="AZ",
   zip_code=85215,
-  phone_number='800-555-1212',
+  phone_number='800-555-1250',
   lng=-111.72744,
   lat=33.45818,
   )
@@ -465,7 +465,7 @@ def seed_biz():
   city="Mesa",
   state="AZ",
   zip_code=85215,
-  phone_number='800-555-1212',
+  phone_number='800-555-1251',
   lng=-111.72903,
   lat=33.46531,
   )
@@ -477,7 +477,7 @@ def seed_biz():
   city="Mesa",
   state="AZ",
   zip_code=85215,
-  phone_number='800-555-1212',
+  phone_number='800-555-1252',
   lng=-111.73199,
   lat=33.45482,
   )
@@ -489,7 +489,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1253',
   lng=-111.67478,
   lat=35.13908,
   )
@@ -501,7 +501,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1254',
   lng=-111.68114,
   lat=35.13525,
   )
@@ -513,7 +513,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1255',
   lng=-111.68226,
   lat=35.13980,
   )
@@ -525,7 +525,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1256',
   lng=-118.44950,
   lat=34.01536,
   )
@@ -537,7 +537,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1257',
   lng=-118.45164,
   lat=34.02055,
   )
@@ -549,7 +549,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1258',
   lng=-118.43465,
   lat=34.03048,
   )
@@ -561,7 +561,7 @@ def seed_biz():
   city="Mesa",
   state="AZ",
   zip_code=85215,
-  phone_number='800-555-1212',
+  phone_number='800-555-1259',
   lng=-111.72744,
   lat=33.45818,
   )
@@ -573,7 +573,7 @@ def seed_biz():
   city="Mesa",
   state="AZ",
   zip_code=85215,
-  phone_number='800-555-1212',
+  phone_number='800-555-1260',
   lng=-111.72903,
   lat=33.46531,
   )
@@ -585,7 +585,7 @@ def seed_biz():
   city="Mesa",
   state="AZ",
   zip_code=85215,
-  phone_number='800-555-1212',
+  phone_number='800-555-1261',
   lng=-111.73199,
   lat=33.45482,
   )
@@ -597,7 +597,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1262',
   lng=-111.67478,
   lat=35.13908,
   )
@@ -609,7 +609,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1263',
   lng=-111.68114,
   lat=35.13525,
   )
@@ -621,7 +621,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1264',
   lng=-111.68226,
   lat=35.13980,
   )
@@ -633,7 +633,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1265',
   lng=-118.44950,
   lat=34.01536,
   )
@@ -645,7 +645,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1266',
   lng=-118.45164,
   lat=34.02055,
   )
@@ -657,7 +657,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1267',
   lng=-118.43465,
   lat=34.03048,
   )
@@ -669,7 +669,7 @@ def seed_biz():
   city="Queen Creek",
   state="AZ",
   zip_code=85142,
-  phone_number='520-620-7875',
+  phone_number='800-555-1268',
   lng=-111.64650,
   lat=33.25304,
   )
@@ -681,7 +681,7 @@ def seed_biz():
   city="Eloy",
   state="AZ",
   zip_code=85131,
-  phone_number='800-555-1212',
+  phone_number='800-555-1269',
   lng=-111.58228,
   lat=32.80543,
   )
@@ -693,7 +693,7 @@ def seed_biz():
   city="Eloy",
   state="AZ",
   zip_code=85131,
-  phone_number='800-555-1212',
+  phone_number='800-555-1270',
   lng=-111.57701,
   lat=32.80654,
   )
@@ -705,7 +705,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1271',
   lng=-111.67478,
   lat=35.13908,
   )
@@ -717,7 +717,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1272',
   lng=-111.68114,
   lat=35.13525,
   )
@@ -729,7 +729,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1273',
   lng=-111.68226,
   lat=35.13980,
   )
@@ -741,7 +741,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1274',
   lng=-118.44950,
   lat=34.01536,
   )
@@ -753,7 +753,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1275',
   lng=-118.45164,
   lat=34.02055,
   )
@@ -765,7 +765,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1276',
   lng=-118.43465,
   lat=34.03048,
   )
@@ -777,7 +777,7 @@ def seed_biz():
   city="Queen Creek",
   state="AZ",
   zip_code=85142,
-  phone_number='520-620-7875',
+  phone_number='800-555-1277',
   lng=-111.64650,
   lat=33.25304,
   )
@@ -789,7 +789,7 @@ def seed_biz():
   city="Eloy",
   state="AZ",
   zip_code=85131,
-  phone_number='800-555-1212',
+  phone_number='800-555-1278',
   lng=-111.58228,
   lat=32.80543,
   )
@@ -801,7 +801,7 @@ def seed_biz():
   city="Eloy",
   state="AZ",
   zip_code=85131,
-  phone_number='800-555-1212',
+  phone_number='800-555-1279',
   lng=-111.57701,
   lat=32.80654,
   )
@@ -813,7 +813,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1280',
   lng=-111.67478,
   lat=35.13908,
   )
@@ -825,7 +825,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1281',
   lng=-111.68114,
   lat=35.13525,
   )
@@ -837,7 +837,7 @@ def seed_biz():
   city="Flagstaff",
   state="AZ",
   zip_code=86005,
-  phone_number='800-555-1212',
+  phone_number='800-555-1282',
   lng=-111.68226,
   lat=35.13980,
   )
@@ -849,7 +849,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1283',
   lng=-118.44950,
   lat=34.01536,
   )
@@ -861,7 +861,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1284',
   lng=-118.45164,
   lat=34.02055,
   )
@@ -873,7 +873,7 @@ def seed_biz():
   city="Santa Monica",
   state="CA",
   zip_code=890405,
-  phone_number='800-555-1212',
+  phone_number='800-555-1285',
   lng=-118.43465,
   lat=34.03048,
   )
