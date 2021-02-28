@@ -34,11 +34,11 @@ function UserProfile({sessionUser}) {
   useEffect(() => {
       dispatch(profileActions.getProfile(userId))
       dispatch(reviewActions.getUserReviews(userId))
-      dispatch(bookingActions.getBookings(userId))
+      // dispatch(bookingActions.getBookings(userId))
     console.log("####", userProfile)
     console.log('booooooooooooooooking')
     console.log(userBookingArr)
-  },[dispatch])
+  },[dispatch, userBookingArr.length])
 
 
 

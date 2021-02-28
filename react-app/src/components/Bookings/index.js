@@ -9,13 +9,16 @@ const Bookings = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const [date, setDate] = useState();
+    const [toggle, setToggle] = useState(false)
     const currentDate = new Date();
     const {craft_id} = useParams();
     const userId = sessionUser.id;
     console.log('the params', craft_id)
     const onSubmit = (e) => {
         e.preventDefault()
+        setToggle(true)
         dispatch(bookingActions.submitBooking(date, null, null, userId, craft_id))
+        dispatch(bookingActions.getBookings(userId))
     }
     return (
         <div className="booking-wrapper">
@@ -38,6 +41,7 @@ const Bookings = () => {
                )}
                 </DatePicker>
                 <button type='submit'>Reserve</button>
+                {toggle && <div>Reservation confirmed!</div>}
             </form>
         </div>
     )
