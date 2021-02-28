@@ -112,3 +112,10 @@ def create_booking():
     db.session.commit()
     newbooking = Booking.query.filter_by(id=booking.id).join(Aircraft).one()
     return to_booking(newbooking)
+
+@user_routes.route('/bookings/<int:booking_id>', methods=["DELETE"])
+def delete_booking(booking_id):
+    booking = Booking.query.filter_by(id=booking_id).one()
+    db.session.delete(booking)
+    db.session.commit()
+    return booking.to_dict()

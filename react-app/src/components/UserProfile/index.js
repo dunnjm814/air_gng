@@ -46,6 +46,9 @@ function UserProfile({sessionUser}) {
     setFilteredReviews(userReviewsArr.filter(review => review.aircraft === selectedReview))
   }, [selectedReview])
 
+  const deleteMyBooking = (bookingId) => {
+    dispatch(bookingActions.deleteBooking(bookingId))
+  }
 
   return (
     <>
@@ -152,11 +155,14 @@ function UserProfile({sessionUser}) {
             <h1>My Current Bookings</h1>
             {userBookings && userBookingArr.length && <div>
               {userBookingArr.map(booking => {
-                return <div key={booking.id} className='booking_each'>
+                if (booking !== null) {
+                  return <div key={booking.id} className='booking_each'>
                     <div>Date: {booking.book_date}</div>
                     <div>{booking.aircraft}</div>
                     <div>{booking.business_name}</div>
+                    <button id={booking.id} onClick={(e) => deleteMyBooking(e.target.id)}>Cancel</button>
                 </div>
+                }
               })}
               </div>}
           </div>

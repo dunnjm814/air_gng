@@ -68,14 +68,14 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
 
       {showMenu && (
         <div className="profile-dropdown">
-          {!sessionUser.id && <>
+          {!sessionUser &&  <>
               <div className="menu-links">
                 <button onClick={() => setShowLogModal(true)}>Log in</button>
                 <button onClick={() => setShowSignModal(true)}>Sign Up</button>
               </div>
           </>
           }
-          {sessionUser.id && <>
+          {sessionUser && <>
               <NavLink to={`/users/profile/${sessionUser.id}`}>Profile</NavLink>
               <LogoutButton
                 className="logout-button"

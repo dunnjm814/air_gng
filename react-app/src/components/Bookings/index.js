@@ -2,7 +2,7 @@ import "./Bookings.css";
 import React, {useState} from "react";
 import { DatePicker } from "react-nice-dates";
 import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom'
+import {useParams, NavLink} from 'react-router-dom'
 import { enGB } from "date-fns/locale";
 import * as bookingActions from '../../store/booking'
 const Bookings = () => {
@@ -40,7 +40,10 @@ const Bookings = () => {
                )}
                 </DatePicker>
                 <button type='submit'>Reserve</button>
-                {toggle && <div>Reservation confirmed!</div>}
+                {toggle && <div>
+                    <div>Reservation Confirmed</div>
+                    <NavLink to={`/users/profile/${userId}`}>See it on your profile page</NavLink>
+                    </div>}
             </form>
         </div>
     )
