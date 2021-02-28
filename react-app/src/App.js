@@ -12,7 +12,7 @@ import { authenticate } from "./store/session";
 import UserProfile from "./components/UserProfile";
 import Map from "./components/Map";
 import ServiceShow from './components/ServiceShow'
-import * as bookingActions from './store/booking'
+
 function App() {
   const dispatch = useDispatch()
   const [authenticated, setAuthenticated] = useState(false);
@@ -30,9 +30,6 @@ function App() {
     })();
   }, [dispatch]);
 
-  useEffect(() => {
-    if (sessionUser) dispatch(bookingActions.getBookings(sessionUser.id))
-}, [dispatch, sessionUser])
 
   if (!loaded) {
     return null;
