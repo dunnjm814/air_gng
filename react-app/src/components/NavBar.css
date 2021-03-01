@@ -11,6 +11,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 30px;
+  background-color: #2b9696;
 }
 
 .airgng-logo {

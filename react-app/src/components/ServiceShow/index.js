@@ -51,13 +51,17 @@ function ServiceShow() {
             </div>
             <div className="service_main_description">
               <div>
-                <span>Supercrafts</span>
+                <span>
+                  <b>About {service.business_name}</b>
+                </span>
                 <p>
-                  Supercrafts are experienced, highly rated hosts who are
-                  committed to providing great stays for guests.
+                  <div>{service.description}</div>
                 </p>
-                <span>Entire Aircraft</span>
-                <p>You'll have the aircraft all to yourself.</p>
+                <p>
+                  {service.business_name} are experienced and highly rated for your {service.aircraft} adventure who are committed to providing great stays for guests.
+                </p>
+                <span>Personal Experience</span>
+                <p>When you book an experience with {service.business_name}, your experience will be personal</p>
                 <span>Enhanced clean</span>
                 <p>
                   This business is commited to Airgng's 5-step cleaning process.
@@ -66,8 +70,9 @@ function ServiceShow() {
                 <p>Free to cancel within 30 days of booking</p>
                 <span>Aircraft rules</span>
                 <p>The business does not allow smoking</p>
-                <div>{service.description}</div>
+                <p>When you are ready to book your {service.aircraft} adventure, you can reserve below or call us at:</p>
                 <div>{service.phone_number}</div>
+                <br></br>
               </div>
               <Bookings />
             </div>

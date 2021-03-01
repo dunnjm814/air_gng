@@ -24,17 +24,50 @@ function ReviewForm() {
   useEffect(() => {
 
   }, [])
-  return <>
-    <form onSubmit={onSubmit}>
-      <label>Rate</label>
-      <input type="number" name='rating' value={rate} onChange={(e) => setRate(e.target.value)}></input>
-      <label>Title</label>
-      <input type="text" name='title' value={title} onChange={(e) => setTitle(e.target.value)}></input>
-      <label>Comment</label>
-      <input type="text" name='comment' value={comment} onChange={(e) => setComment(e.target.value)}></input>
-      <button type="submit">Submit</button>
-    </form>
-  </>
+  return (
+    <>
+      <form onSubmit={onSubmit} id="reviewform">
+        <div id="formdiv">
+          <label for="num">
+            Rate
+            <input
+              id="num"
+              type="number"
+              name="rating"
+              value={rate}
+              onChange={(e) => setRate(e.target.value)}
+            ></input>
+          </label>
+          <br></br>
+          <label for="title">
+            Title
+            <input
+              id="title"
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            ></input>
+          </label>
+          <br></br>
+          <label for="commbox">
+            Comment
+            <textarea
+              id="commbox"
+              type="textarea"
+              name="comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+          </label>
+          <br></br>
+          <button id="subbut" type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </>
+  );
 }
 
 export default ReviewForm

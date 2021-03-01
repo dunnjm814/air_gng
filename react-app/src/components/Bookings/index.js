@@ -23,33 +23,38 @@ const Bookings = () => {
         dispatch(bookingActions.submitBooking(date, null, null, userId, craft_id))
     }
     return (
-        <div className="booking-wrapper">
-            <span>Book Here</span>
-            <form onSubmit={onSubmit}>
-                <span>Day to book:</span>
-                <DatePicker
-                date={date}
-                format="MM-dd-yyy"
-                onDateChange={setDate}
-                minimumDate={currentDate}
-                locale={enGB}
-                >
-                {({ inputProps, focused }) => (
+      <div className="booking-wrapper">
+        <form onSubmit={onSubmit}>
+          <span id="daybook">Day to book:</span>
+          <div id="datepick">
+            <DatePicker
+              date={date}
+              format="MM-dd-yyy"
+              onDateChange={setDate}
+              minimumDate={currentDate}
+              locale={enGB}
+            >
+              {({ inputProps, focused }) => (
                 <input
-                id="datebox"
-                className={"input" + (focused ? " -focused" : "")}
-                {...inputProps}
+                  id="datebox"
+                  className={"input" + (focused ? " -focused" : "")}
+                  {...inputProps}
                 />
-                )}
-                </DatePicker>
-                <button type='submit'>Reserve</button>
-                {toggle && <div>
-                    <div>Reservation Confirmed</div>
-                    <NavLink to={`/users/profile/${userId}`}>See it on your profile page</NavLink>
-                    </div>}
-            </form>
-        </div>
-    )
+              )}
+            </DatePicker>
+          </div>
+          <button type="submit" id="resbut">Reserve Now</button>
+          {toggle && (
+            <div>
+              <div>Reservation Confirmed</div>
+              <NavLink to={`/users/profile/${userId}`}>
+                See it on your profile page
+              </NavLink>
+            </div>
+          )}
+        </form>
+      </div>
+    );
 }
 
 export default Bookings

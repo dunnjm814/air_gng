@@ -11,7 +11,7 @@
   margin: 20px 0 0 50px;
 }
 
-body {
+#homediv {
   background-image: linear-gradient(
     to top,
     #f0f842,
@@ -27,7 +27,20 @@ body {
     #00a79c,
     #2b9696
   );
-  background-repeat: no-repeat;
+}
+
+#roam {
+  padding-left: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#roam:hover {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+body {
+  margin: 0;
   height: 100%;
   width: auto;
   background-size: 100% 100%;
