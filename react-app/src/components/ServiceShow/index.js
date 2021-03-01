@@ -10,27 +10,28 @@ import './styleshow.css'
 
 function ServiceShow() {
   const dispatch = useDispatch()
-  const {craft_id} = useParams()
+  const { craft_id } = useParams()
+
   const service = useSelector(state => state.biz.current)
   const reviews = useSelector(state => state.review)
   const sessionUser = useSelector(state => state.session.user)
+
   const [toggle, setToggle] = useState(false)
   const [myId, setId] = useState(0)
-  console.log(reviews)
+
   const reviewsArr = Object.values(reviews)
 
   const deleteReview = (review_id) => {
-
     dispatch(reviewActions.deleteReview(review_id))
   }
+
   useEffect(() => {
     dispatch(serviceActions.getOneBiz(craft_id))
     .then(dispatch(reviewActions.getReviews(craft_id)))
   }, [dispatch, craft_id, reviewsArr.length])
 
   useEffect(() => {
-    console.log('alsdkjflksjdlfdslkjf')
-    console.log(myId)
+    
   }, [myId])
 
   return (

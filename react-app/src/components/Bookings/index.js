@@ -16,7 +16,7 @@ const Bookings = () => {
     if (sessionUser) {
         userId = sessionUser.id
     }
-    console.log('the params', craft_id)
+    
     const onSubmit = (e) => {
         e.preventDefault()
         setToggle(true)

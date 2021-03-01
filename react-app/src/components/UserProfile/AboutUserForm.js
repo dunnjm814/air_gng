@@ -12,7 +12,7 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   const history = useHistory()
   function toggle() {
     setInfo(!info);
-    // history.push(`/users/profile/${userId}`)
+
   }
   const [about, setAbout] = useState('');
   const [location, setLocation] = useState('');
@@ -21,15 +21,15 @@ function AboutUserForm({ userProfile, info, setInfo }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  
+
   const onSubmit = async (e) => {
     e.preventDefault()
     await dispatch(submitProfile(about, firstName, lastName, phoneNumber, location, work, language, userId))
     toggle()
   }
-  
+
   useEffect(() => {
-    console.log('####', userProfile.language)
+
     setAbout(userProfile.about)
     setFirstName(userProfile.firstName)
     setLastName(userProfile.lastName)
@@ -37,8 +37,9 @@ function AboutUserForm({ userProfile, info, setInfo }) {
     setLocation(userProfile.location)
     setWork(userProfile.work)
     setLanguage(userProfile.language)
-    console.log('####', userProfile.language)
+
   }, [userProfile])
+
   const languages = [
     {value: 'English', label: 'English'},
     {value: 'French', label: 'French'},
@@ -49,6 +50,7 @@ function AboutUserForm({ userProfile, info, setInfo }) {
     {value: 'Spanish', label: 'Spanish'},
     {value: 'Sign Language', label: 'Sign Language'},
   ]
+  
   return (
     <>
       <h1>hey its a form</h1>

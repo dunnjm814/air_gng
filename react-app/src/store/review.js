@@ -29,8 +29,6 @@ export const getUserReviews = (user_id) => async (dispatch) => {
     },
   });
   const reviews = await response.json()
-  console.log('getreviews')
-  console.log(reviews)
   dispatch(loadReview(reviews))
   return reviews
 }
@@ -75,9 +73,9 @@ export const deleteReview = (review_id) => async (dispatch) => {
     }
   }
   )
- const review = await response.json()
- dispatch(removeReview(review))
- return {}
+  const review = await response.json()
+  dispatch(removeReview(review))
+  return {}
 
 }
 
@@ -95,7 +93,6 @@ const reviewReducer = (state = { }, action) => {
       return newState
     default:
       return state
-
   }
 }
 export default reviewReducer;
