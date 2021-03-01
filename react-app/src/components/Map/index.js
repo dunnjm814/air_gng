@@ -21,6 +21,7 @@ function Map() {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
+  const [zoom, clickZoom] = useState(10);
   const [shownBiz, setBiz] = useState([]);
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
@@ -137,7 +138,7 @@ function Map() {
             className={"centered"}
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={10}
+            zoom={zoom}
             onLoad={handleMapLoad}
             onDragEnd={handleBoundsChanged}
             onClick={handleBoundsChanged}
@@ -163,10 +164,7 @@ function Map() {
                     }}
                     onClick={(() => {
                       setSelected(service)
-                      panTo({
-                        lat: this.getPosition().lat(),
-                        lng: this.getPosition().lng()
-                      });
+                      clickZoom(14)
                     })
                     }
                   />
