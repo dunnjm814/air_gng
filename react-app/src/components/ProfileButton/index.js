@@ -35,13 +35,7 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu, sessionUser]);
-  // useEffect(() =>{}, [authenticated])
-
-  //   const logout = (e) => {
-  //     e.preventDefault();
-  //     dispatch(sessionReducer.logout());
-  //   };
-
+  
   return (
     <>
       <button className="login-button"onClick={openMenu}>

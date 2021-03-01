@@ -10,14 +10,18 @@ import "./profile.css";
 
 function UserProfile({ sessionUser }) {
   const dispatch = useDispatch();
+
   const userProfile = useSelector((state) => state.profile);
   const userReviews = useSelector((state) => state.review);
   const userBookings = useSelector((state) => state.booking);
+
   let userReviewsArr = Object.values(userReviews);
   const userBookingArr = Object.values(userBookings);
+
   const [info, setInfo] = useState(false);
   const [selectedReview, setSelectedReview] = useState("");
   const [filteredReviews, setFilteredReviews] = useState([]);
+  
   const { userId } = useParams();
 
   function toggle() {
@@ -34,9 +38,6 @@ function UserProfile({ sessionUser }) {
     dispatch(profileActions.getProfile(userId));
     dispatch(reviewActions.getUserReviews(userId));
     dispatch(bookingActions.getBookings(userId));
-    console.log("####", userProfile);
-    console.log("booooooooooooooooking");
-    console.log(userBookingArr);
   }, [dispatch, userBookings.length]);
 
   useEffect(() => {

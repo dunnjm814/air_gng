@@ -53,11 +53,9 @@ const Search = () => {
   const [aircraft, setAircraft] = useState("");
 
   const incomingSearch = useSelector((state) => state.location.location)
-  console.log('incoming', incomingSearch)
   useEffect(() => {
     setLocation(incomingSearch)
   },[incomingSearch])
-  console.log('dispatch search', location)
 
   const openCal = () => {
     if (showCal) return;
