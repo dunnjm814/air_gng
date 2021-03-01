@@ -12,7 +12,10 @@ const Bookings = () => {
     const [toggle, setToggle] = useState(false)
     const currentDate = new Date();
     const {craft_id} = useParams();
-    const userId = sessionUser.id;
+    let userId;
+    if (sessionUser) {
+        userId = sessionUser.id
+    }
     console.log('the params', craft_id)
     const onSubmit = (e) => {
         e.preventDefault()

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   font-family: Airbnb;
+  z-index: -5;
 }
 
 .split {
@@ -9,14 +10,15 @@
   width: 50%;
   position: fixed;
   z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
+  top: 100px;
+  overflow-y: hidden;
 }
 
 .left {
   left: 0;
   justify-content: flex-start;
+  overflow-y: scroll;
+
 }
 
 .right {
@@ -61,7 +63,14 @@
   cursor: pointer;
   background-color:#e7fff1;
 }
-
+.info-card{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+}
+.info-card > img{
+  padding: 5px;
+}
 .info-card:hover {
   cursor: pointer;
 }
