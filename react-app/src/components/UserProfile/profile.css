@@ -2,15 +2,14 @@
   display: none;
 }
 
+body {
+  background-color: white;
+}
 
 .review_link {
   text-decoration: none;
   color: black;
   line-height: 1.5;
-}
-
-.review_wrapper {
-
 }
 
 .review_container {
@@ -19,12 +18,16 @@
   width: 400px;
   margin: 4px;
   padding: 8px;
-  border-radius: 15px;
 }
 
 #profile-wrapper {
   font-family: Airbnb;
   margin-left: 5vw;
+}
+
+#user-reviews {
+  border-right: 1px solid black;
+  width: 45%;
 }
 
 .review_title {
@@ -44,8 +47,28 @@
 
 .user_container_bottom {
   display: flex;
+  padding-bottom: 20px;
 }
 
 .bookings_wrapper {
-  margin-left: 80px;
+  margin-left: 10px;
+}
+
+#line {
+  margin-right: 15%;
+}
+
+#editprofilebutton {
+  font-family: Airbnb;
+  border-radius: 32px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  transition: 1000ms;
+  will-change: font-family;
+  text-decoration: underline;
+}
+
+#editprofilebutton:hover {
+  font-family: Airbnb-bold;
+  cursor: pointer;
 }
