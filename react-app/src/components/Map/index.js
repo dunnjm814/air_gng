@@ -3,7 +3,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
-import logo from "../../img/airbnb-logo.png"
+import logo from "../../img/sunrise-balloon.png"
 import './map.css'
 
 
@@ -14,7 +14,7 @@ function Map() {
   });
   const searchRef = useSelector((state) => state.location.location)
   // searchRef =
-  console.log('from search object', searchRef, searchRef.aircraft)
+  // console.log('from search object', searchRef, searchRef.aircraft)
 
   const servicesArray = Object.values(aircraft)
 
@@ -24,10 +24,10 @@ function Map() {
   const [shownBiz, setBiz] = useState([]);
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
-  console.log('selected service', selected)
-
+  // console.log('selected service', selected)
+  console.log('map', map)
   useEffect(() => {
-    if (searchRef.location !== null) {
+    if (searchRef && (searchRef.location !== null)) {
       // const { lat } = searchRef.location.lat
       // const { lng } = searchRef.location.lng
       setLat(searchRef.location.lat)
@@ -37,11 +37,10 @@ function Map() {
       // setLng(lng)
       if (map !== undefined) {
         panTo({lat, lng})
-        handleBoundsChanged()
+
       }
     } else {
       handleMapLoad(map)
-      handleBoundsChanged()
     }
   }, [searchRef])
 
@@ -78,28 +77,33 @@ function Map() {
     lat: lat || 34.81723,
     lng: lng || -114.34576,
   };
-
-  const handleMapLoad = useCallback((currentMap)=> {
+  const mapRef = useRef()
+  const handleMapLoad = useCallback((currentMap) => {
+    console.log('currentMap', currentMap)
     setMap(currentMap);
+    mapRef.current = currentMap
+
   }, [])
 
   const panTo = useCallback(({ lat, lng }) => {
-    map.panTo({ lat, lng })
-    map.setZoom(12);
-    setLat(lat)
-    setLng(lng)
-    handleBoundsChanged()
+    console.log('inside pan to', map)
+    mapRef.current.panTo({ lat, lng })
+    mapRef.current.setZoom(14);
+    // setLat(lat)
+    // setLng(lng)
+    // handleBoundsChanged()
   }, [])
 
   function handleBoundsChanged() {
-    const bounds = map.getBounds();
-    const center = bounds.getCenter();
-    setLat(center.lat());
-    setLng(center.lng());
+      const bounds = map.getBounds();
+      const center = bounds.getCenter();
+      setLat(center.lat());
+      setLng(center.lng());
 
-    setBiz(servicesArray.filter((service) =>
-      (bounds.contains({lat: service.lat, lng: service.lng}))
-    ));
+      setBiz(servicesArray.filter((service) =>
+        (bounds.contains({lat: service.lat, lng: service.lng}))
+      ));
+
   }
   const options = {
     disableDefaultUI: true,
@@ -117,10 +121,19 @@ function Map() {
   //   }
   // }, [selected])
 
+  useEffect(() => {
+    if (selected !== null) {
+      setLat(selected.lat);
+      setLng(selected.lng)
+      handleMapLoad(map)
+    }
+  }, [selected])
+
   return (
     <div className={"maps-biz-container"}>
       <div className={"split right"}>
-          <GoogleMap
+        <GoogleMap
+            id='map'
             className={"centered"}
             mapContainerStyle={containerStyle}
             center={center}
@@ -144,18 +157,17 @@ function Map() {
                     title={`${service.business_name}`}
                     icon={{
                       url: logo,
-                      scaledSize: new window.google.maps.Size(30, 30),
+                      scaledSize: new window.google.maps.Size(30, 40),
                       origin: new window.google.maps.Point(0, 0),
                       anchor: new window.google.maps.Point(15, 15),
                     }}
-                    onClick={
-                      (() => {
-                        setSelected(service);
-                        panTo({
-                          lat: service.lat,
-                          lng: service.lng,
-                        });
-                      })
+                    onClick={(() => {
+                      setSelected(service)
+                      panTo({
+                        lat: this.getPosition().lat(),
+                        lng: this.getPosition().lng()
+                      });
+                    })
                     }
                   />
                 );
@@ -172,7 +184,7 @@ function Map() {
                   <div className="info-card">
                     <h3>{selected.business_name}</h3>
                     <img
-                      style={{ width: "50px", height: "50px" }}
+                      style={{ width: "auto", height: "50px" }}
                       src={selected.biz_image}
                     />
                   </div>

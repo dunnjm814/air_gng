@@ -16,7 +16,16 @@
   flex-direction: column;
 }
 
-.profile-dropdown > button {
+.menu-links > button{
+  outline: inherit;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  height: 30px;
+  margin: 5px;
+  color: white;
+}
+.profile-dropdown > button{
   outline: inherit;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);

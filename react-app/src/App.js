@@ -38,53 +38,44 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    <div>
+      <BrowserRouter style={{ display: 'flex', flexDirection: 'column'}}>
       <NavBar setAuthenticated={setAuthenticated} sessionUser={sessionUser} />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <ProtectedRoute
+            path="/users/:userId"
+            exact={true}
             authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm
+          >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/users/profile/:userId"
+            exact={true}
             authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route>
-        <ProtectedRoute
-          path="/users"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute
-          path="/users/:userId"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute
-          path="/users/profile/:userId"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <UserProfile sessionUser={sessionUser} />
-        </ProtectedRoute>
-        <ProtectedRoute path="/map" exact={true} authenticated={authenticated}>
-          <Map />
-        </ProtectedRoute>
-        <ProtectedRoute path="/aircrafts/:craft_id" exact={true} authenticated={authenticated}>
-          <ServiceShow />
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
+          >
+            <UserProfile sessionUser={sessionUser} />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/map"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <Map />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/aircrafts/:craft_id"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <ServiceShow />
+          </ProtectedRoute>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
