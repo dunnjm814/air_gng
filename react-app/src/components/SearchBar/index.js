@@ -1,6 +1,6 @@
 import "./SearchBar.css";
 import React, { useState, useEffect } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import search_button from "../../img/airgng-search-button.png";
 import { enGB } from "date-fns/locale";
