@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import * as reviewActions from '../../store/review'
+import StarRatingComponent from "react-star-rating-component";
 import './reviewForm.css'
 
 
@@ -26,8 +27,11 @@ function ReviewForm() {
   }, [])
   return <>
     <form onSubmit={onSubmit}>
-      <label>Rate</label>
-      <input type="number" name='rating' value={rate} onChange={(e) => setRate(e.target.value)}></input>
+      <StarRatingComponent
+      name="reviewRating"
+      startCount={5}
+
+      />
       <label>Title</label>
       <input type="text" name='title' value={title} onChange={(e) => setTitle(e.target.value)}></input>
       <label>Comment</label>
