@@ -11,7 +11,7 @@
   margin: 20px 0 0 50px;
 }
 
-body {
+#homediv {
   background-image: linear-gradient(
     to top,
     #f0f842,
@@ -27,8 +27,37 @@ body {
     #00a79c,
     #2b9696
   );
+}
+
+#roam {
+  padding-left: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#roam:hover {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+body {
   background-repeat: no-repeat;
   height: 100%;
   width: auto;
   background-size: 100% 100%;
+  background-image: linear-gradient(
+    to top,
+    #f0f842,
+    #d6f746,
+    #bcf54d,
+    #a1f356,
+    #83f060,
+    #64e96f,
+    #42e17c,
+    #00d888,
+    #00c895,
+    #00b89b,
+    #00a79c,
+    #2b9696
+  );
+
 }
