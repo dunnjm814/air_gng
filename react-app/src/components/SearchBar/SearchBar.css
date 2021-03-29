@@ -23,14 +23,24 @@
   box-shadow: 3px 0px 0px rgba(155, 153, 153, 0.644);
 }
 
-.search > button {
+.search-button > a {
+  font-size: 50px;
+  vertical-align: middle;
+  width: auto;
+  color: #F27C21;
+  transition: 0.5s;
+}
+.search-button > a:hover {
+  color: #cf691a;
+}
+.search-button {
+  /* display:flex;
+  flex-direction: column;
+  justify-content: center; */
   outline: inherit;
   border: none;
   background-color: transparent;
-}
-.search-button {
-  height: 40px;
-  width: auto;
+
   transition: transform 500ms;
   will-change: transform;
 
@@ -39,7 +49,7 @@
 .search-button:hover{
   cursor: pointer;
   transform: translateY(+2px);
-  
+
 
 }
 

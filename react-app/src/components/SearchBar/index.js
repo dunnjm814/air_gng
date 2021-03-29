@@ -19,6 +19,7 @@ import {
 import "react-nice-dates/build/style.css";
 import "@reach/combobox/styles.css";
 import { searchLocation, searchMap } from "../../store/location";
+import {IoSearchCircle} from 'react-icons/io5'
 
 
 export function DatePickerExample() {
@@ -99,10 +100,14 @@ const Search = () => {
             <div>What are you flying?</div>
           </div>
           <div>
+            {/* <div>Number of guests?</div> */}
             <div>Guests</div>
           </div>
-          <button type="submit">
-            <img className="search-button" src={search_button} />
+          <button type="submit" className="search-button">
+            <a>
+              <IoSearchCircle />
+            </a>
+            {/* <img className="search-button" src={search_button} /> */}
           </button>
         </form>
       </div>
