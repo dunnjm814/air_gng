@@ -1,5 +1,5 @@
 import React from 'react'
-import './../star.css'
+import '../star.css'
 function StarDisplay({ totalStars }) {
   return (
     <div>

@@ -1,0 +1,26 @@
+.review_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form-wrapper {
+padding: 0 20px;
+padding-top: 20px;
+}
+
+.review-btn {
+  background-color: orange;
+  border: 1px solid darkorange;
+  padding: 10px 0;
+  width: 200px;
+  margin: 10px auto;
+  font-size: 22px;
+}
+
+.review-btn:hover {
+  background-color: rgb(253, 209, 128);
+}
+
+.review-btn:focus {
+  outline: none;
+}

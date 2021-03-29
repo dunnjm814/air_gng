@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import * as reviewActions from '../../store/review'
-import StarRating from '../StarRating';
+import StarRating from '../StarRating'
 import './reviewForm.css'
 
 
@@ -25,16 +25,18 @@ function ReviewForm() {
   useEffect(() => {
     console.log(rate)
   }, [rate])
-  return <>
-    <form onSubmit={onSubmit}>
+  return (
+  <div className="review-form-wrapper">
+    <form onSubmit={onSubmit} className='review_form'>
       <StarRating totalStars={5} setRate={setRate} />
       <label>Title</label>
       <input type="text" name='title' value={title} onChange={(e) => setTitle(e.target.value)}></input>
       <label>Comment</label>
-      <input type="text" name='comment' value={comment} onChange={(e) => setComment(e.target.value)}></input>
-      <button type="submit">Submit</button>
+      <textarea type="text" name='comment' value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+      <button type="submit" className="review-btn">Submit</button>
     </form>
-  </>
+  </div>
+  )
 }
 
 export default ReviewForm;
