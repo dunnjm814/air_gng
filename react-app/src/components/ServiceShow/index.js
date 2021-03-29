@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import * as serviceActions from '../../store/aircraft'
 import * as reviewActions from '../../store/review'
-import StarRatingComponent from "react-star-rating-component";
+import StarDisplay from '../StarRating/StarDisplay'
 import Bookings from '../Bookings'
 import ReviewForm from '../ReviewForm'
 import './styleshow.css'
@@ -81,13 +81,7 @@ function ServiceShow() {
                       <div>{review.title}</div>
                       <div>{review.comment}</div>
                       <div className="star-delete-wrap">
-                        <StarRatingComponent
-                          name="reviewRating"
-                          editing={false}
-                          renderStarIcon={() => <span>⭐</span>}
-                          starCount={review.rate}
-                          value={review.rate}
-                        />
+                        <StarDisplay totalStars={review.rate} />
                         {sessionUser && review.user_id === sessionUser.id && (
                           <button
                             id={review.id}
