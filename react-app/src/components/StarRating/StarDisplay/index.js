@@ -4,7 +4,7 @@ function StarDisplay({ totalStars }) {
   return (
     <div>
       {[...Array(totalStars)].map((el, i) => (
-        <div className="star selected"></div>
+        <div className="star display"></div>
       ))}
     </div>
   )

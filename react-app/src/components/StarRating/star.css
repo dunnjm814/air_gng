@@ -31,8 +31,17 @@
 }
 
 .star.selected {
-  background-color: yellow;
+  background-color: orange;
   display: inline-block;
+}
+
+.star.display {
+  background-color: orange;
+  display: inline-block;
+}
+
+.star.display:hover {
+  background-color: orange;
 }
 
 .star-rating {
