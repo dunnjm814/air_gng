@@ -7,11 +7,11 @@ import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div >
+    <div id="homediv">
       <Search />
-      <NavLink to='/map'>Roam free!</NavLink>
+      <NavLink id="roam" to="/map">Roam free!</NavLink>
       <img className="striped-balloon" src={striped_balloon} />
-      <img className="sunrise-balloon" src={sunrise_balloon}/>
+      <img className="sunrise-balloon" src={sunrise_balloon} />
     </div>
   );
 };

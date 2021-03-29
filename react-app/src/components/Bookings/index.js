@@ -16,7 +16,7 @@ const Bookings = () => {
     if (sessionUser) {
         userId = sessionUser.id
     }
-
+ 
     const onSubmit = (e) => {
         e.preventDefault()
         setToggle(true)

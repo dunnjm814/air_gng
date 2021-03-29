@@ -13,8 +13,6 @@ function Map() {
     return state.biz
   });
   const searchRef = useSelector((state) => state.location.location)
-  // searchRef =
-  // console.log('from search object', searchRef, searchRef.aircraft)
 
   const servicesArray = Object.values(aircraft)
 
@@ -25,17 +23,14 @@ function Map() {
   const [shownBiz, setBiz] = useState([]);
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
-  // console.log('selected service', selected)
-  console.log('map', map)
+
   useEffect(() => {
     if (searchRef && (searchRef.location !== null)) {
-      // const { lat } = searchRef.location.lat
-      // const { lng } = searchRef.location.lng
+
       setLat(searchRef.location.lat)
       setLng(searchRef.location.lng)
       handleMapLoad(map)
-      // setLat(lat)
-      // setLng(lng)
+
       if (map !== undefined) {
         panTo({lat, lng})
 
@@ -61,7 +56,6 @@ function Map() {
     const filterAircraft = (array) => {
       if (!searchRef.aircraft) return array;
       const filteredService = array.filter((biz) => biz === aircraftRef);
-      console.log("filter", filteredService);
       setFilterBiz(filteredService);
       return;
     }
@@ -80,19 +74,14 @@ function Map() {
   };
   const mapRef = useRef()
   const handleMapLoad = useCallback((currentMap) => {
-    console.log('currentMap', currentMap)
     setMap(currentMap);
     mapRef.current = currentMap
 
   }, [])
 
   const panTo = useCallback(({ lat, lng }) => {
-    console.log('inside pan to', map)
     mapRef.current.panTo({ lat, lng })
     mapRef.current.setZoom(14);
-    // setLat(lat)
-    // setLng(lng)
-    // handleBoundsChanged()
   }, [])
 
   function handleBoundsChanged() {
@@ -110,17 +99,6 @@ function Map() {
     disableDefaultUI: true,
     zoomControl:true
   }
-  // useEffect(() => {
-  //   if (selected !== null) {
-  //     setLat(selected.lat)
-  //     setLng(selected.lng)
-  //     handleMapLoad(map)
-  //     if (map !== undefined) {
-  //       panTo({ lat, lng })
-  //       handleBoundsChanged()
-  //     }
-  //   }
-  // }, [selected])
 
   useEffect(() => {
     if (selected !== null) {

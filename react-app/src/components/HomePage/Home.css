@@ -41,6 +41,7 @@
 
 body {
   background-repeat: no-repeat;
+  margin: 0;
   height: 100%;
   width: auto;
   background-size: 100% 100%;

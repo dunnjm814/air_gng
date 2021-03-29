@@ -1,3 +1,4 @@
+
 .review_form {
   display: flex;
   flex-direction: column;
@@ -52,4 +53,39 @@ padding: 0 20px;
 
 .review-btn:focus {
   outline: none;
+#reviewform {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 200px;
+}
+
+#num {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#commbox {
+  width: 80%;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 50px;
+}
+
+#formdiv {
+  padding: 5px;
+}
+
+#subbut {
+  font-family: Airbnb;
+  border-radius: 32px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  transition: 1000ms;
+  will-change: font-family;
+  outline: none;
+}
+
+#subbut:hover {
+  font-family: Airbnb-bold;
+  cursor: pointer;
 }

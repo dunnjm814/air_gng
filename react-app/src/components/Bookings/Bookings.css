@@ -27,3 +27,25 @@
   font-family: Airbnb-bold;
   cursor: pointer;
 }
+
+#daybook {
+  padding-left: 5px;
+}
+
+#datepick {
+  padding-left: 5px;
+}
+
+#resbut {
+  font-family: Airbnb;
+  border-radius: 32px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  transition: 1000ms;
+  will-change: font-family;
+}
+
+#resbut:hover {
+  font-family: Airbnb-bold;
+  cursor: pointer;
+}
