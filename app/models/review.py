@@ -13,6 +13,10 @@ class Review(db.Model):
   user = db.relationship("User", back_populates="review")
   service = db.relationship("Aircraft", back_populates="review")
 
+  __table_args__ = (
+        db.CheckConstraint(rate < 6, name='check_rate'),
+        {})
+
   def to_dict(self):
     return {
       'id': self.id,
