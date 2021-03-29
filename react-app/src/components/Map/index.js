@@ -44,23 +44,23 @@ function Map() {
     dispatch(getAllBiz());
   }, [dispatch, map]);
 
-  const aircraftRef = useRef()
+  // const aircraftRef = useRef()
 
-  useEffect(() => {
-    if (!searchRef) {
-      return
-    } else {
-      aircraftRef.current = searchRef.aircraft;
-    }
-    console.log("aircraftRef", aircraftRef)
-    const filterAircraft = (array) => {
-      if (!searchRef.aircraft) return array;
-      const filteredService = array.filter((biz) => biz === aircraftRef);
-      setFilterBiz(filteredService);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!searchRef) {
+  //     return
+  //   } else {
+  //     aircraftRef.current = searchRef.aircraft;
+  //   }
+  //   console.log("aircraftRef", aircraftRef)
+  //   const filterAircraft = (array) => {
+  //     if (!searchRef.aircraft) return array;
+  //     const filteredService = array.filter((biz) => biz === aircraftRef);
+  //     setFilterBiz(filteredService);
+  //     return;
+  //   }
 
-  },[searchRef])
+  // },[searchRef])
 
   const containerStyle = {
     width: "50vw",

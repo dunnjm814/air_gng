@@ -20,9 +20,11 @@ export const authenticate = () => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
-  const user = await response.json();
-  dispatch(setUser(user))
-  return user
+  if (response.ok) {
+    const user = await response.json();
+    dispatch(setUser(user))
+    return user
+  }
 };
 
 export const signUp = (
@@ -60,7 +62,9 @@ export const signUp = (
       }),
     });
     const user = await response.json();
-    dispatch(setUser(user))
+    if (!user.errors) {
+      dispatch(setUser(user))
+    }
     return user
   };
 

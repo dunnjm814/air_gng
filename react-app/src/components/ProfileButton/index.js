@@ -35,13 +35,12 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu, sessionUser]);
-  
+
   return (
     <>
       <button className="login-button"onClick={openMenu}>
         <img className="login-img" src={login} />
       </button>
-
       {showLogModal && (
         <Modal onClose={() => setShowLogModal(false)}>
           <LoginForm

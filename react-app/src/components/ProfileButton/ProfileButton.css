@@ -14,8 +14,12 @@
 .profile-dropdown {
   display: flex;
   flex-direction: column;
+  position: absolute;
 }
-
+.menu-links{
+  display: block;
+  position: relative;
+}
 .menu-links > button{
   outline: inherit;
   border: none;
@@ -24,6 +28,7 @@
   height: 30px;
   margin: 5px;
   color: white;
+
 }
 .profile-dropdown > button{
   outline: inherit;

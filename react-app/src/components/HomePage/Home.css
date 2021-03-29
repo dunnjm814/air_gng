@@ -3,30 +3,26 @@
   width: auto;
   margin-left: 950px;
   margin-top: 100px;
+  animation-name: floating;
+  animation-duration: 5.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .striped-balloon {
   height: 200px;
   width: auto;
   margin: 20px 0 0 50px;
+  animation-name: floating;
+  animation-duration: 4.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
-#homediv {
-  background-image: linear-gradient(
-    to top,
-    #f0f842,
-    #d6f746,
-    #bcf54d,
-    #a1f356,
-    #83f060,
-    #64e96f,
-    #42e17c,
-    #00d888,
-    #00c895,
-    #00b89b,
-    #00a79c,
-    #2b9696
-  );
+#homediv{
+  margin-top: 50px;
+  height: 100%;
+  width: auto;
 }
 
 #roam {
@@ -44,7 +40,8 @@ body {
   margin: 0;
   height: 100%;
   width: auto;
-  background-size: 100% 100%;
+  background: no-repeat center center;
+  /* background-size: 100% 100%; */
   background-image: linear-gradient(
     to top,
     #f0f842,
@@ -59,6 +56,20 @@ body {
     #00b89b,
     #00a79c,
     #2b9696
-  );
+    );
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 15px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
 
 }
