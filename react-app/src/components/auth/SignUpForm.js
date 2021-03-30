@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {useDispatch} from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { signUp } from '../../store/session';
 
-const SignUpForm = ({ authenticated, setAuthenticated, setShowSignModal }) => {
+const SignUpForm = ({setShowSignModal }) => {
   const dispatch = useDispatch()
-
+const history = useHistory();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [profilePic, setProfilePic] = useState("")
@@ -17,15 +17,14 @@ const SignUpForm = ({ authenticated, setAuthenticated, setShowSignModal }) => {
     e.preventDefault();
     if (password === repeatPassword) {
       const user = await dispatch(signUp(username, email, password, profilePic));
-      if (!user.errors) {
-        setAuthenticated(true);
-      } else {
-        setErrors(user.errors)
-      }
+    if (user.errors) {
+      setErrors([...user.errors]);
+    }
     } else {
       setErrors(['Please confirm password'])
     }
     setShowSignModal(false)
+    history.push("/");
   };
 
   const updateUsername = (e) => {
@@ -48,11 +47,6 @@ const SignUpForm = ({ authenticated, setAuthenticated, setShowSignModal }) => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-
-  if (authenticated) {
-
-    return <Redirect to="/" />;
-  }
 
   return (
     <form onSubmit={onSignUp}>

@@ -2,7 +2,6 @@ import "./SearchBar.css";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import search_button from "../../img/airgng-search-button.png";
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
 import usePlacesAutocomplete, {
@@ -49,7 +48,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const history = useHistory()
 
-  const [showCal, setShowCal] = useState(false);
+  // const [showCal, setShowCal] = useState(false);
   const [location, setLocation] = useState("");
   const [aircraft, setAircraft] = useState("");
 
@@ -58,10 +57,11 @@ const Search = () => {
     setLocation(incomingSearch)
   },[incomingSearch])
 
-  const openCal = () => {
-    if (showCal) return;
-    setShowCal(true);
-  };
+  // const openCal = () => {
+  //   if (showCal) return;
+  //   setShowCal(true);
+  // };
+  // calendar already has a built in open?
   const onSubmit = async (e) => {
     e.preventDefault();
     await dispatch(searchMap({location, aircraft}));
@@ -104,10 +104,9 @@ const Search = () => {
             <div>Guests</div>
           </div>
           <button type="submit" className="search-button">
-            <a>
+            <a href='#'>
               <IoSearchCircle />
             </a>
-            {/* <img className="search-button" src={search_button} /> */}
           </button>
         </form>
       </div>

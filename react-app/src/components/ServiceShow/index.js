@@ -17,7 +17,7 @@ function ServiceShow() {
   const sessionUser = useSelector(state => state.session.user)
 
   const [toggle, setToggle] = useState(false)
-  const [myId, setId] = useState(0)
+  // const [myId, setId] = useState(0)
 
   const reviewsArr = Object.values(reviews)
 
@@ -30,9 +30,9 @@ function ServiceShow() {
     .then(dispatch(reviewActions.getReviews(craft_id)))
   }, [dispatch, craft_id, reviewsArr.length])
 
-  useEffect(() => {
-    
-  }, [myId])
+  // useEffect(() => {
+  // not sure what this is doing?
+  // }, [myId])
 
   return (
     <div className="service_main">
