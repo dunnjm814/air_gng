@@ -56,7 +56,7 @@ function ServiceShow() {
                   <b>About {service.business_name}</b>
                 </span>
                 <p>
-                  <div>{service.description}</div>
+                   {service.description}
                 </p>
                 <p>
                   {service.business_name} are experienced and highly rated for your {service.aircraft} adventure who are committed to providing great stays for guests.
@@ -102,7 +102,7 @@ function ServiceShow() {
                   ))}
               </ul>
               <div className="service_main_review_form">
-                <label for="leave-review" className="leave-review-btn">
+                <label htmlFor="leave-review" className="leave-review-btn">
                   Leave a review
                   <button
                     id="leave-review"

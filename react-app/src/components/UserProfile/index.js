@@ -44,7 +44,7 @@ function UserProfile() {
     setFilteredReviews(
       userReviewsArr.filter((review) => review.aircraft === selectedReview)
     );
-  }, [selectedReview, userReviewsArr]);
+  }, [selectedReview, userReviewsArr.length]);
 
   const deleteMyBooking = (bookingId) => {
     dispatch(bookingActions.deleteBooking(bookingId));
