@@ -51,9 +51,10 @@ function ServiceShow() {
               />
             </div>
             <div className="service_main_description">
-              <div>
+              <div style={{marginTop: '50px'}}>
                 <span>
                   <b>About {service.business_name}</b>
+                  <hr></hr>
                 </span>
                 <p>
                    {service.description}
@@ -69,6 +70,7 @@ function ServiceShow() {
                 </p>
                 <span>Cancellation policy</span>
                 <p>Free to cancel within 30 days of booking</p>
+                <hr></hr>
                 <span>Aircraft rules</span>
                 <p>The business does not allow smoking</p>
                 <p>When you are ready to book your {service.aircraft} adventure, you can reserve below or call us at:</p>

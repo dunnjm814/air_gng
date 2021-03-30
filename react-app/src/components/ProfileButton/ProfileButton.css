@@ -1,9 +1,26 @@
 .login-button {
+  display: flex;
+  flex-direction: row;
   outline: inherit;
   border: none;
-  background-color: transparent;
-  height: 20px;
-  width: auto;
+  /* background-color: transparent; */
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 32px;
+  width: 92px;
+  padding: 10px;
+  transition: 0.5s;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  background-color: rgba(204, 204, 204, 0.7);
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
 }
 
 .login-img {
@@ -14,12 +31,15 @@
 .profile-dropdown {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: relative;
+  margin-top: 5px;
 }
 .menu-links{
-  display: block;
+  display: flex;
   position: relative;
+  flex-direction: column;
 }
+
 .menu-links > button{
   outline: inherit;
   border: none;
@@ -49,6 +69,7 @@
 }
 
 .profile-dropdown > a {
+  display: flex;
   outline: inherit;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
@@ -57,4 +78,15 @@
   margin: 5px;
   color: white;
   text-decoration: none;
+  font: 400 13.3333px Arial;
+  text-align: center;
+}
+
+.profile-dropdown a span {
+  margin: auto;
+}
+
+.profile-btn-wrapper {
+  display: flex;
+  flex-direction: column;
 }
