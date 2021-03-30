@@ -56,7 +56,7 @@ function ServiceShow() {
                   <b>About {service.business_name}</b>
                 </span>
                 <p>
-                   {service.description}
+                  {service.description}
                 </p>
                 <p>
                   {service.business_name} are experienced and highly rated for your {service.aircraft} adventure who are committed to providing great stays for guests.
