@@ -30,8 +30,8 @@ function Map() {
   };
 
   const center = {
-    lat: lat || 34.81723,
-    lng: lng || -114.34576,
+    lat: lat || 35.199167,
+    lng: lng || -111.631111,
   };
   const handleMapLoad = useCallback((currentMap) => {
     setMap(currentMap);
