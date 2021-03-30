@@ -6,6 +6,9 @@ import SignUpForm from "../auth/SignUpForm";
 import { Modal } from "../../context/Modal";
 import { NavLink } from "react-router-dom";
 import login from "../../img/login-menu.png"
+import { IconContext } from "react-icons";
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {FaUserCircle} from 'react-icons/fa'
 import "./ProfileButton.css"
 
 
@@ -37,8 +40,14 @@ function ProfileMenu() {
 
   return (
     <>
+    <div className='profile-btn-wrapper'>
       <button className="login-button"onClick={openMenu}>
-        <img alt='login-button' className="login-img" src={login} />
+        <IconContext.Provider value={{color:'white', size: '30px'}}>
+          <div className="icon-wrapper">
+            <GiHamburgerMenu />
+            <FaUserCircle />
+          </div>
+        </IconContext.Provider>
       </button>
       {showLogModal && (
         <Modal onClose={() => setShowLogModal(false)}>
@@ -66,7 +75,7 @@ function ProfileMenu() {
           </>
           }
           {sessionUser && <>
-              <NavLink to={`/users/profile/${sessionUser.id}`}>Profile</NavLink>
+              <NavLink to={`/users/profile/${sessionUser.id}`}><span>Profile</span></NavLink>
               <LogoutButton
                 className="logout-button"
               />
@@ -74,6 +83,7 @@ function ProfileMenu() {
           }
         </div>
       )}
+      </div>
     </>
   );
 }
