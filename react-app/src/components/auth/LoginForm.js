@@ -21,6 +21,16 @@ const history = useHistory();
       history.push("/");
     }
   };
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const user = await dispatch(login("demo@aa.io", "password"));
+    if (user.errors) {
+      setErrors(user.errors);
+    } else {
+      setShowLogModal(false);
+      history.push("/");
+    }
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -58,6 +68,9 @@ const history = useHistory();
         />
       </div>
       <button type="submit">Login</button>
+      <button type="button" id="demo" onClick={demoLogin}>
+        demo
+      </button>
     </form>
   );
 };
