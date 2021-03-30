@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div style={{height: "100%", width: 'auto'}}>
       <BrowserRouter style={{ display: 'flex', flexDirection: 'column'}}>
       <NavBar />
         <Switch>

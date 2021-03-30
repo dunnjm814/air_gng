@@ -68,8 +68,7 @@ const Search = () => {
     return history.push('/map')
   };
   return (
-    <>
-      <div>
+      <div id="search-wrap">
         <form className="search" onSubmit={onSubmit}>
           <div className="search-location">
             <label>
@@ -110,7 +109,7 @@ const Search = () => {
           </button>
         </form>
       </div>
-    </>
+
   );
 };
 

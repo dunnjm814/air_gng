@@ -2,11 +2,15 @@
 main {
   display: flex;
   position: relative;
+  height: 100%;
 }
 html {
   height: 100%;
 }
-
+#root{
+  height: 100%;
+  width: auto;
+}
 @font-face {
   font-family: Airbnb;
   src: url(../src/img/AirbnbCerealBook.ttf);
