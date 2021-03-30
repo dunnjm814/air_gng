@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LogoutButton from '../auth/LogoutButton';
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
@@ -10,8 +10,7 @@ import "./ProfileButton.css"
 
 
 
-function ProfileMenu({ setAuthenticated, authenticated}) {
-  const dispatch = useDispatch();
+function ProfileMenu() {
   const [showMenu, setShowMenu] = useState(false);
   const [showLogModal, setShowLogModal] = useState(false);
   const [showSignModal, setShowSignModal] = useState(false);
@@ -39,13 +38,11 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
   return (
     <>
       <button className="login-button"onClick={openMenu}>
-        <img className="login-img" src={login} />
+        <img alt='login-button' className="login-img" src={login} />
       </button>
       {showLogModal && (
         <Modal onClose={() => setShowLogModal(false)}>
           <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
             setShowLogModal={setShowLogModal}
           />
         </Modal>
@@ -54,8 +51,6 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
       {showSignModal && (
         <Modal onClose={() => setShowSignModal(false)}>
           <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
             setShowSignModal={setShowSignModal}
           />
         </Modal>
@@ -74,8 +69,6 @@ function ProfileMenu({ setAuthenticated, authenticated}) {
               <NavLink to={`/users/profile/${sessionUser.id}`}>Profile</NavLink>
               <LogoutButton
                 className="logout-button"
-                authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
               />
           </>
           }

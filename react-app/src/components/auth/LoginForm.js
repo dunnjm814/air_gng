@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 
 
-const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
+const LoginForm = ({ setShowLogModal }) => {
   const dispatch = useDispatch();
-
+const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,13 +14,12 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await dispatch(login(email, password));
-    if (!user.errors) {
-      setAuthenticated(true);
-
-    } else {
+    if (user.errors) {
       setErrors(user.errors);
+    } else {
+      setShowLogModal(false)
+      history.push("/");
     }
-    setShowLogModal(false)
   };
 
   const updateEmail = (e) => {
@@ -31,9 +30,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <form onSubmit={onLogin}>
@@ -50,7 +46,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
           placeholder="Email"
           value={email}
           onChange={updateEmail}
-          placeholder="Email"
         />
       </div>
       <div>
@@ -60,7 +55,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLogModal }) => {
           placeholder="Password"
           value={password}
           onChange={updatePassword}
-          placeholder="Password"
         />
       </div>
       <button type="submit">Login</button>

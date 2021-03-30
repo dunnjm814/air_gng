@@ -8,9 +8,9 @@ import AboutUserForm from "./AboutUserForm";
 import { useParams } from "react-router-dom";
 import "./profile.css";
 
-function UserProfile({ sessionUser }) {
+function UserProfile() {
   const dispatch = useDispatch();
-
+  const sessionUser = useSelector((state) => state.session.user);
   const userProfile = useSelector((state) => state.profile);
   const userReviews = useSelector((state) => state.review);
   const userBookings = useSelector((state) => state.booking);
@@ -21,7 +21,7 @@ function UserProfile({ sessionUser }) {
   const [info, setInfo] = useState(false);
   const [selectedReview, setSelectedReview] = useState("");
   const [filteredReviews, setFilteredReviews] = useState([]);
-  
+
   const { userId } = useParams();
 
   function toggle() {
@@ -38,13 +38,13 @@ function UserProfile({ sessionUser }) {
     dispatch(profileActions.getProfile(userId));
     dispatch(reviewActions.getUserReviews(userId));
     dispatch(bookingActions.getBookings(userId));
-  }, [dispatch, userBookings.length]);
+  }, [dispatch, userBookings.length, userId]);
 
   useEffect(() => {
     setFilteredReviews(
       userReviewsArr.filter((review) => review.aircraft === selectedReview)
     );
-  }, [selectedReview]);
+  }, [selectedReview, userReviewsArr]);
 
   const deleteMyBooking = (bookingId) => {
     dispatch(bookingActions.deleteBooking(bookingId));

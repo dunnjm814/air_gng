@@ -23,7 +23,7 @@ function ReviewForm() {
   }
 
   useEffect(() => {
-   
+
   }, [rate])
   return (
   <div className="review-form-wrapper">
@@ -39,8 +39,8 @@ function ReviewForm() {
   )
 
 
-  }, [])
- 
+  // }, [])
+
 // previous review form
 //   return (
 //     <>

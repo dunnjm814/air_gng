@@ -53,6 +53,7 @@ padding: 0 20px;
 
 .review-btn:focus {
   outline: none;
+}
 #reviewform {
   border: 1px solid black;
   border-radius: 8px;

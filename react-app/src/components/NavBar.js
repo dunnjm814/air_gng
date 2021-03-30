@@ -5,20 +5,16 @@ import "./NavBar.css"
 import airgng_logo from "../img/airbnb-logo.png"
 
 
-const NavBar = ({ setAuthenticated, authenticated, sessionUser }) => {
+const NavBar = () => {
   return (
     <nav>
       <div>
-        <img className="airgng-logo" src={airgng_logo}/>
+        <img alt='logo' className="airgng-logo" src={airgng_logo}/>
         <NavLink to="/" exact={true} activeClassName="active" className="home-button">
           airgng
         </NavLink>
       </div>
-      <ProfileMenu
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-        sessionUser={sessionUser}
-      />
+      <ProfileMenu/>
     </nav>
   );
 }

@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <div id="homediv">
       <Search />
-      <img className="striped-balloon" src={striped_balloon} />
-      <img className="sunrise-balloon" src={sunrise_balloon} />
+      <img alt='balloon-stripe' className="striped-balloon" src={striped_balloon} />
+      <img alt='balloon-sunrise' className="sunrise-balloon" src={sunrise_balloon} />
     </div>
   );
 };
