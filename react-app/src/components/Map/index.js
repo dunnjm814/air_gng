@@ -13,6 +13,8 @@ function Map() {
     return state.biz
   });
   const searchRef = useSelector((state) => state.location.location)
+  console.log(searchRef.location.lat)
+  console.log(searchRef.location.lng)
   const servicesArray = Object.values(aircraft)
   const mapRef = useRef()
 
@@ -34,6 +36,7 @@ function Map() {
     lng: lng || -111.631111,
   };
   const handleMapLoad = useCallback((currentMap) => {
+    console.log(currentMap)
     setMap(currentMap);
     mapRef.current = currentMap
 
@@ -45,6 +48,8 @@ function Map() {
   }, [])
 
   function handleBoundsChanged() {
+      console.log(map)
+      console.log(mapRef.current)
       const bounds = map.getBounds();
       const center = bounds.getCenter();
       setLat(center.lat());
@@ -70,7 +75,8 @@ function Map() {
     } else {
       handleMapLoad(map)
     }
-  }, [searchRef, handleMapLoad, lat, lng, map, panTo])
+    console.log(searchRef);
+  }, [searchRef])
 
   useEffect(() => {
     dispatch(getAllBiz());

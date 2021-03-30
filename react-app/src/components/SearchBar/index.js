@@ -68,18 +68,18 @@ const Search = () => {
   //   setShowCal(true);
   // };
   // calendar already has a built in open?
-  const handleSelect = (locSelect) => {
-    let choiceCoords
-    if (locSelect === "Los Angeles") {
-      choiceCoords = { lat: 34.05, lng: -118.25 };
+  const handleSelect = (selectVal) => {
+    let choiceCoords = {}
+    if (selectVal === "Los Angeles") {
+      choiceCoords = { 'lat': 34.05, 'lng': -118.25 };
       setLocation(choiceCoords);
     }
-    if (locSelect === "Flagstaff") {
-      choiceCoords = { lat: 35.199167, lng: -111.631111 };
+    if (selectVal === "Flagstaff") {
+      choiceCoords = { 'lat': 35.199167, 'lng': -111.631111 };
       setLocation(choiceCoords);
     }
-    if (locSelect === "Phoenix") {
-      choiceCoords = { lat: 33.45, lng: -112.066667 };
+    if (selectVal === "Phoenix") {
+      choiceCoords = { 'lat': 33.45, 'lng': -112.066667 };
       setLocation(choiceCoords);
     }
   }
