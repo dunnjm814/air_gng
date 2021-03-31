@@ -57,7 +57,7 @@ function Map() {
       setLng(center.lng());
 
       setBiz(servicesArray.filter((service) =>
-        (bounds.contains({lat: service.lat, lng: service.lng}) && service.book_date !== searchRef.searchDate)
+        (bounds.contains({lat: service.lat, lng: service.lng}))
       ));
 
       servicesArray.forEach(service => (
