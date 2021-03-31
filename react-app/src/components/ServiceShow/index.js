@@ -62,13 +62,13 @@ function ServiceShow() {
                 <p>
                   {service.business_name} are experienced and highly rated for your {service.aircraft} adventure who are committed to providing great stays for guests.
                 </p>
-                <span>Personal Experience</span>
+                <span className="title">Personal Experience</span>
                 <p>When you book an experience with {service.business_name}, your experience will be personal</p>
-                <span>Enhanced clean</span>
+                <span className="title">Enhanced clean</span>
                 <p>
                   This business is commited to Airgng's 5-step cleaning process.
                 </p>
-                <span>Cancellation policy</span>
+                <span className="title">Cancellation policy</span>
                 <p>Free to cancel within 30 days of booking</p>
                 <hr></hr>
                 <span>Aircraft rules</span>

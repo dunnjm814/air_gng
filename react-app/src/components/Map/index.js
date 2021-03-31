@@ -42,6 +42,7 @@ function Map() {
 
   }, [])
 
+
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng })
     mapRef.current.setZoom(14);
@@ -58,8 +59,8 @@ function Map() {
       setBiz(servicesArray.filter((service) =>
         (bounds.contains({lat: service.lat, lng: service.lng}))
       ));
-
   }
+
 
   useEffect(() => {
     if (searchRef && (searchRef.location !== null)) {
