@@ -59,11 +59,6 @@ function Map() {
       setBiz(servicesArray.filter((service) =>
         (bounds.contains({lat: service.lat, lng: service.lng}))
       ));
-
-      servicesArray.forEach(service => (
-        console.log(service.book_date == searchRef.searchDate),
-        console.log(service, searchRef.searchDate)
-      ))
   }
 
 
