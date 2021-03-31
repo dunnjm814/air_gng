@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
+import moment from 'moment';
 // import usePlacesAutocomplete, {
 //   getGeocode,
 //   getLatLng,
@@ -26,12 +27,17 @@ import "react-nice-dates/build/style.css";
 import { searchLocation, searchMap } from "../../store/location";
 import {IoSearchCircle} from 'react-icons/io5'
 
+const dateConverter = (dateObj) => {
+  return moment(dateObj).format("YYYY-MM-DD")
+}
 
-
-export function DatePickerExample() {
+export function DatePickerExample({setSearchDate}) {
   const [date, setDate] = useState();
   const currentDate = new Date();
 
+  useEffect(() => {
+    setSearchDate(dateConverter(date))
+  }, [date])
   return (
     <DatePicker
       date={date}
@@ -57,6 +63,7 @@ const Search = () => {
   // const [showCal, setShowCal] = useState(false);
   const [location, setLocation] = useState("");
   const [aircraft, setAircraft] = useState("");
+  const [searchDate, setSearchDate] = useState()
 
   // const incomingSearch = useSelector((state) => state.location.location)
   // useEffect(() => {
@@ -86,11 +93,18 @@ const Search = () => {
   useEffect(() => {
     handleSelect(selectVal)
   }, [selectVal])
+
+  useEffect(() => {
+    // console.log('search date', searchDate)
+  }, [searchDate])
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(searchMap({location, aircraft}));
+    await dispatch(searchMap({location, aircraft, searchDate}));
     return history.push('/map')
   };
+
+
   return (
     <div id="search-wrap">
       <form className="search" onSubmit={onSubmit}>
@@ -118,7 +132,7 @@ const Search = () => {
           </label>
         </div>
         <div>
-          <DatePickerExample />
+          <DatePickerExample setSearchDate={setSearchDate} />
           <div>Flying Date</div>
         </div>
         <div>
