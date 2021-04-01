@@ -13,8 +13,6 @@ function Map() {
     return state.biz
   });
   const searchRef = useSelector((state) => state.location.location)
-  console.log(searchRef.location.lat)
-  console.log(searchRef.location.lng)
   const servicesArray = Object.values(aircraft)
   const mapRef = useRef()
 
@@ -35,6 +33,16 @@ function Map() {
     lat: lat || 35.199167,
     lng: lng || -111.631111,
   };
+  useEffect(() => {
+    if (map) {
+      const bounds = mapRef.current.getBounds();
+      setBiz(
+        servicesArray.filter((service) =>
+          bounds.contains({ lat: service.lat, lng: service.lng })
+        )
+      );
+    }
+  }, [map]);
   const handleMapLoad = useCallback((currentMap) => {
     console.log(currentMap)
     setMap(currentMap);
@@ -48,8 +56,6 @@ function Map() {
   }, [])
 
   function handleBoundsChanged() {
-      console.log(map)
-      console.log(mapRef.current)
       const bounds = map.getBounds();
       const center = bounds.getCenter();
       setLat(center.lat());
@@ -125,6 +131,7 @@ function Map() {
           onLoad={handleMapLoad}
           onDragEnd={handleBoundsChanged}
           onClick={handleBoundsChanged}
+          // onZoomChanged={handleBoundsChanged}
           options={options}
         >
           {shownBiz &&
