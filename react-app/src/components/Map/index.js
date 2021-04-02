@@ -75,6 +75,7 @@ function Map() {
     mapRef.current = currentMap;
   }, []);
 
+
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
@@ -97,7 +98,9 @@ function Map() {
       })
     }
     setBiz(temp2);
+
   }
+
 
   useEffect(() => {
     if (searchRef && searchRef.location !== null) {
