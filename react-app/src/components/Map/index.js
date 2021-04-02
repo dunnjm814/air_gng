@@ -20,19 +20,46 @@ function Map() {
   const [lng, setLng] = useState();
   const [map, setMap] = useState();
   const [zoom, clickZoom] = useState(10);
-  const [shownBiz, setBiz] = useState([]);
+  const [shownBiz, setBiz] = useState([
+    {
+      address: "11934 N Russell Rd",
+      aircraft: "HangGlider",
+      biz_image:
+        "https://s3-media0.fl.yelpcdn.com/bphoto/nJDQEdE6lrfB13Dlamq5tA/o.jpg",
+      business_name: "Sonora Wings Tandem Hang Gliding",
+      city: "Maricopa",
+      description:
+        "We specialize in introducing people to hang gliding. If you would like to experience a tandem hang gliding flight or learn to fly a hang glider, we can help you. ",
+      id: 1,
+      lat: 32.98831,
+      lng: -111.9137,
+      phone_number: "800-555-1212",
+      state: "AZ",
+      zip_code: 85138,
+    },
+  ]);
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
+  const [airCraftType, setAircraftType] = useState('')
+
   const containerStyle = {
     width: "50vw",
     height: "100vh",
     marginRight: "auto"
   };
-
+  const options = {
+    disableDefaultUI: true,
+    zoomControl: true,
+  };
   const center = {
     lat: lat || 35.199167,
     lng: lng || -111.631111,
   };
+
+  useEffect(() => {
+    dispatch(getAllBiz());
+  }, [dispatch]);
+
   useEffect(() => {
     if (map) {
       const bounds = mapRef.current.getBounds();
@@ -44,80 +71,56 @@ function Map() {
     }
   }, [map]);
   const handleMapLoad = useCallback((currentMap) => {
-    console.log(currentMap)
     setMap(currentMap);
-    mapRef.current = currentMap
-
-  }, [])
+    mapRef.current = currentMap;
+  }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng })
+    mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
-  }, [])
+  }, []);
 
   function handleBoundsChanged() {
-      const bounds = map.getBounds();
-      const center = bounds.getCenter();
-      setLat(center.lat());
-      setLng(center.lng());
+    const bounds = map.getBounds();
+    const center = bounds.getCenter();
+    setLat(center.lat());
+    setLng(center.lng());
 
-      setBiz(servicesArray.filter((service) =>
-        (bounds.contains({lat: service.lat, lng: service.lng}))
-      ));
-
+    let temp = servicesArray.filter((service) =>
+      bounds.contains({ lat: service.lat, lng: service.lng })
+    )
+    let temp2;
+    if (searchRef) {
+      setAircraftType(searchRef.aircraft);
+      temp2 = temp.filter((service) => {
+        return service.aircraft === airCraftType
+      })
+    }
+    setBiz(temp2);
   }
 
   useEffect(() => {
-    if (searchRef && (searchRef.location !== null)) {
-
-      setLat(searchRef.location.lat)
-      setLng(searchRef.location.lng)
-      handleMapLoad(map)
+    if (searchRef && searchRef.location !== null) {
+      setLat(searchRef.location.lat);
+      setLng(searchRef.location.lng);
+      handleMapLoad(map);
 
       if (map !== undefined) {
-        panTo({lat, lng})
-
+        panTo({ lat, lng });
       }
     } else {
-      handleMapLoad(map)
+      handleMapLoad(map);
     }
     console.log(searchRef);
-  }, [searchRef])
-
-  useEffect(() => {
-    dispatch(getAllBiz());
-  }, [dispatch, map]);
-
-  // const aircraftRef = useRef()
-
-  // useEffect(() => {
-  //   if (!searchRef) {
-  //     return
-  //   } else {
-  //     aircraftRef.current = searchRef.aircraft;
-  //   }
-  //   console.log("aircraftRef", aircraftRef)
-  //   const filterAircraft = (array) => {
-  //     if (!searchRef.aircraft) return array;
-  //     const filteredService = array.filter((biz) => biz === aircraftRef);
-  //     setFilterBiz(filteredService);
-  //     return;
-  //   }
-
-  // },[searchRef])
-
-  const options = {
-    disableDefaultUI: true,
-    zoomControl:true
-  }
+  }, [searchRef]);
 
   useEffect(() => {
     if (selected !== null) {
       setLat(selected.lat);
-      setLng(selected.lng)
-      handleMapLoad(map)
+      setLng(selected.lng);
+      handleMapLoad(map);
     }
-  }, [selected, handleMapLoad, map])
+  }, [selected, handleMapLoad, map]);
 
   return (
     <div className={"maps-biz-container"}>
@@ -134,7 +137,7 @@ function Map() {
           // onZoomChanged={handleBoundsChanged}
           options={options}
         >
-          {shownBiz &&
+          {shownBiz.length > 0 &&
             shownBiz.map((service) => {
               return (
                 <Marker

@@ -27,19 +27,23 @@
 }
 
 .search-button > a {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 50px;
   vertical-align: middle;
   width: auto;
   color: #F27C21;
+ 
   transition: 0.5s;
 }
 .search-button > a:hover {
   color: #cf691a;
 }
 .search-button {
-  /* display:flex;
-  flex-direction: column;
-  justify-content: center; */
+  display:flex;
+  flex-direction: row;
+  align-items: center;
   outline: inherit;
   border: none;
   background-color: transparent;

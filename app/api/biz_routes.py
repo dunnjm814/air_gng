@@ -4,7 +4,7 @@ from app.models import User, Profile, db, Aircraft, Review
 from app.forms import ReviewForm
 biz_routes = Blueprint('aircrafts', __name__)
 
-@biz_routes.route('/')
+@biz_routes.route('')
 # @login_required
 def biz():
     services = Aircraft.query.all()
