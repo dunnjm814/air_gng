@@ -111,31 +111,32 @@ const Search = () => {
         <div className="search-location">
           <label>
             <div>
+              Where are you going?
               <Listbox
                 id="place-search"
                 value={selectVal}
                 // onChange={handleInput}
                 onChange={setSelectVal}
               >
-                <ListboxOption key={'la'} value="Los Angeles">
+                <ListboxOption key={"la"} value="Los Angeles">
                   Los Angeles
                 </ListboxOption>
-                <ListboxOption key={'f'} value="Flagstaff">
+                <ListboxOption key={"f"} value="Flagstaff">
                   Flagstaff
                 </ListboxOption>
-                <ListboxOption key={'p'} value="Phoenix">
+                <ListboxOption key={"p"} value="Phoenix">
                   Phoenix
                 </ListboxOption>
               </Listbox>
             </div>
-            Where are you going?
           </label>
         </div>
         <div>
-          <DatePickerExample setSearchDate={setSearchDate} />
           <div>Flying Date</div>
+          <DatePickerExample setSearchDate={setSearchDate} />
         </div>
         <div>
+          <div>What are you flying?</div>
           <select
             id="select-field"
             value={aircraft}
@@ -151,7 +152,6 @@ const Search = () => {
             <option value={"SkyDiving"}>Sky Diving</option>
             <option value={"WingSuit"}>Wing suit</option>
           </select>
-          <div>What are you flying?</div>
         </div>
         <div>
           {/* <div>Number of guests?</div> */}

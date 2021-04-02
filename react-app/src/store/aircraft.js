@@ -17,9 +17,10 @@ export const loadOneBiz = (biz) => {
 
 export const getAllBiz = () => async (dispatch) => {
     const response = await fetch("/api/services", {
-        headers: {
-            "Content-Type": "application/json",
-        },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     });
     const biz = await response.json()
     dispatch(loadBiz(biz))
@@ -31,6 +32,7 @@ export const getOneBiz = (craft_id) => async (dispatch) => {
     const response = await fetch(`/api/services/${craft_id}`, {
         headers: {
             "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*'
         },
     });
     const one_biz = await response.json()
