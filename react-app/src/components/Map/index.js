@@ -100,12 +100,12 @@ function Map() {
         return service.aircraft === airCraftType
       })
 
-      if (searchRef.idArray.length) {
-        setFilterDate(searchRef.idArray)
-        temp2 = temp2.filter((service) => {
-          return !filterDate.includes(service.id)
-        })
-      }
+      // if (searchRef.idArray.length) {
+      //   setFilterDate(searchRef.idArray)
+      //   temp2 = temp2.filter((service) => {
+      //     return !filterDate.includes(service.id)
+      //   })
+      // }
 
     }
     setBiz(temp2);
