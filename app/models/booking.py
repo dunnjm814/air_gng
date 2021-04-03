@@ -23,10 +23,5 @@ class Booking(db.Model):
       "service_id": self.service_id,
     }
 
-  def to_date_search(self):
-    return {
-      "id": self.service.id,
-    }
-
   def total_time(self):
     return self.book_end_time - self.book_start_time

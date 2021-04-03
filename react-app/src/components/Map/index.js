@@ -3,7 +3,6 @@ import { useSelector, useDispatch} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
-import { getDateBiz } from "../../store/booking";
 import logo from "../../img/sunrise-balloon.png"
 import './map.css'
 
@@ -43,6 +42,7 @@ function Map() {
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
   const [airCraftType, setAircraftType] = useState('')
+  const [filterDate, setFilterDate] = useState([])
 
   const containerStyle = {
     width: "50vw",
@@ -99,16 +99,18 @@ function Map() {
       temp2 = temp.filter((service) => {
         return service.aircraft === airCraftType
       })
+
+      if (searchRef.idArray.length) {
+        setFilterDate(searchRef.idArray)
+        temp2 = temp2.filter((service) => {
+          return !filterDate.includes(service.id)
+        })
+      }
+
     }
     setBiz(temp2);
 
   }
-
-  // useEffect(() => {
-  //   if (searchRef) {
-  //     dispatch(getDateBiz(searchRef.searchDate))
-  //   }
-  // }, [dispatch])
 
 
   useEffect(() => {

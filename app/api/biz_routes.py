@@ -69,4 +69,4 @@ def delete_review(review_id):
 @biz_routes.route('/search/<date>')
 def date_search_biz(date):
     bookings = Booking.query.filter_by(book_date=date).all()
-    return {booking.id: booking.to_date_search() for booking in bookings}
+    return {booking.service.id: booking.service.id for booking in bookings}
