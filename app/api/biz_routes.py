@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Profile, db, Aircraft, Review
+from app.models import User, Profile, db, Aircraft, Review, Booking
 from app.forms import ReviewForm
 biz_routes = Blueprint('aircrafts', __name__)
 
@@ -65,3 +65,8 @@ def delete_review(review_id):
     db.session.delete(review)
     db.session.commit()
     return review.to_dict()
+
+@biz_routes.route('/search/<date>')
+def date_search_biz(date):
+    bookings = Booking.query.filter_by(book_date=date).all()
+    return {booking.id: booking.to_date_search() for booking in bookings}

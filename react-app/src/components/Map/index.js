@@ -3,6 +3,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { getAllBiz } from "../../store/aircraft";
+import { getDateBiz } from "../../store/booking";
 import logo from "../../img/sunrise-balloon.png"
 import './map.css'
 
@@ -70,6 +71,7 @@ function Map() {
       );
     }
   }, [map]);
+
   const handleMapLoad = useCallback((currentMap) => {
     setMap(currentMap);
     mapRef.current = currentMap;
@@ -100,6 +102,12 @@ function Map() {
     setBiz(temp2);
 
   }
+
+  // useEffect(() => {
+  //   if (searchRef) {
+  //     dispatch(getDateBiz(searchRef.searchDate))
+  //   }
+  // }, [dispatch])
 
 
   useEffect(() => {

@@ -1,6 +1,8 @@
-const initialState = {};
+const initialState = {datesearch: null};
 const LOAD_BIZ = "aircraft/loadBiz";
 const LOAD_ONE_BIZ = "aircrafts/loadOneBiz"
+
+
 export const loadBiz = (biz) => {
     return {
         type: LOAD_BIZ,
@@ -14,6 +16,8 @@ export const loadOneBiz = (biz) => {
         payload: biz,
     }
 }
+
+
 
 export const getAllBiz = () => async (dispatch) => {
     const response = await fetch("/api/services", {
@@ -40,14 +44,16 @@ export const getOneBiz = (craft_id) => async (dispatch) => {
     return one_biz
 }
 
+
+
 const bizReducer = (state = initialState, action) => {
-    let newState = {};
+    let newState = {...state};
     switch (action.type) {
         case LOAD_BIZ:
-            return action.payload;
+           return action.payload;
         case LOAD_ONE_BIZ:
             newState.current = action.payload
-            return newState
+            return newState;
         default:
             return state
     }
