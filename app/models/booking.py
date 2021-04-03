@@ -26,17 +26,6 @@ class Booking(db.Model):
   def to_date_search(self):
     return {
       "id": self.service.id,
-      "business_name": self.service.business_name,
-      "biz_image": self.service.biz_image,
-      "description": self.service.description,
-      "aircraft": self.service.aircraft,
-      "address": self.service.address,
-      "city": self.service.city,
-      "state": self.service.state,
-      "zip_code": self.service.zip_code,
-      "phone_number": self.service.phone_number,
-      "lng": self.service.lng,
-      "lat": self.service.lat,
     }
 
   def total_time(self):
