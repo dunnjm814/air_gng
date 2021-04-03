@@ -15,6 +15,7 @@ function Map() {
   });
   const searchRef = useSelector((state) => state.location.location)
   const servicesArray = Object.values(aircraft)
+  const datesearchBiz = useSelector(state => Object.values(state.booking.datesearch))
   const mapRef = useRef()
 
   const [lat, setLat] = useState();

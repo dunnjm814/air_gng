@@ -86,7 +86,7 @@ export const getDateBiz = (date) => async (dispatch) => {
   return filtered_biz;
 }
 
-const bookingReducer = (state = { profile: null }, action) => {
+const bookingReducer = (state = { profile: null, datesearch: {} }, action) => {
   let newState = { ...state }
   switch (action.type) {
     case LOAD_BOOKINGS:

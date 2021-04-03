@@ -1,4 +1,4 @@
-const initialState = {datesearch: null};
+const initialState = {};
 const LOAD_BIZ = "aircraft/loadBiz";
 const LOAD_ONE_BIZ = "aircrafts/loadOneBiz"
 

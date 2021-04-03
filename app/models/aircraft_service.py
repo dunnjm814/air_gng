@@ -23,15 +23,4 @@ class Aircraft(db.Model):
   def to_dict(self):
     return {
       "id": self.id,
-      "business_name": self.business_name,
-      "biz_image": self.biz_image,
-      "description": self.description,
-      "aircraft": self.aircraft,
-      "address": self.address,
-      "city": self.city,
-      "state": self.state,
-      "zip_code": self.zip_code,
-      "phone_number": self.phone_number,
-      "lng": self.lng,
-      "lat": self.lat,
     }
