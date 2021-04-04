@@ -1,6 +1,7 @@
 const LOAD_BOOKINGS = 'bookings/loadBookings'
 const SET_BOOKING = 'bookings/setBooking'
 const REMOVE_BOOKING = 'bookings/removeBooking'
+const LOAD_BIZ_BY_DATE = "aircrafts/loadBizByDate";
 
 export const loadBookings = (bookings) => {
   return {
@@ -23,6 +24,12 @@ export const removeBooking = (booking) => {
   }
 }
 
+export const loadBizByDate = (biz) => {
+  return {
+      type: LOAD_BIZ_BY_DATE,
+      payload: biz,
+  }
+}
 export const getBookings = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/bookings/${userId}`, {
     headers: {
@@ -68,7 +75,19 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
   return {}
 }
 
-const bookingReducer = (state = { profile: null }, action) => {
+//returns id of aircrafts that match booking date search
+export const getDateBiz = (date) => async (dispatch) => {
+  const response = await fetch(`api/services/search/${date}`, {
+      headers: {
+          "Content-Type": "application/json",
+      }
+  })
+  const filtered_biz = await response.json();
+  dispatch(loadBizByDate(filtered_biz))
+  return filtered_biz;
+}
+
+const bookingReducer = (state = { profile: null, datesearch: 0 }, action) => {
   let newState = { ...state }
   switch (action.type) {
     case LOAD_BOOKINGS:
@@ -79,6 +98,9 @@ const bookingReducer = (state = { profile: null }, action) => {
       return newState;
     case REMOVE_BOOKING:
       delete newState[action.payload.id]
+      return newState;
+    case LOAD_BIZ_BY_DATE:
+      newState.datesearch = action.payload;
       return newState;
     default:
       return state

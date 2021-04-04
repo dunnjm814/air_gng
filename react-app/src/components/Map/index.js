@@ -14,6 +14,7 @@ function Map() {
   });
   const searchRef = useSelector((state) => state.location.location)
   const servicesArray = Object.values(aircraft)
+  const datesearchBiz = useSelector(state => Object.values(state.booking.datesearch))
   const mapRef = useRef()
 
   const [lat, setLat] = useState();
@@ -41,6 +42,7 @@ function Map() {
   const [filterBiz, setFilterBiz] = useState([])
   const [selected, setSelected] = useState(null)
   const [airCraftType, setAircraftType] = useState('')
+  const [filterDate, setFilterDate] = useState([])
 
   const containerStyle = {
     width: "50vw",
@@ -70,6 +72,7 @@ function Map() {
       );
     }
   }, [map]);
+
   const handleMapLoad = useCallback((currentMap) => {
     setMap(currentMap);
     mapRef.current = currentMap;
@@ -92,12 +95,37 @@ function Map() {
     )
     let temp2;
     if (searchRef) {
+      //if aircraft search provided and date returns services
+      if(searchRef.aircraft && searchRef.idArray.length) {
+      setAircraftType(searchRef.aircraft);
+      setFilterDate(searchRef.idArray)
+      temp2 = temp.filter((service) => {
+        return service.aircraft === airCraftType && !filterDate.includes(service.id)
+      })
+    }
+
+    //if aircraft provided and no services match
+      if(searchRef.aircraft && !searchRef.idArray.length) {
       setAircraftType(searchRef.aircraft);
       temp2 = temp.filter((service) => {
         return service.aircraft === airCraftType
       })
     }
-    setBiz(temp2);
+
+    //if no aircraft search and bookings match
+      if (searchRef.idArray.length && searchRef.aircraft === "") {
+        setFilterDate(searchRef.idArray)
+        temp2 = temp.filter((service) => {
+          return !filterDate.includes(service.id)
+        })
+      }
+
+      //all aircrafts
+      if (!searchRef.idArray.length && searchRef.aircraft === "" ) {
+        temp2 = temp;
+      }
+    }
+    setBiz(temp2)
 
   }
 

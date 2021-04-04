@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { enGB } from "date-fns/locale";
 import { DatePicker } from "react-nice-dates";
+import { getDateBiz } from "../../store/booking";
 import moment from 'moment';
 // import usePlacesAutocomplete, {
 //   getGeocode,
@@ -100,7 +101,11 @@ const Search = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(searchMap({location, aircraft, searchDate}));
+    const result = dispatch(getDateBiz(searchDate))
+    const idObj = await result;
+    //array of aircraft ids that match searchDate
+    const idArray = Object.values(idObj);
+    await dispatch(searchMap({location, aircraft, idArray}));
     return history.push('/map')
   };
 
