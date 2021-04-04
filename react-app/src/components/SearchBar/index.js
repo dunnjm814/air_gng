@@ -103,6 +103,7 @@ const Search = () => {
     e.preventDefault();
     const result = dispatch(getDateBiz(searchDate))
     const idObj = await result;
+    //array of aircraft ids that match searchDate
     const idArray = Object.values(idObj);
     await dispatch(searchMap({location, aircraft, idArray}));
     return history.push('/map')

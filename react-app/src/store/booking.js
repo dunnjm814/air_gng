@@ -75,6 +75,7 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
   return {}
 }
 
+//returns id of aircrafts that match booking date search
 export const getDateBiz = (date) => async (dispatch) => {
   const response = await fetch(`api/services/search/${date}`, {
       headers: {

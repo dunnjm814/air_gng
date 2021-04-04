@@ -95,13 +95,15 @@ function Map() {
     )
     let temp2;
     if (searchRef) {
-      if(searchRef.aircraft) {
+      //if aircraft search provided and no services match search
+      if(searchRef.aircraft && !searchRef.arrayId.length) {
       setAircraftType(searchRef.aircraft);
       temp2 = temp.filter((service) => {
         return service.aircraft === airCraftType
       })
     }
 
+    //if no aircraft search
       if (searchRef.idArray.length) {
         setFilterDate(searchRef.idArray)
         temp2 = temp.filter((service) => {
