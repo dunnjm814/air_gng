@@ -95,24 +95,37 @@ function Map() {
     )
     let temp2;
     if (searchRef) {
-      //if aircraft search provided and no services match search
-      if(searchRef.aircraft && !searchRef.arrayId.length) {
+      //if aircraft search provided and date returns services
+      if(searchRef.aircraft && searchRef.idArray.length) {
+      setAircraftType(searchRef.aircraft);
+      setFilterDate(searchRef.idArray)
+      temp2 = temp.filter((service) => {
+        return service.aircraft === airCraftType && !filterDate.includes(service.id)
+      })
+    }
+
+    //if aircraft provided and no services match
+      if(searchRef.aircraft && !searchRef.idArray.length) {
       setAircraftType(searchRef.aircraft);
       temp2 = temp.filter((service) => {
         return service.aircraft === airCraftType
       })
     }
 
-    //if no aircraft search
-      if (searchRef.idArray.length) {
+    //if no aircraft search and bookings match
+      if (searchRef.idArray.length && searchRef.aircraft === "") {
         setFilterDate(searchRef.idArray)
         temp2 = temp.filter((service) => {
           return !filterDate.includes(service.id)
         })
       }
 
+      //all aircrafts
+      if (!searchRef.idArray.length && searchRef.aircraft === "" ) {
+        temp2 = temp;
+      }
     }
-    setBiz(temp2);
+    setBiz(temp2)
 
   }
 
