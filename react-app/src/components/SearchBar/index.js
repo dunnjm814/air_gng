@@ -99,13 +99,9 @@ const Search = () => {
     // console.log('search date', searchDate)
   }, [searchDate])
 
-  useEffect(() => {
-
-  }, [dispatch])
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    const result = dispatch(getDateBiz("2021-04-24"))
+    const result = dispatch(getDateBiz(searchDate))
     const idObj = await result;
     const idArray = Object.values(idObj);
     await dispatch(searchMap({location, aircraft, idArray}));

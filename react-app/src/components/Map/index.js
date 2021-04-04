@@ -95,17 +95,19 @@ function Map() {
     )
     let temp2;
     if (searchRef) {
+      if(searchRef.aircraft) {
       setAircraftType(searchRef.aircraft);
       temp2 = temp.filter((service) => {
         return service.aircraft === airCraftType
       })
+    }
 
-      // if (searchRef.idArray.length) {
-      //   setFilterDate(searchRef.idArray)
-      //   temp2 = temp2.filter((service) => {
-      //     return !filterDate.includes(service.id)
-      //   })
-      // }
+      if (searchRef.idArray.length) {
+        setFilterDate(searchRef.idArray)
+        temp2 = temp.filter((service) => {
+          return !filterDate.includes(service.id)
+        })
+      }
 
     }
     setBiz(temp2);
