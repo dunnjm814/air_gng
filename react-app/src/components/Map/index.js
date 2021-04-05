@@ -218,7 +218,11 @@ function Map() {
       <div className={"split left"}>
         <div className={"biz-container"}>
           {shownBiz.map((service) => (
-            <NavLink key={service.id} to={`/aircrafts/${service.id}`}>
+            <NavLink
+              key={service.id}
+              to={`/aircrafts/${service.id}`}
+              className={"biz-info"}
+            >
               <div className={"service-card"}>
                 <img
                   alt={`${service.id}-service card`}
@@ -228,7 +232,6 @@ function Map() {
                 />
                 <div className={"biz-info"}>
                   <h1>{service.business_name}</h1>
-                  <h3>Calander component here</h3>
                 </div>
               </div>
             </NavLink>

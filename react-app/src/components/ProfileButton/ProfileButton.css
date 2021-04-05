@@ -1,4 +1,4 @@
-.login-button {
+.nav-button {
   display: flex;
   flex-direction: row;
   outline: inherit;
@@ -12,9 +12,13 @@
   transition: 0.5s;
 }
 
-.login-button:hover {
+.nav-button:hover {
   cursor: pointer;
   background-color: rgba(204, 204, 204, 0.7);
+}
+.active{
+  border-radius: 0;
+  background-color: rgba(204, 204, 204, 1);
 }
 
 .icon-wrapper {
@@ -30,9 +34,17 @@
 
 .profile-dropdown {
   display: flex;
+  -webkit-transition: opacity 0.5s ease-in;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.open{
+  display: flex;
   flex-direction: column;
   position: relative;
-  margin-top: 5px;
+  height: auto;
+  opacity: 1;
+  background-color: rgba(204, 204, 204);
 }
 .menu-links{
   display: flex;
@@ -43,36 +55,30 @@
 .menu-links > button{
   outline: inherit;
   border: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 10px;
   height: 30px;
   margin: 5px;
   color: white;
-
+}
+.profile-dropdown > button:hover{
+  cursor: pointer;
 }
 .profile-dropdown > button{
   outline: inherit;
   border: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 10px;
   height: 30px;
   margin: 5px;
   color: white;
-}
-
-.logout-button{
-  outline: inherit;
-  border: none;
-  background-color: transparent;
-  height: 20px;
-  width: auto;
 }
 
 .profile-dropdown > a {
   display: flex;
   outline: inherit;
   border: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 10px;
   height: 30px;
   margin: 5px;
@@ -89,4 +95,5 @@
 .profile-btn-wrapper {
   display: flex;
   flex-direction: column;
+  z-index: 10;
 }

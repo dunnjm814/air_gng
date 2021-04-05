@@ -10,7 +10,7 @@ const NavBar = () => {
     <nav>
       <div>
         <img alt='logo' className="airgng-logo" src={airgng_logo}/>
-        <NavLink to="/" exact={true} activeClassName="active" className="home-button">
+        <NavLink to="/" exact={true}  className="home-button">
           airgng
         </NavLink>
       </div>
