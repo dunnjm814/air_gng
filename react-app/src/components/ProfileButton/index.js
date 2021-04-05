@@ -17,6 +17,8 @@ function ProfileMenu() {
   const [showMenu, setShowMenu] = useState(false);
   const [showLogModal, setShowLogModal] = useState(false);
   const [showSignModal, setShowSignModal] = useState(false);
+  const [active, setActive] = useState('')
+  const [open, setOpen] = useState('')
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -24,6 +26,8 @@ function ProfileMenu() {
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+    setActive('active')
+    setOpen('open')
   };
 
   useEffect(() => {
@@ -31,6 +35,8 @@ function ProfileMenu() {
 
     const closeMenu = () => {
       setShowMenu(false);
+      setActive("");
+      setOpen('')
     };
 
     document.addEventListener("click", closeMenu);
@@ -40,49 +46,49 @@ function ProfileMenu() {
 
   return (
     <>
-    <div className='profile-btn-wrapper'>
-      <button className="login-button"onClick={openMenu}>
-        <IconContext.Provider value={{color:'white', size: '30px'}}>
-          <div className="icon-wrapper">
-            <GiHamburgerMenu />
-            <FaUserCircle />
+      <div className={`profile-btn-wrapper`}>
+        <button className={`nav-button ${active}`} onClick={openMenu}>
+          <IconContext.Provider value={{ color: "white", size: "30px" }}>
+            <div className="icon-wrapper">
+              <GiHamburgerMenu />
+              <FaUserCircle />
+            </div>
+          </IconContext.Provider>
+        </button>
+        {showLogModal && (
+          <Modal onClose={() => setShowLogModal(false)}>
+            <LoginForm setShowLogModal={setShowLogModal} />
+          </Modal>
+        )}
+
+        {showSignModal && (
+          <Modal onClose={() => setShowSignModal(false)}>
+            <SignUpForm setShowSignModal={setShowSignModal} />
+          </Modal>
+        )}
+
+        {showMenu && (
+          <div className={`profile-dropdown ${open}`}>
+            {!sessionUser && (
+              <>
+                <div className="menu-links">
+                  <button onClick={() => setShowLogModal(true)}>Log in</button>
+                  <button onClick={() => setShowSignModal(true)}>
+                    Sign Up
+                  </button>
+                </div>
+              </>
+            )}
+            {sessionUser && (
+              <>
+                <NavLink to={`/users/profile/${sessionUser.id}`}>
+                  <span>Profile</span>
+                </NavLink>
+                <LogoutButton className="logout-button" />
+              </>
+            )}
           </div>
-        </IconContext.Provider>
-      </button>
-      {showLogModal && (
-        <Modal onClose={() => setShowLogModal(false)}>
-          <LoginForm
-            setShowLogModal={setShowLogModal}
-          />
-        </Modal>
-      )}
-
-      {showSignModal && (
-        <Modal onClose={() => setShowSignModal(false)}>
-          <SignUpForm
-            setShowSignModal={setShowSignModal}
-          />
-        </Modal>
-      )}
-
-      {showMenu && (
-        <div className="profile-dropdown">
-          {!sessionUser &&  <>
-              <div className="menu-links">
-                <button onClick={() => setShowLogModal(true)}>Log in</button>
-                <button onClick={() => setShowSignModal(true)}>Sign Up</button>
-              </div>
-          </>
-          }
-          {sessionUser && <>
-              <NavLink to={`/users/profile/${sessionUser.id}`}><span>Profile</span></NavLink>
-              <LogoutButton
-                className="logout-button"
-              />
-          </>
-          }
-        </div>
-      )}
+        )}
       </div>
     </>
   );
